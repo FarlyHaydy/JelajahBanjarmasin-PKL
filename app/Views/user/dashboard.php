@@ -45,7 +45,7 @@
         <div class="hero-content">
             <div class="hero-tagline">Welcome to Banua</div>
             <h1>Jelajah Banjarmasin</h1>
-            <p>Banjarmasin adalah kota terbesar di provinsi Kalimantan Selatan yang berada di Indonesia dan kota ini pernah menjadi ibu kota provinsi Kalimantan</p>
+            <p>Banjarmasin adalah kota terbesar di provinsi Kalimantan Selatan yang berada di Indonesia dan kota ini pernah menjadi ibu kota provinsi Kalimantan Selatan</p>
         </div>
     </section>
 
@@ -62,7 +62,7 @@
                     <div class="destination-card large pasar-terapung">
                         <div class="card-content">
                             <h3>Pasar Terapung</h3>
-                            <p>Lok Baintan</p>
+                            <p> Pasar Terapung tradisional yang berlokasi di siring</p>
                         </div>
                     </div>
                 </div>

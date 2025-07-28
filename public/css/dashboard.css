@@ -44,7 +44,7 @@
         /* Hero Section */
         .hero-section {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url('/images/Background_Utama.png');
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url('/images/Tampilan_Awal.png');
             background-size: cover;
             background-position: center;
             display: flex;
