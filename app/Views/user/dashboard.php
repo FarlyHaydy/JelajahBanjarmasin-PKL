@@ -162,8 +162,6 @@
                     <h5>About</h5>
                     <ul>
                         <li><a href="#">About us</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">News & Blogs</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-4">
