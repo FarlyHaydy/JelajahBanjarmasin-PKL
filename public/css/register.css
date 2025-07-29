@@ -1,0 +1,241 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #424242
+            
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(0, 0, 0, 0.1) !important;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.9) !important;
+        }
+
+        .navbar-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #00d4aa !important;
+            transform: translateY(-2px);
+        }
+
+         .footer {
+            background: #111;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tagline {
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .footer h5 {
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer ul li a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer ul li a:hover {
+            color: #00d4aa;
+        }
+        /* Login Container */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 50px;
+        }
+
+        /* Login Form */
+        .login-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #D9D9D9;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #424242;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+            background: #D9D9D9;
+        }
+
+        .form-control::placeholder {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        /* Style untuk select dropdown */
+        .form-select {
+            background-color: #D9D9D9 !important;
+            border-color: #ddd !important;
+            padding: 12px 16px !important;
+            
+        }
+
+        .form-select:focus {
+            background-color: #D9D9D9 !important;
+            border-color: #424242 !important;
+            box-shadow: 0 0 0 0.25rem rgba(66, 66, 66, 0.25) !important;
+            
+        }
+        /* Layout 2 kolom untuk Kota dan Kecamatan */
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 25px;
+        }
+
+        .forgot-password a {
+            color: #424242;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-login {
+            width: 100%;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background: #555;
+            transform: translateY(-1px);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .register-link a {
+            color: #424242;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 2rem;
+            }
+            
+            .login-form {
+                padding: 30px;
+                margin: 20px;
+            }
+            
+            .login-container {
+                padding: 80px 10px 30px;
+            }
+        }
