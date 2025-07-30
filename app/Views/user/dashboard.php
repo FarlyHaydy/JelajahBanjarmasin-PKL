@@ -138,6 +138,24 @@
         </div>
     </section>
 
+     <!-- Jelajah Banjarmasin Section -->
+    <section class="jelajah-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="jelajah-image"></div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="jelajah-content">
+                        <h2>Jelajah Banjarmasin</h2>
+                        <p>Banjarmasin adalah kota terbesar di provinsi Kalimantan Selatan yang berada di Indonesia dan kota ini pernah menjadi ibu kota provinsi Kalimantan Selatan. Kota ini terkenal dengan julukan "Kota Seribu Sungai" karena banyaknya sungai yang mengalir di wilayah ini. Banjarmasin memiliki berbagai destinasi wisata menarik mulai dari wisata religi, kuliner khas, hingga wisata alam yang memukau.</p>
+                        <p>Jelajahi keindahan Banjarmasin dan rasakan pengalaman tak terlupakan di kota yang kaya akan budaya dan sejarah ini. Dari pasar terapung yang unik hingga masjid-masjid bersejarah, setiap sudut kota ini menyimpan cerita dan pesona tersendiri.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">

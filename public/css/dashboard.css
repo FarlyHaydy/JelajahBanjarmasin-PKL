@@ -314,6 +314,74 @@
             }
         }
 
+        /* Jelajah Banjarmasin Section */
+        .jelajah-section {
+            padding: 5rem 0;
+            background: #000;
+            color: white;
+        }
+
+        .jelajah-image {
+            height: 400px;
+            background-image: url('/images/Tourist_background.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .jelajah-content h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .jelajah-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* Responsive untuk Jelajah Section */
+        @media (max-width: 768px) {
+            .jelajah-section {
+                padding: 3rem 0;
+            }
+            
+            .jelajah-image {
+                height: 300px;
+                margin-bottom: 3rem;
+            }
+            
+            .jelajah-content h2 {
+                font-size: 2rem;
+                text-align: center;
+            }
+            
+            .jelajah-content p {
+                font-size: 1rem;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .jelajah-image {
+                height: 250px;
+            }
+            
+            .jelajah-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .jelajah-content p {
+                font-size: 0.95rem;
+            }
+        }
+
         /* Footer */
         .footer {
             background: #111;
