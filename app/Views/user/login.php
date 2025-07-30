@@ -49,15 +49,9 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-8">
                     <div class="footer-logo">Banjarmasin</div>
                     <div class="footer-tagline">Welcome to Banua</div>
-                </div>
-                <div class="col-lg-2 col-md-4">
-                    <h5>About</h5>
-                    <ul>
-                        <li><a href="#">About us</a></li>
-                    </ul>
                 </div>
                 <div class="col-lg-2 col-md-4">
                     <h5>Contact</h5>

@@ -111,22 +111,10 @@
     </section>
 
 
-    <!-- Floating Market Detail -->
-<section class="floating-market-section">
-    <div class="container">
-        <div class="floating-market-image">
-            <div class="floating-market-overlay">
-                <h2>Pasar Terapung</h2>
-                <p>Pasar Terapung Lok Baintan atau Pasar Terapung Sungai Martapura adalah sebuah Pasar Terapung tradisional yang berlokasi di desa Sungai Pinang (Lok Baintan), kecamatan Sungai Tabuk, Banjar. Secara umum, Pasar Terapung Lok Baintan tak beda dengan Pasar Terapung di muara Sungai Barito</p>
-            </div>
-        </div>
-    </div>
-</section>
-
     <!-- Explore dan slider Banjarmasin -->
      <section class="explore-section">
         <div class="container">
-            <h2>Jelajah Banjarmasin</h2>
+            <h2>Destinasi Populer</h2>
             <div class="slider-container">
             <div class="slider-wrapper" id="sliderWrapper">
                 <div class="slide slide-1"></div>
@@ -154,15 +142,9 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-8">
                     <div class="footer-logo">Banjarmasin</div>
                     <div class="footer-tagline">Welcome to Banua</div>
-                </div>
-                <div class="col-lg-2 col-md-4">
-                    <h5>About</h5>
-                    <ul>
-                        <li><a href="#">About us</a></li>
-                    </ul>
                 </div>
                 <div class="col-lg-2 col-md-4">
                     <h5>Contact</h5>
