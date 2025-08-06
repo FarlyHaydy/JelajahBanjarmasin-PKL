@@ -1,0 +1,186 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(0, 0, 0, 0.1) !important;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.9) !important;
+        }
+
+        .navbar-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #00d4aa !important;
+            transform: translateY(-2px);
+        }
+
+
+        .faq-section {
+            background-color: #1a1a1a;
+            min-height: 100vh;
+            padding: 100px 0 50px 0;
+            color: white;
+        }
+
+        .faq-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: #2d2d2d;
+            border: none;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-header {
+            background-color: #2d2d2d;
+            border: none;
+            padding: 20px 25px;
+            width: 100%;
+            text-align: left;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-header:hover {
+            background-color: #3d3d3d;
+        }
+
+        .faq-header:focus {
+            box-shadow: none;
+            outline: none;
+        }
+
+        .faq-arrow {
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .faq-header.collapsed .faq-arrow {
+            transform: rotate(0deg);
+        }
+
+        .faq-header:not(.collapsed) .faq-arrow {
+            transform: rotate(90deg);
+        }
+
+        .faq-content {
+            background-color: #3d3d3d;
+            padding: 0 25px 20px 25px;
+            color: #cccccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .accordion-collapse {
+            border: none;
+        }
+
+        .accordion-body {
+            padding: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .faq-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .faq-header {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+            
+            .faq-content {
+                padding: 0 20px 15px 20px;
+                font-size: 0.9rem;
+            }
+        }
+/* Footer */
+        .footer {
+            background: #111;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tagline {
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .footer h5 {
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer ul li a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer ul li a:hover {
+            color: #00d4aa;
+        }
