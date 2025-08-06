@@ -9,3 +9,4 @@ class DashboardController extends BaseController
         return view('user/FAQ');
     }
 }
+      

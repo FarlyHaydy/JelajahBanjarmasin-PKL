@@ -167,17 +167,16 @@
                 <div class="col-lg-2 col-md-4">
                     <h5>Contact</h5>
                     <ul>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
-                    </ul>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-whatsapp"></i> Whatsapp</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Email</a></li>
+                </ul>
                 </div>
                 <div class="col-lg-2 col-md-4">
                     <h5>Support</h5>
                     <ul>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Support Centre</a></li>
-                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> FAQs</a></li>
+                        <li><a href="#"><i class="fas fa-comment-dots"></i> Feedback</a></li>
                     </ul>
                 </div>
             </div>
