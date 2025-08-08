@@ -23,8 +23,13 @@
             <h2>Daftar Akun</h2>
             <form>
                 <div class="form-group">
-                    <label for="email">Email / Username</label>
-                    <input type="text" id="email" class="form-control" placeholder="Masukkan Email atau Username Anda">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" class="form-control" placeholder="Masukkan Username Anda">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" class="form-control" placeholder="Masukkan Email Anda">
                 </div>
 
                 <div class="form-group">
