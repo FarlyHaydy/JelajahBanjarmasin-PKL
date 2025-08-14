@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>religi</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@
     <div class="container-fluid main-container">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h1 class="main-title text-center mb-5">Rekreasi Banjarmasin</h1>
+                <h1 class="main-title text-center mb-5">Religi Banjarmasin</h1>
                 
                 <!-- Card 1: Menara Pandang - Image Left, Text Right -->
                 <div class="row mb-5 align-items-center">
