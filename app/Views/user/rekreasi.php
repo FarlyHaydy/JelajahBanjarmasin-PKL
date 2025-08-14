@@ -169,7 +169,7 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= base_url('js/dashboard.js') ?>"></script>
+    <script src="<?= base_url('js/rekreasi.js') ?>"></script>
     
 </body>
 </html>

@@ -1,56 +1,55 @@
- * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #000000; 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #000000; 
+}
 
-        }
 /* Navigation */
-        .navbar {
-            background: rgba(0, 0, 0, 0.1) !important;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            padding: 1rem 0;
-        }
+.navbar {
+    background: rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    padding: 1rem 0;
+}
 
-        .navbar.scrolled {
-            background: rgba(0, 0, 0, 0.9) !important;
-        }
+.navbar.scrolled {
+    background: rgba(0, 0, 0, 0.9) !important;
+}
 
-        .navbar-brand {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            font-weight: bold;
-            color: white !important;
-        }
+.navbar-brand {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white !important;
+}
 
-        .navbar-nav .nav-link {
-            color: white !important;
-            font-weight: 500;
-            margin: 0 1rem;
-            transition: all 0.3s ease;
-        }
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: 500;
+    margin: 0 1rem;
+    transition: all 0.3s ease;
+}
 
-        .navbar-nav .nav-link:hover {
-            color: #00d4aa !important;
-            transform: translateY(-2px);
-        }
+.navbar-nav .nav-link:hover {
+    color: #00d4aa !important;
+    transform: translateY(-2px);
+}
 
 .main-container {
     max-width: 1200px;
     margin: 0 auto;
-
     padding: 40px 20px;
 }
 
 .main-container h1 {
-    margin-top: 50px; /* geser teks ke bawah */
+    margin-top: 50px;
 }
 
 .main-title {
@@ -68,23 +67,24 @@
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-/* Background images for each location */
+/* Background images for each location - mengikuti style dashboard */
 .menara-pandang {
-    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), linear-gradient(45deg, #1e3c72, #2a5298);
 }
 
 .musik-panting {
-    background: linear-gradient(45deg, #ff7b00, #ffaa00);
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), linear-gradient(45deg, #ff7b00, #ffaa00);
 }
 
 .pasar-terapung {
-    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), linear-gradient(45deg, #ff6b35, #f7931e);
 }
 
 .masjid-sultan {
-    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), linear-gradient(45deg, #4facfe, #00f2fe);
 }
 
 .card-content {
@@ -94,6 +94,19 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover effect yang mengikuti style dashboard */
+.row:not(:last-child):hover .card-content {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
+}
+
+.row:not(:last-child):hover .card-image {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
 }
 
 .card-title {
@@ -150,6 +163,12 @@
     cursor: pointer;
     transition: all 0.3s ease;
     overflow: hidden;
+}
+
+/* Hover effect untuk wide card mengikuti dashboard */
+.wide-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
 }
 
 .wide-card-content {
@@ -296,102 +315,56 @@
 }
 
 .footer {
-            background: #111;
-            color: white;
-            padding: 3rem 0 1rem;
-        }
+    background: #111;
+    color: white;
+    padding: 3rem 0 1rem;
+}
 
-        .footer-logo {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
+.footer-logo {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
 
-        .footer-tagline {
-            color: #888;
-            margin-bottom: 2rem;
-        }
+.footer-tagline {
+    color: #888;
+    margin-bottom: 2rem;
+}
 
-        .footer h5 {
-            color: white;
-            margin-bottom: 1rem;
-            font-weight: bold;
-        }
+.footer h5 {
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
 
-        .footer ul {
-            list-style: none;
-            padding: 0;
-        }
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
 
-        .footer ul li {
-            margin-bottom: 0.5rem;
-        }
+.footer ul li {
+    margin-bottom: 0.5rem;
+}
 
-        .footer ul li a {
-            color: #888;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+.footer ul li a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
 
-        .footer ul li a:hover {
-            color: #00d4aa;
-        }
+.footer ul li a:hover {
+    color: #00d4aa;
+}
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .destination-card {
-                height: 250px;
-            }
-
-            .destination-card.large {
-                height: 300px;
-            }
-
-            .navbar-nav {
-                text-align: center;
-            }
-
-            .floating-market-content h2,
-            .explore-section h2 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .destination-card h3 {
-                font-size: 1.5rem;
-            }
-
-            .destination-card .card-content {
-                padding: 1.5rem;
-            }
-        }   
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
