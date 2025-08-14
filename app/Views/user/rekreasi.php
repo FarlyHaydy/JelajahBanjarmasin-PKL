@@ -8,7 +8,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('css/rekreasi.css') ?>">
-
 </head>
 <body>
     <!-- Navigation -->
@@ -55,7 +54,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Menara Pandang</h3>
                             <p class="card-description">
-                                Arabic is the official language of Saudi Arabia and the primary language used in all dealings and public transactions. English serves as an informal second language in the Kingdom and is spoken by a large section of its society. All road signs are bilingual, showing information in both Arabic and English.
+                                Menara Pandang adalah ikon wisata Banjarmasin yang menawarkan pemandangan spektakuler kota dari ketinggian. Dibangun dengan arsitektur modern, menara ini menjadi spot favorit untuk menikmati sunset dan melihat keindahan Sungai Martapura.
                             </p>
                             <div class="card-arrow">
                                 <i class="fas fa-arrow-right"></i>
@@ -74,7 +73,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Musik Panting</h3>
                             <p class="card-description">
-                                Arabic is the official language of Saudi Arabia and the primary language used in all dealings and public transactions. English serves as an informal second language in the Kingdom and is spoken by a large section of its society. All road signs are bilingual, showing information in both Arabic and English.
+                                Musik Panting adalah seni musik tradisional khas Banjarmasin yang memadukan irama dan melodi unik Kalimantan Selatan. Pertunjukan ini biasanya diiringi dengan instrumen tradisional dan cerita-cerita lokal yang memikat.
                             </p>
                             <div class="card-arrow">
                                 <i class="fas fa-arrow-right"></i>
@@ -93,7 +92,7 @@
                         <div class="card-content">
                             <h3 class="card-title">Pasar Terapung</h3>
                             <p class="card-description">
-                                Arabic is the official language of Saudi Arabia and the primary language used in all dealings and public transactions. English serves as an informal second language in the Kingdom and is spoken by a large section of its society. All road signs are bilingual, showing information in both Arabic and English.
+                                Pasar Terapung Lok Baintan adalah destinasi wisata unik di Banjarmasin dimana aktivitas jual beli dilakukan di atas perahu di sungai. Pengunjung dapat melihat pedagang menjual berbagai hasil bumi dan kuliner khas sambil menikmati suasana sungai yang tenang.
                             </p>
                             <div class="card-arrow">
                                 <i class="fas fa-arrow-right"></i>
@@ -112,24 +111,10 @@
                         <div class="card-content">
                             <h3 class="card-title">Masjid Sultan Suriansyah</h3>
                             <p class="card-description">
-                                Arabic is the official language of Saudi Arabia and the primary language used in all dealings and public transactions. English serves as an informal second language in the Kingdom and is spoken by a large section of its society. All road signs are bilingual, showing information in both Arabic and English.
+                                Masjid Sultan Suriansyah adalah masjid tertua di Kalimantan Selatan yang dibangun pada abad ke-16. Masjid ini memiliki nilai sejarah tinggi dan arsitektur tradisional Banjar yang khas, menjadi saksi bisu perkembangan Islam di wilayah ini.
                             </p>
                             <div class="card-arrow">
                                 <i class="fas fa-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 5: Jelajah Banjarmasin - Wide Card -->
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <div class="wide-card">
-                            <div class="wide-card-content">
-                                <h3 class="wide-card-title">Jelajah<br>Banjarmasin</h3>
-                                <div class="wide-card-arrow">
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -149,10 +134,10 @@
                 <div class="col-lg-2 col-md-4">
                     <h5>Contact</h5>
                     <ul>
-                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                    <li><a href="#"><i class="fab fa-whatsapp"></i> Whatsapp</a></li>
-                    <li><a href="#"><i class="fas fa-envelope"></i> Email</a></li>
-                </ul>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-whatsapp"></i> Whatsapp</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Email</a></li>
+                    </ul>
                 </div>
                 <div class="col-lg-2 col-md-4">
                     <h5>Support</h5>

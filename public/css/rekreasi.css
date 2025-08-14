@@ -8,7 +8,10 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #000000; 
+    background-color: #000000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Navigation */
@@ -43,6 +46,7 @@ body {
 }
 
 .main-container {
+    flex: 1;
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
@@ -99,12 +103,12 @@ body {
 }
 
 /* Hover effect yang mengikuti style dashboard */
-.row:not(:last-child):hover .card-content {
+.row.mb-5:hover .card-content {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
 }
 
-.row:not(:last-child):hover .card-image {
+.row.mb-5:hover .card-image {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
 }
@@ -217,107 +221,11 @@ body {
     color: #667eea;
 }
 
-/* Responsive Design */
-@media (max-width: 991px) {
-    .card-content {
-        padding: 30px;
-        height: 250px;
-    }
-
-    .card-image {
-        height: 250px;
-        margin-bottom: 20px;
-    }
-
-    .card-title {
-        font-size: 1.8rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .main-title {
-        font-size: 2rem;
-        margin-bottom: 3rem;
-    }
-
-    .card-content {
-        padding: 25px;
-        height: auto;
-        min-height: 200px;
-    }
-
-    .card-image {
-        height: 200px;
-        margin-bottom: 15px;
-    }
-
-    .card-title {
-        font-size: 1.6rem;
-    }
-
-    .card-description {
-        font-size: 0.9rem;
-    }
-
-    .card-arrow {
-        bottom: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
-    }
-
-    .card-arrow i {
-        font-size: 1rem;
-    }
-
-    .wide-card {
-        height: 200px;
-    }
-
-    .wide-card-title {
-        font-size: 2.2rem;
-    }
-
-    .wide-card-arrow {
-        width: 50px;
-        height: 50px;
-    }
-
-    .wide-card-content {
-        bottom: 25px;
-        left: 25px;
-        right: 25px;
-    }
-}
-
-@media (max-width: 576px) {
-    .main-container {
-        padding: 20px 15px;
-    }
-
-    .card-content {
-        padding: 20px;
-    }
-
-    .card-image {
-        height: 180px;
-    }
-
-    .wide-card {
-        height: 180px;
-    }
-
-    .wide-card-content {
-        bottom: 20px;
-        left: 20px;
-        right: 20px;
-    }
-}
-
 .footer {
     background: #111;
     color: white;
     padding: 3rem 0 1rem;
+    margin-top: auto;
 }
 
 .footer-logo {
@@ -355,6 +263,135 @@ body {
 
 .footer ul li a:hover {
     color: #00d4aa;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .card-content {
+        padding: 30px;
+        height: 250px;
+    }
+
+    .card-image {
+        height: 250px;
+        margin-bottom: 20px;
+    }
+
+    .card-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .card-content {
+        padding: 25px;
+        padding-bottom: 80px; /* Tambah ruang untuk arrow */
+        height: auto;
+        min-height: 250px; /* Tingkatkan min-height */
+    }
+
+    .card-image {
+        height: 200px;
+        margin-bottom: 15px;
+    }
+
+    .card-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem; /* Kurangi margin */
+    }
+
+    .card-description {
+        font-size: 0.9rem;
+        margin-bottom: 1rem; /* Kurangi margin */
+        line-height: 1.5; /* Kurangi line-height */
+    }
+
+    .card-arrow {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .card-arrow i {
+        font-size: 1rem;
+    }
+
+    .wide-card {
+        height: 200px;
+    }
+
+    .wide-card-title {
+        font-size: 2.2rem;
+    }
+
+    .wide-card-arrow {
+        width: 50px;
+        height: 50px;
+    }
+
+    .wide-card-content {
+        bottom: 25px;
+        left: 25px;
+        right: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-container {
+        padding: 20px 15px;
+    }
+    
+    .main-container h1 {
+        margin-top: 130px; /* Margin lebih besar lagi untuk mobile kecil */
+    }
+
+    .card-content {
+        padding: 20px;
+        padding-bottom: 75px; /* Tambah ruang lebih banyak untuk arrow */
+        min-height: 240px; /* Tingkatkan min-height lebih lagi */
+    }
+
+    .card-image {
+        height: 180px;
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .card-description {
+        font-size: 0.85rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.4;
+    }
+
+    .card-arrow {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .card-arrow i {
+        font-size: 0.9rem;
+    }
+
+    .wide-card {
+        height: 180px;
+    }
+
+    .wide-card-content {
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+    }
 }
 
 /* Animations */
