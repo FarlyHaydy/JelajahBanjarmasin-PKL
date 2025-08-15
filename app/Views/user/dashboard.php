@@ -23,8 +23,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#beranda">Beranda</a>
                     </li>
+                    <!-- contoh data dinamis  -->
+                    @foreach($katgori as $data)
                     <li class="nav-item">
-                        <a class="nav-link" href="#rekreasi">Rekreasi</a>
+                        <a class="nav-link" href="{{route('tempatiwata/katrgori/'.$data->nama_kategori)}}">{{$data->nama_kategori}}</a>
+                    @enforeach
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#kuliner">Kuliner</a>
