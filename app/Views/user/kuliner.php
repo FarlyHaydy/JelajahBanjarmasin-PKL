@@ -8,32 +8,180 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('css/rekreasi_kuliner_religi.css') ?>">
+    <style>
+        /* Profile dropdown styles */
+        .profile-dropdown {
+            position: relative;
+        }
+        
+        .profile-toggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .profile-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .profile-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            min-width: 180px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+        
+        .profile-dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .profile-dropdown-menu a {
+            display: block;
+            padding: 12px 16px;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .profile-dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .profile-dropdown-menu a:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .profile-dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .profile-dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .profile-dropdown-menu i {
+            margin-right: 8px;
+            width: 16px;
+        }
+        
+        .logout-btn {
+            color: #dc3545 !important;
+        }
+        
+        .logout-btn:hover {
+            background-color: #fff5f5 !important;
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown-arrow.rotated {
+            transform: rotate(180deg);
+        }
+
+        /* Existing styles */
+        .no-data-message {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 60px 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-image {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 400px;
+            border-radius: 15px;
+        }
+        
+        .navbar-nav .nav-link.active {
+            color: #ff6b35 !important;
+            font-weight: bold;
+        }
+
+        .card-arrow {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .card-arrow:hover {
+            transform: translateX(5px);
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.9) !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Banjarmasin</a>
+            <a class="navbar-brand" href="<?= base_url('/') ?>">Banjarmasin</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#beranda">Beranda</a>
+                        <a class="nav-link" href="<?= base_url('/') ?>">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#rekreasi">Rekreasi</a>
+                        <a class="nav-link" href="<?= base_url('/rekreasi') ?>">Rekreasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#kuliner">Kuliner</a>
+                        <a class="nav-link active" href="<?= base_url('/kuliner') ?>">Kuliner</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#religi">Religi</a>
+                        <a class="nav-link" href="<?= base_url('/religi') ?>">Religi</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#profil">Profil</a>
-                    </li>
+                    
+                    <!-- Profile Dropdown or Login Link -->
+                    <?php if (session()->get('isLoggedIn')): ?>
+                        <li class="nav-item profile-dropdown">
+                            <button class="profile-toggle" onclick="toggleProfileDropdown()">
+                                <i class="fas fa-user-circle"></i>
+                                <span><?= esc(session()->get('Nama_Asli')) ?? 'Profil' ?></span>
+                                <i class="fas fa-chevron-down dropdown-arrow" id="dropdownArrow"></i>
+                            </button>
+                            <div class="profile-dropdown-menu" id="profileDropdownMenu">
+                                <a href="/profil">
+                                    <i class="fas fa-user"></i>Lihat Profil
+                                </a>
+                                <a href="#" onclick="confirmLogout()" class="logout-btn">
+                                    <i class="fas fa-sign-out-alt"></i>Logout
+                                </a>
+                            </div>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -44,81 +192,64 @@
             <div class="col-12">
                 <h1 class="main-title text-center mb-5">Kuliner Banjarmasin</h1>
                 
-                <!-- Card 1: Menara Pandang - Image Left, Text Right -->
-                <div class="row mb-5 align-items-center">
-                    <div class="col-lg-6">
-                        <div class="card-image menara-pandang">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card-content">
-                            <h3 class="card-title">Menara Pandang</h3>
-                            <p class="card-description">
-                                Menara Pandang adalah ikon wisata Banjarmasin yang menawarkan pemandangan spektakuler kota dari ketinggian. Dibangun dengan arsitektur modern, menara ini menjadi spot favorit untuk menikmati sunset dan melihat keindahan Sungai Martapura.
-                            </p>
-                            <div class="card-arrow">
-                                <i class="fas fa-arrow-right"></i>
+                <?php if (!empty($wisata)): ?>
+                    <?php foreach ($wisata as $index => $w): ?>
+                        <?php $isEven = ($index % 2 == 0); ?>
+                        
+                        <?php if ($isEven): ?>
+                            <!-- Card: Image Left, Text Right -->
+                            <div class="row mb-5 align-items-center">
+                                <div class="col-lg-6">
+                                    <div class="card-image" style="background-image: url('<?= base_url('uploads/wisata/' . $w['primary_image']) ?>');">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card-content">
+                                        <h3 class="card-title"><?= esc($w['nama_wisata']) ?></h3>
+                                        <p class="card-description">
+                                            <?= esc($w['deskripsi']) ?>
+                                        </p>
+                                        <a href="<?= base_url('/wisata/detail/' . $w['wisata_id']) ?>" class="card-arrow" title="Lihat detail <?= esc($w['nama_wisata']) ?>">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php else: ?>
+                            <!-- Card: Text Left, Image Right -->
+                            <div class="row mb-5 align-items-center">
+                                <div class="col-lg-6 order-lg-2">
+                                    <div class="card-image" style="background-image: url('<?= base_url('uploads/wisata/' . $w['primary_image']) ?>');">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 order-lg-1">
+                                    <div class="card-content">
+                                        <h3 class="card-title"><?= esc($w['nama_wisata']) ?></h3>
+                                        <p class="card-description">
+                                            <?= esc($w['deskripsi']) ?>
+                                        </p>
+                                        <a href="<?= base_url('/wisata/detail/' . $w['wisata_id']) ?>" class="card-arrow" title="Lihat detail <?= esc($w['nama_wisata']) ?>">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <!-- No Data State -->
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 text-center">
+                            <div class="no-data-message">
+                                <i class="fas fa-utensils fa-4x mb-4" style="color: rgba(255,255,255,0.3);"></i>
+                                <h3 style="color: #fff; margin-bottom: 20px;">Belum Ada Destinasi Kuliner</h3>
+                                <p style="color: rgba(255,255,255,0.7); font-size: 1.1rem;">
+                                    Destinasi kuliner akan muncul di sini setelah admin menambahkannya.
+                                </p>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Card 2: Musik Panting - Text Left, Image Right -->
-                <div class="row mb-5 align-items-center">
-                    <div class="col-lg-6 order-lg-2">
-                        <div class="card-image musik-panting">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <div class="card-content">
-                            <h3 class="card-title">Musik Panting</h3>
-                            <p class="card-description">
-                                Musik Panting adalah seni musik tradisional khas Banjarmasin yang memadukan irama dan melodi unik Kalimantan Selatan. Pertunjukan ini biasanya diiringi dengan instrumen tradisional dan cerita-cerita lokal yang memikat.
-                            </p>
-                            <div class="card-arrow">
-                                <i class="fas fa-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3: Pasar Terapung - Image Left, Text Right -->
-                <div class="row mb-5 align-items-center">
-                    <div class="col-lg-6">
-                        <div class="card-image pasar-terapung">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card-content">
-                            <h3 class="card-title">Pasar Terapung</h3>
-                            <p class="card-description">
-                                Pasar Terapung Lok Baintan adalah destinasi wisata unik di Banjarmasin dimana aktivitas jual beli dilakukan di atas perahu di sungai. Pengunjung dapat melihat pedagang menjual berbagai hasil bumi dan kuliner khas sambil menikmati suasana sungai yang tenang.
-                            </p>
-                            <div class="card-arrow">
-                                <i class="fas fa-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4: Masjid Sultan Suriansyah - Text Left, Image Right -->
-                <div class="row mb-5 align-items-center">
-                    <div class="col-lg-6 order-lg-2">
-                        <div class="card-image masjid-sultan">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <div class="card-content">
-                            <h3 class="card-title">Masjid Sultan Suriansyah</h3>
-                            <p class="card-description">
-                                Masjid Sultan Suriansyah adalah masjid tertua di Kalimantan Selatan yang dibangun pada abad ke-16. Masjid ini memiliki nilai sejarah tinggi dan arsitektur tradisional Banjar yang khas, menjadi saksi bisu perkembangan Islam di wilayah ini.
-                            </p>
-                            <div class="card-arrow">
-                                <i class="fas fa-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -151,7 +282,94 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= base_url('js/rekreasi.js') ?>"></script>
     
+    <script>
+        // Profile dropdown functionality
+        function toggleProfileDropdown() {
+            const dropdownMenu = document.getElementById('profileDropdownMenu');
+            const dropdownArrow = document.getElementById('dropdownArrow');
+            
+            dropdownMenu.classList.toggle('show');
+            dropdownArrow.classList.toggle('rotated');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const profileDropdown = document.querySelector('.profile-dropdown');
+            const dropdownMenu = document.getElementById('profileDropdownMenu');
+            const dropdownArrow = document.getElementById('dropdownArrow');
+            
+            if (profileDropdown && !profileDropdown.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+                dropdownArrow.classList.remove('rotated');
+            }
+        });
+
+        // Logout confirmation
+        function confirmLogout() {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                window.location.href = '/logout';
+            }
+        }
+
+        // Close dropdown when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const dropdownMenu = document.getElementById('profileDropdownMenu');
+                const dropdownArrow = document.getElementById('dropdownArrow');
+                
+                if (dropdownMenu && dropdownMenu.classList.contains('show')) {
+                    dropdownMenu.classList.remove('show');
+                    dropdownArrow.classList.remove('rotated');
+                }
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add loading state to card arrows
+        document.querySelectorAll('.card-arrow').forEach(arrow => {
+            arrow.addEventListener('click', function(e) {
+                // Optional: Add loading state
+                const icon = this.querySelector('i');
+                icon.classList.remove('fa-arrow-right');
+                icon.classList.add('fa-spinner', 'fa-spin');
+                
+                // Reset after a short delay (will be replaced by page navigation)
+                setTimeout(() => {
+                    icon.classList.remove('fa-spinner', 'fa-spin');
+                    icon.classList.add('fa-arrow-right');
+                }, 500);
+            });
+        });
+
+        // Debug: Log clicks for troubleshooting
+        document.querySelectorAll('.card-arrow').forEach(arrow => {
+            arrow.addEventListener('click', function(e) {
+                console.log('Navigating to:', this.href);
+            });
+        });
+    </script>
 </body>
 </html>

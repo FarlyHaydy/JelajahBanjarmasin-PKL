@@ -1,0 +1,93 @@
+{
+  "Kota Banjarmasin": [
+    "Banjarmasin Utara", "Banjarmasin Selatan", "Banjarmasin Tengah", "Banjarmasin Timur", "Banjarmasin Barat"
+  ],
+  "Kota Banjarbaru": [
+    "Banjarbaru Utara", "Banjarbaru Selatan", "Landasan Ulin", "Liang Anggang", "Cempaka"
+  ],
+  "Kabupaten Banjar": [
+    "Aluh-Aluh", "Batu Benawa", "Bakarangan", "Banjarbaru", "Bintang Ara", "Cempaka", "Lambung Mangkurat", 
+    "Matan", "Paringin", "Pengaron", "Simpang Empat", "Sungai Tabuk"
+  ],
+  "Kabupaten Hulu Sungai Selatan": [
+    "Angkinang", "Barabai", "Dataran", "Hantakan", "Jabiren", "Kalumpang", "Karang Intan", "Loksado", 
+    "Padang Batung", "Pematang Keras", "Simpang Empat", "Telaga", "Ulu Murung"
+  ],
+  "Kabupaten Hulu Sungai Tengah": [
+    "Barabai", "Hantakan", "Loksado", "Muara Harus", "Padang Batung", "Simpang Empat", "Sungai Pandan"
+  ],
+  "Kabupaten Hulu Sungai Utara": [
+    "Amuntai Barat", "Amuntai Selatan", "Amuntai Utara", "Banjang", "Danau Panggang", "Haur Gading", 
+    "Hilir Selatan", "Kandangan", "Limpasu", "Sungai Pandan"
+  ],
+  "Kabupaten Tanah Laut": [
+    "Bati-Bati", "Bumi Makmur", "Cempaka", "Jorong", "Kintap", "Panyipatan", "Pulai", "Simpang Empat", 
+    "Tanah Laut", "Tanjung"
+  ],
+  "Kabupaten Tanah Bumbu": [
+    "Satui","Batulicin", "Batu Lintang", "Barabai", "Genting", "Jembatan", "Kuala", "Mataram", "Tebing Tinggi"
+  ],
+  "Kabupaten Tabalong": [
+    "Banjarmasin", "Balikpapan", "Batu Ampar", "Kintap", "Muara Muntai", "Muara Tiung", "Pematang"
+  ],
+  "Kabupaten Kotabaru": [
+    "Kotabaru", "Sungai Selan", "Sungai Raya", "Banjarmasin"
+  ],
+  "Kabupaten Balangan": [
+    "Batulicin", "Hujan", "Balangan"
+  ],
+  "Kota Pontianak": [
+    "Pontianak Barat", "Pontianak Selatan", "Pontianak Tenggara", "Pontianak Utara"
+  ],
+  "Kota Singkawang": [
+    "Singkawang Barat", "Singkawang Selatan", "Singkawang Timur", "Singkawang Utara"
+  ],
+  "Kabupaten Sambas": [
+    "Sebawi", "Sejangkung", "Pemangkat", "Tebas", "Sambas", "Sungai Raya", "Jelimpo", "Jawai", "Jawai Selatan"
+  ],
+  "Kabupaten Landak": [
+    "Air Besar", "Landak", "Jelimpo", "Mandor", "Mempawah Hulu", "Ngabang", "Tayan Hilir", "Tayan Hulu"
+  ],
+  "Kabupaten Sanggau": [
+    "Tayan", "Sanggau", "Sekadau", "Seko", "Melawi", "Bontang"
+  ],
+  "Kabupaten Sintang": [
+    "Sintang", "Binjai", "Sepulut", "Mentarang", "Sebulu", "Serawai", "Manukau"
+  ],
+  "Kabupaten Kapuas Hulu": [
+    "Kapuas Hulu", "Selametan", "Dairi", "Mantan", "Mugun", "Pemali", "Tombak"
+  ],
+  "Kabupaten Ketapang": [
+    "Ketapang", "Benua", "Keladian", "Mentang", "Batu Mas", "Batu Penat"
+  ],
+   "Kota Samarinda": [
+    "Samarinda Ilir", "Samarinda Ulu", "Samarinda Seberang", "Samarinda Kota", "Samarinda Timur", "Samarinda Utara", 
+    "Samarinda Selatan", "Samarinda Baru"
+  ],
+  "Kota Balikpapan": [
+    "Balikpapan Barat", "Balikpapan Kota", "Balikpapan Selatan", "Balikpapan Timur", "Balikpapan Utara"
+  ],
+  "Kota Bontang": [
+    "Bontang Barat", "Bontang Selatan", "Bontang Utara", "Bontang Timur"
+  ],
+  "Kabupaten Kutai Kartanegara": [
+    "Anggana", "Barong Tongkok", "Bengalon", "Loa Janan", "Loa Kulu", "Martera", "Muara Badak", 
+    "Muara Kaman", "Muara Muntai", "Sanga-Sanga", "Samboja", "Sangatta", "Tenggarong", "Tenggarong Seberang"
+  ],
+  "Kabupaten Kutai Timur": [
+    "Batu Ampar", "Bendungan", "Bongan", "Bontang", "Grogot", "Kota Bangun", "Kusuma", "Long Mesangat", 
+    "Long Kali", "Muara Wahau", "Muara Bengkal", "Rantau Pulung", "Sangatta", "Sekerat"
+  ],
+  "Kabupaten Berau": [
+    "Barabai", "Batu Penyu", "Batu Tokan", "Durian", "Kelay", "Kondang", "Merang", "Penyu"
+  ],
+  "Kabupaten Paser": [
+    "Anggana", "Barong", "Kempakan", "Muara Lawa", "Muara Paser", "Paser", "Penajam", "Sangatta"
+  ],
+  "Kabupaten Penajam Paser Utara": [
+    "Penajam", "Petung", "Sambaliung", "Sangatta"
+  ],
+  "Kabupaten Mahakam Ulu": [
+    "Kalimantan", "Marabahan", "Muara Kaman", "Seputih", "Sungai Kunyit"
+  ]
+}

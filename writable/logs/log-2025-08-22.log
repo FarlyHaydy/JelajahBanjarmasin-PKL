@@ -1,0 +1,1232 @@
+ERROR - 2025-08-22 00:33:31 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\laragon\www\projek\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\projek\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'JelajahBanjarma...', 3306, '', 0)
+#1 C:\laragon\www\projek\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\projek\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\projek\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `wisata`...', Array, false)
+#4 C:\laragon\www\projek\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\projek\system\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\projek\app\Controllers\DashboardController.php(33): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\projek\system\CodeIgniter.php(933): App\Controllers\DashboardController->index()
+#8 C:\laragon\www\projek\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+#9 C:\laragon\www\projek\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\projek\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\projek\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\projek\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\projek\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\laragon\www\projek\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\projek\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\projek\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\projek\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `wisata`...', Array, false)
+#3 C:\laragon\www\projek\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\projek\system\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\projek\app\Controllers\DashboardController.php(33): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\projek\system\CodeIgniter.php(933): App\Controllers\DashboardController->index()
+#7 C:\laragon\www\projek\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+#8 C:\laragon\www\projek\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\projek\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\projek\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\laragon\www\projek\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\laragon\www\projek\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#13 {main}
+CRITICAL - 2025-08-22 00:33:31 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `wisata`.*, `kategori`.`nama_kategori`, `kota`.`nama_kota`, `kecamatan`.`nama_kecamatan`, `galeri`.`nama_file` as `primary_image`
+FROM `wisata`
+JOIN `kategori` ON `kategori`.`kategori_id` = `wisata`.`kategori_id`
+JOIN `kota` ON `kota`.`kota_id` = `wisata`.`kota_id`
+JOIN `kecamatan` ON `kecamatan`.`kecamatan_id` = `wisata`.`kecamatan_id`
+LEFT JOIN `galeri` ON `galeri`.`wisata_id` = `wisata`.`wisata_id` AND `galeri`.`is_primary` = 1
+ORDER BY `wisata`.`wisata_id` DESC
+ LIMIT 6', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\DashboardController.php(33): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:33:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:37:56 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:37:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:37:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:37:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:41:54 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:41:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:41:57 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:41:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:42:00 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:42:09 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:42:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:42:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:42:22 --> Login attempt: Farly with password: 123456
+DEBUG - 2025-08-22 00:42:22 --> Search by email result: 
+DEBUG - 2025-08-22 00:42:22 --> Search by username result: Array
+(
+    [id] => 2
+    [user_id] => 2
+    [Email] => farlyhaydy123@gmail.com
+    [Password] => $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+    [Role] => user
+    [Username] => Farly
+    [Nama_Asli] => Haydy
+)
+
+DEBUG - 2025-08-22 00:42:22 --> Password verify result: TRUE
+DEBUG - 2025-08-22 00:42:22 --> Input password: 123456
+DEBUG - 2025-08-22 00:42:22 --> Hash from DB: $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+DEBUG - 2025-08-22 00:42:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:42:22 --> Login success, role: user
+DEBUG - 2025-08-22 00:42:22 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755823076
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 2
+    [userEmail] => farlyhaydy123@gmail.com
+    [username] => Farly
+    [Nama_Asli] => Haydy
+    [role] => user
+)
+
+DEBUG - 2025-08-22 00:42:22 --> Redirecting to user dashboard
+DEBUG - 2025-08-22 00:43:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:43:30 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:43:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:43:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:43:41 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:43:44 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:43:46 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:43:51 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:43:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:43:53 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:43:55 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:43:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:43:57 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:43:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:44:00 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:46:23 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:46:25 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:46:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:46:28 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:46:30 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:47:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:47:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:47:27 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:47:29 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:51:05 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:51:07 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:51:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:51:09 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:51:11 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:51:24 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:52:26 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:53:17 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:53:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:53:19 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:54:16 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:54:19 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:54:20 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:54:22 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:54:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:54:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:54:43 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:54:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:54:45 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+WARNING - 2025-08-22 00:54:47 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:54:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:54:49 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:54:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:54:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:56:59 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:56:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:57:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:57:04 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:57:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:57:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:57:09 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:57:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:57:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:57:28 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:57:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:57:35 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:57:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:57:36 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:57:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:57:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:59:46 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:59:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 00:59:47 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 00:59:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:59:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:59:49 --> Wishlist toggle called
+DEBUG - 2025-08-22 00:59:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:59:49 --> Session data: {"__ci_last_regenerate":1755824386,"_ci_previous_url":"http:\/\/localhost:8080\/index.php\/wisata\/detail\/3"}
+DEBUG - 2025-08-22 00:59:49 --> POST data: {"wisata_id":"3"}
+DEBUG - 2025-08-22 00:59:49 --> Headers: {"Content-Type":{},"Host":{},"Connection":{},"Content-Length":{},"Sec-Ch-Ua-Platform":{},"X-Requested-With":{},"User-Agent":{},"Sec-Ch-Ua":{},"Sec-Ch-Ua-Mobile":{},"Accept":{},"Origin":{},"Sec-Fetch-Site":{},"Sec-Fetch-Mode":{},"Sec-Fetch-Dest":{},"Referer":{},"Accept-Encoding":{},"Accept-Language":{},"Cookie":{}}
+DEBUG - 2025-08-22 00:59:50 --> Wishlist toggle called
+DEBUG - 2025-08-22 00:59:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:59:50 --> Session data: {"__ci_last_regenerate":1755824386,"_ci_previous_url":"http:\/\/localhost:8080\/index.php\/wisata\/detail\/3"}
+DEBUG - 2025-08-22 00:59:50 --> POST data: {"wisata_id":"3"}
+DEBUG - 2025-08-22 00:59:50 --> Headers: {"Content-Type":{},"Host":{},"Connection":{},"Content-Length":{},"Sec-Ch-Ua-Platform":{},"X-Requested-With":{},"User-Agent":{},"Sec-Ch-Ua":{},"Sec-Ch-Ua-Mobile":{},"Accept":{},"Origin":{},"Sec-Fetch-Site":{},"Sec-Fetch-Mode":{},"Sec-Fetch-Dest":{},"Referer":{},"Accept-Encoding":{},"Accept-Language":{},"Cookie":{}}
+DEBUG - 2025-08-22 00:59:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 00:59:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:00:06 --> Login attempt: Farly with password: 123456
+DEBUG - 2025-08-22 01:00:06 --> Search by email result: 
+DEBUG - 2025-08-22 01:00:06 --> Search by username result: Array
+(
+    [id] => 2
+    [user_id] => 2
+    [Email] => farlyhaydy123@gmail.com
+    [Password] => $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+    [Role] => user
+    [Username] => Farly
+    [Nama_Asli] => Haydy
+)
+
+DEBUG - 2025-08-22 01:00:06 --> Password verify result: TRUE
+DEBUG - 2025-08-22 01:00:06 --> Input password: 123456
+DEBUG - 2025-08-22 01:00:06 --> Hash from DB: $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+DEBUG - 2025-08-22 01:00:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:00:06 --> Login success, role: user
+DEBUG - 2025-08-22 01:00:06 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755824386
+    [_ci_previous_url] => http://localhost:8080/index.php/register
+    [isLoggedIn] => 1
+    [user_id] => 2
+    [userEmail] => farlyhaydy123@gmail.com
+    [username] => Farly
+    [Nama_Asli] => Haydy
+    [role] => user
+)
+
+DEBUG - 2025-08-22 01:00:06 --> Redirecting to user dashboard
+DEBUG - 2025-08-22 01:00:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 01:00:09 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 01:00:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 01:00:11 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 01:00:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 01:00:12 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 01:00:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:00:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:00:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:00:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 01:00:23 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 01:00:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:00:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:53:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:53:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:54:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:54:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 01:54:22 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 01:54:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 01:54:24 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 01:54:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:54:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 01:54:49 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 01:54:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 01:58:12 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 01:58:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:58:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:58:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:58:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:58:36 --> Login attempt: admin with password: admin123
+DEBUG - 2025-08-22 01:58:36 --> Search by email result: 
+DEBUG - 2025-08-22 01:58:36 --> Search by username result: Array
+(
+    [id] => 1
+    [user_id] => 1
+    [Email] => admin@banjarmasin.com
+    [Password] => $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+    [Role] => admin
+    [Username] => admin
+    [Nama_Asli] => Administrator
+)
+
+DEBUG - 2025-08-22 01:58:36 --> Password verify result: TRUE
+DEBUG - 2025-08-22 01:58:36 --> Input password: admin123
+DEBUG - 2025-08-22 01:58:36 --> Hash from DB: $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+DEBUG - 2025-08-22 01:58:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 01:58:36 --> Login success, role: admin
+DEBUG - 2025-08-22 01:58:36 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755827631
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 1
+    [userEmail] => admin@banjarmasin.com
+    [username] => admin
+    [Nama_Asli] => Administrator
+    [role] => admin
+)
+
+DEBUG - 2025-08-22 01:58:36 --> Redirecting to admin dashboard
+DEBUG - 2025-08-22 01:58:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 01:58:36 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 01:58:36 --> Wisata count: 2
+DEBUG - 2025-08-22 01:58:36 --> Kategori count: 3
+DEBUG - 2025-08-22 01:58:36 --> Kota count: 1
+DEBUG - 2025-08-22 01:58:36 --> Kecamatan count: 5
+DEBUG - 2025-08-22 01:58:36 --> Users count: 3
+DEBUG - 2025-08-22 01:59:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 01:59:09 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:03:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:03:38 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:03:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:03:39 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:03:39 --> Wisata count: 2
+DEBUG - 2025-08-22 02:03:39 --> Kategori count: 3
+DEBUG - 2025-08-22 02:03:39 --> Kota count: 1
+DEBUG - 2025-08-22 02:03:39 --> Kecamatan count: 5
+DEBUG - 2025-08-22 02:03:39 --> Users count: 3
+DEBUG - 2025-08-22 02:04:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:04:01 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:04:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:04:18 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:04:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:04:18 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:04:19 --> Wisata count: 2
+DEBUG - 2025-08-22 02:04:19 --> Kategori count: 3
+DEBUG - 2025-08-22 02:04:19 --> Kota count: 1
+DEBUG - 2025-08-22 02:04:19 --> Kecamatan count: 5
+DEBUG - 2025-08-22 02:04:19 --> Users count: 3
+DEBUG - 2025-08-22 02:05:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:05:06 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:05:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:05:22 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:05:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:05:23 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:05:23 --> Wisata count: 2
+DEBUG - 2025-08-22 02:05:23 --> Kategori count: 3
+DEBUG - 2025-08-22 02:05:23 --> Kota count: 1
+DEBUG - 2025-08-22 02:05:23 --> Kecamatan count: 5
+DEBUG - 2025-08-22 02:05:23 --> Users count: 3
+DEBUG - 2025-08-22 02:05:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:05:29 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:06:17 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:06:17 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:17 --> Wisata count: 3
+DEBUG - 2025-08-22 02:06:17 --> Kategori count: 3
+DEBUG - 2025-08-22 02:06:17 --> Kota count: 1
+DEBUG - 2025-08-22 02:06:17 --> Kecamatan count: 5
+DEBUG - 2025-08-22 02:06:17 --> Users count: 3
+DEBUG - 2025-08-22 02:06:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:06:27 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:06:28 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:06:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:06:41 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:06:42 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:06:49 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:06:49 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:06:53 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:06:53 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:53 --> Wisata count: 3
+DEBUG - 2025-08-22 02:06:53 --> Kategori count: 3
+DEBUG - 2025-08-22 02:06:53 --> Kota count: 1
+DEBUG - 2025-08-22 02:06:53 --> Kecamatan count: 5
+DEBUG - 2025-08-22 02:06:53 --> Users count: 3
+WARNING - 2025-08-22 02:06:57 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:06:59 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:06:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:06:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:07:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:07:20 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:07:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:07:20 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:07:20 --> Wisata count: 2
+DEBUG - 2025-08-22 02:07:20 --> Kategori count: 3
+DEBUG - 2025-08-22 02:07:20 --> Kota count: 1
+DEBUG - 2025-08-22 02:07:20 --> Kecamatan count: 5
+DEBUG - 2025-08-22 02:07:20 --> Users count: 3
+WARNING - 2025-08-22 02:07:27 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:07:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:07:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:08:27 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:08:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:08:37 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:08:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:08:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:09:13 --> Wishlist toggle called
+DEBUG - 2025-08-22 02:09:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:09:13 --> Session data: {"__ci_last_regenerate":1755828384,"_ci_previous_url":"http:\/\/localhost:8080\/index.php\/detail\/2"}
+DEBUG - 2025-08-22 02:09:13 --> POST data: {"wisata_id":"2"}
+DEBUG - 2025-08-22 02:09:13 --> Headers: {"Content-Type":{},"Host":{},"Connection":{},"Content-Length":{},"Sec-Ch-Ua-Platform":{},"X-Requested-With":{},"User-Agent":{},"Sec-Ch-Ua":{},"Sec-Ch-Ua-Mobile":{},"Accept":{},"Origin":{},"Sec-Fetch-Site":{},"Sec-Fetch-Mode":{},"Sec-Fetch-Dest":{},"Referer":{},"Accept-Encoding":{},"Accept-Language":{},"Cookie":{}}
+DEBUG - 2025-08-22 02:09:15 --> Wishlist toggle called
+DEBUG - 2025-08-22 02:09:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:09:15 --> Session data: {"__ci_last_regenerate":1755828384,"_ci_previous_url":"http:\/\/localhost:8080\/index.php\/detail\/2"}
+DEBUG - 2025-08-22 02:09:15 --> POST data: {"wisata_id":"2"}
+DEBUG - 2025-08-22 02:09:15 --> Headers: {"Content-Type":{},"Host":{},"Connection":{},"Content-Length":{},"Sec-Ch-Ua-Platform":{},"X-Requested-With":{},"User-Agent":{},"Sec-Ch-Ua":{},"Sec-Ch-Ua-Mobile":{},"Accept":{},"Origin":{},"Sec-Fetch-Site":{},"Sec-Fetch-Mode":{},"Sec-Fetch-Dest":{},"Referer":{},"Accept-Encoding":{},"Accept-Language":{},"Cookie":{}}
+DEBUG - 2025-08-22 02:09:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:09:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:10:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:10:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:10:58 --> Login attempt: TriAngga with password: 123456
+DEBUG - 2025-08-22 02:10:58 --> Search by email result: 
+DEBUG - 2025-08-22 02:10:58 --> Search by username result: Array
+(
+    [id] => 4
+    [user_id] => 4
+    [Email] => TriAngga@gmail.com
+    [Password] => $2y$10$98lWgl1YkmsCh/9sXDa/tOehw92oAI9MvfCHNTcclmsQVyVyRnY76
+    [Role] => user
+    [Username] => TriAngga
+    [Nama_Asli] => TriAngga
+)
+
+DEBUG - 2025-08-22 02:10:58 --> Password verify result: TRUE
+DEBUG - 2025-08-22 02:10:58 --> Input password: 123456
+DEBUG - 2025-08-22 02:10:58 --> Hash from DB: $2y$10$98lWgl1YkmsCh/9sXDa/tOehw92oAI9MvfCHNTcclmsQVyVyRnY76
+DEBUG - 2025-08-22 02:10:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:10:58 --> Login success, role: user
+DEBUG - 2025-08-22 02:10:58 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755828384
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 4
+    [userEmail] => TriAngga@gmail.com
+    [username] => TriAngga
+    [Nama_Asli] => TriAngga
+    [role] => user
+)
+
+DEBUG - 2025-08-22 02:10:58 --> Redirecting to user dashboard
+DEBUG - 2025-08-22 02:10:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:11:14 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:11:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:11:15 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:11:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:17 --> Wishlist toggle called
+DEBUG - 2025-08-22 02:11:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:17 --> Session data: {"__ci_last_regenerate":1755828384,"_ci_previous_url":"http:\/\/localhost:8080\/index.php\/detail\/2","isLoggedIn":true,"user_id":"4","userEmail":"TriAngga@gmail.com","username":"TriAngga","Nama_Asli":"TriAngga","role":"user"}
+DEBUG - 2025-08-22 02:11:17 --> POST data: {"wisata_id":"2"}
+DEBUG - 2025-08-22 02:11:17 --> Headers: {"Content-Type":{},"Host":{},"Connection":{},"Content-Length":{},"Sec-Ch-Ua-Platform":{},"X-Requested-With":{},"User-Agent":{},"Sec-Ch-Ua":{},"Sec-Ch-Ua-Mobile":{},"Accept":{},"Origin":{},"Sec-Fetch-Site":{},"Sec-Fetch-Mode":{},"Sec-Fetch-Dest":{},"Referer":{},"Accept-Encoding":{},"Accept-Language":{},"Cookie":{}}
+DEBUG - 2025-08-22 02:11:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:11:26 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:11:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:11:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:13:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:13:55 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:13:55 --> Wisata count: 2
+DEBUG - 2025-08-22 02:13:55 --> Kategori count: 3
+DEBUG - 2025-08-22 02:13:55 --> Kota count: 1
+DEBUG - 2025-08-22 02:13:55 --> Kecamatan count: 5
+DEBUG - 2025-08-22 02:13:55 --> Users count: 4
+DEBUG - 2025-08-22 02:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:14:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:14:12 --> Login attempt: admin with password: admin123
+DEBUG - 2025-08-22 02:14:12 --> Search by email result: 
+DEBUG - 2025-08-22 02:14:12 --> Search by username result: Array
+(
+    [id] => 1
+    [user_id] => 1
+    [Email] => admin@banjarmasin.com
+    [Password] => $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+    [Role] => admin
+    [Username] => admin
+    [Nama_Asli] => Administrator
+)
+
+DEBUG - 2025-08-22 02:14:12 --> Password verify result: TRUE
+DEBUG - 2025-08-22 02:14:12 --> Input password: admin123
+DEBUG - 2025-08-22 02:14:12 --> Hash from DB: $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+DEBUG - 2025-08-22 02:14:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:14:12 --> Login success, role: admin
+DEBUG - 2025-08-22 02:14:12 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755828839
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 1
+    [userEmail] => admin@banjarmasin.com
+    [username] => admin
+    [Nama_Asli] => Administrator
+    [role] => admin
+)
+
+DEBUG - 2025-08-22 02:14:12 --> Redirecting to admin dashboard
+DEBUG - 2025-08-22 02:14:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:14:12 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:14:12 --> Wisata count: 2
+DEBUG - 2025-08-22 02:14:12 --> Kategori count: 3
+DEBUG - 2025-08-22 02:14:12 --> Kota count: 1
+DEBUG - 2025-08-22 02:14:12 --> Kecamatan count: 5
+DEBUG - 2025-08-22 02:14:13 --> Users count: 4
+DEBUG - 2025-08-22 02:14:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:14:56 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:16:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:16:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:16:29 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:16:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:16:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:16:31 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:16:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:16:33 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:16:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:16:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:16:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:16:51 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:16:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:16:52 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:16:52 --> Wisata count: 3
+DEBUG - 2025-08-22 02:16:52 --> Kategori count: 3
+DEBUG - 2025-08-22 02:16:52 --> Kota count: 1
+DEBUG - 2025-08-22 02:16:52 --> Kecamatan count: 5
+DEBUG - 2025-08-22 02:16:52 --> Users count: 4
+WARNING - 2025-08-22 02:16:56 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:16:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:17:00 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:17:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:17:04 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:17:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:17:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:18:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:18:14 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:18:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:18:15 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:18:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:18:36 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:18:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:18:37 --> [DEPRECATED] Creation of dynamic property App\Controllers\AdminController::$wishlistModel is deprecated in APPPATH\Controllers\AdminController.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\AdminController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:18:37 --> Wisata count: 3
+DEBUG - 2025-08-22 02:18:37 --> Kategori count: 3
+DEBUG - 2025-08-22 02:18:37 --> Kota count: 1
+DEBUG - 2025-08-22 02:18:37 --> Kecamatan count: 5
+DEBUG - 2025-08-22 02:18:37 --> Users count: 4
+WARNING - 2025-08-22 02:18:42 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:18:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:18:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2025-08-22 02:18:59 --> [DEPRECATED] Creation of dynamic property App\Controllers\UserController::$wishlistModel is deprecated in APPPATH\Controllers\UserController.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\UserController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-22 02:18:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-22 02:19:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -139,6 +139,10 @@
         .form-control::placeholder {
             color: #666;
         }
+        .form-select {
+            background: #3a3a3a;
+            color: white;
+        }
 
         .row-fields {
             display: flex;
@@ -344,3 +348,6 @@
                 font-size: 0.9rem;
             }
         }
+
+
+        

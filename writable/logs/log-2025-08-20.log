@@ -1,0 +1,850 @@
+DEBUG - 2025-08-20 04:27:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:27:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:27:36 --> Login attempt: admin with password: admin123
+DEBUG - 2025-08-20 04:27:36 --> Search by email result: 
+DEBUG - 2025-08-20 04:27:36 --> Search by username result: Array
+(
+    [id] => 1
+    [user_id] => 1
+    [Email] => admin@banjarmasin.com
+    [Password] => $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+    [Role] => admin
+    [Username] => admin
+)
+
+DEBUG - 2025-08-20 04:27:36 --> Password verify result: TRUE
+DEBUG - 2025-08-20 04:27:36 --> Input password: admin123
+DEBUG - 2025-08-20 04:27:36 --> Hash from DB: $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+DEBUG - 2025-08-20 04:27:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:27:36 --> Login success, role: admin
+DEBUG - 2025-08-20 04:27:36 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755664042
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 1
+    [userEmail] => admin@banjarmasin.com
+    [username] => admin
+    [role] => admin
+)
+
+DEBUG - 2025-08-20 04:27:36 --> Redirecting to admin dashboard
+DEBUG - 2025-08-20 04:27:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:34:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:34:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:34:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:35:04 --> Login attempt: Farly with password: 1234
+DEBUG - 2025-08-20 04:35:04 --> Search by email result: 
+DEBUG - 2025-08-20 04:35:04 --> Search by username result: Array
+(
+    [id] => 2
+    [user_id] => 2
+    [Email] => farlyhaydy123@gmail.com
+    [Password] => $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+    [Role] => user
+    [Username] => Farly
+)
+
+DEBUG - 2025-08-20 04:35:04 --> Password verify result: FALSE
+DEBUG - 2025-08-20 04:35:04 --> Input password: 1234
+DEBUG - 2025-08-20 04:35:04 --> Hash from DB: $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+DEBUG - 2025-08-20 04:35:04 --> Password verification failed
+DEBUG - 2025-08-20 04:35:04 --> Login failed - returning error
+DEBUG - 2025-08-20 04:35:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:35:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:35:27 --> Login attempt: Farly with password: 123456
+DEBUG - 2025-08-20 04:35:27 --> Search by email result: 
+DEBUG - 2025-08-20 04:35:27 --> Search by username result: Array
+(
+    [id] => 2
+    [user_id] => 2
+    [Email] => farlyhaydy123@gmail.com
+    [Password] => $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+    [Role] => user
+    [Username] => Farly
+)
+
+DEBUG - 2025-08-20 04:35:27 --> Password verify result: TRUE
+DEBUG - 2025-08-20 04:35:27 --> Input password: 123456
+DEBUG - 2025-08-20 04:35:27 --> Hash from DB: $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+DEBUG - 2025-08-20 04:35:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:35:27 --> Login success, role: user
+DEBUG - 2025-08-20 04:35:27 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755664486
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 2
+    [userEmail] => farlyhaydy123@gmail.com
+    [username] => Farly
+    [role] => user
+)
+
+DEBUG - 2025-08-20 04:35:27 --> Redirecting to user dashboard
+DEBUG - 2025-08-20 04:35:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:55:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:55:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:55:49 --> Login attempt: admin with password: admin123
+DEBUG - 2025-08-20 04:55:50 --> Search by email result: 
+DEBUG - 2025-08-20 04:55:50 --> Search by username result: Array
+(
+    [id] => 1
+    [user_id] => 1
+    [Email] => admin@banjarmasin.com
+    [Password] => $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+    [Role] => admin
+    [Username] => admin
+)
+
+DEBUG - 2025-08-20 04:55:50 --> Password verify result: TRUE
+DEBUG - 2025-08-20 04:55:50 --> Input password: admin123
+DEBUG - 2025-08-20 04:55:50 --> Hash from DB: $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+DEBUG - 2025-08-20 04:55:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 04:55:50 --> Login success, role: admin
+DEBUG - 2025-08-20 04:55:50 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755665737
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 1
+    [userEmail] => admin@banjarmasin.com
+    [username] => admin
+    [role] => admin
+)
+
+DEBUG - 2025-08-20 04:55:50 --> Redirecting to admin dashboard
+DEBUG - 2025-08-20 04:55:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 05:21:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 06:51:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-20 07:04:33 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-20 07:06:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 07:06:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 07:07:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-20 07:07:47 --> Error: Call to a member function isValid() on array
+[Method: POST, Route: admin/wisata/create]
+in APPPATH\Controllers\AdminController.php on line 244.
+ 1 APPPATH\Controllers\AdminController.php(82): App\Controllers\AdminController->uploadImages([...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->createWisata()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-20 07:09:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 07:10:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 07:10:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 07:11:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 07:11:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 07:11:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 07:11:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 07:11:36 --> Login attempt: Farly with password: 123456
+DEBUG - 2025-08-20 07:11:36 --> Search by email result: 
+DEBUG - 2025-08-20 07:11:36 --> Search by username result: Array
+(
+    [id] => 2
+    [user_id] => 2
+    [Email] => farlyhaydy123@gmail.com
+    [Password] => $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+    [Role] => user
+    [Username] => Farly
+)
+
+DEBUG - 2025-08-20 07:11:36 --> Password verify result: TRUE
+DEBUG - 2025-08-20 07:11:36 --> Input password: 123456
+DEBUG - 2025-08-20 07:11:36 --> Hash from DB: $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+DEBUG - 2025-08-20 07:11:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 07:11:36 --> Login success, role: user
+DEBUG - 2025-08-20 07:11:36 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755673605
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 2
+    [userEmail] => farlyhaydy123@gmail.com
+    [username] => Farly
+    [role] => user
+)
+
+DEBUG - 2025-08-20 07:11:36 --> Redirecting to user dashboard
+CRITICAL - 2025-08-20 08:19:28 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "dashboard.php"
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dashboard.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard', [], true)
+ 3 APPPATH\Controllers\DashboardController.php(48): view('dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+CRITICAL - 2025-08-20 08:19:35 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "dashboard.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dashboard.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard', [], true)
+ 3 APPPATH\Controllers\DashboardController.php(48): view('dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+CRITICAL - 2025-08-20 08:19:36 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "dashboard.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dashboard.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard', [], true)
+ 3 APPPATH\Controllers\DashboardController.php(48): view('dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-20 08:19:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:19:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:19:57 --> Login attempt: Farly with password: 123456
+DEBUG - 2025-08-20 08:19:57 --> Search by email result: 
+DEBUG - 2025-08-20 08:19:57 --> Search by username result: Array
+(
+    [id] => 2
+    [user_id] => 2
+    [Email] => farlyhaydy123@gmail.com
+    [Password] => $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+    [Role] => user
+    [Username] => Farly
+)
+
+DEBUG - 2025-08-20 08:19:57 --> Password verify result: TRUE
+DEBUG - 2025-08-20 08:19:57 --> Input password: 123456
+DEBUG - 2025-08-20 08:19:57 --> Hash from DB: $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+DEBUG - 2025-08-20 08:19:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:19:57 --> Login success, role: user
+DEBUG - 2025-08-20 08:19:57 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755677987
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 2
+    [userEmail] => farlyhaydy123@gmail.com
+    [username] => Farly
+    [role] => user
+)
+
+DEBUG - 2025-08-20 08:19:57 --> Redirecting to user dashboard
+CRITICAL - 2025-08-20 08:19:57 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "dashboard.php"
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dashboard.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard', [], true)
+ 3 APPPATH\Controllers\DashboardController.php(48): view('dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+CRITICAL - 2025-08-20 08:20:35 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "dashboard.php"
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dashboard.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard', [], true)
+ 3 APPPATH\Controllers\DashboardController.php(48): view('dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-20 08:20:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:20:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:20:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:20:53 --> Login attempt: Farly with password: 123456
+DEBUG - 2025-08-20 08:20:53 --> Search by email result: 
+DEBUG - 2025-08-20 08:20:53 --> Search by username result: Array
+(
+    [id] => 2
+    [user_id] => 2
+    [Email] => farlyhaydy123@gmail.com
+    [Password] => $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+    [Role] => user
+    [Username] => Farly
+)
+
+DEBUG - 2025-08-20 08:20:53 --> Password verify result: TRUE
+DEBUG - 2025-08-20 08:20:53 --> Input password: 123456
+DEBUG - 2025-08-20 08:20:53 --> Hash from DB: $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+DEBUG - 2025-08-20 08:20:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:20:53 --> Login success, role: user
+DEBUG - 2025-08-20 08:20:53 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755677987
+    [_ci_previous_url] => http://localhost:8080/index.php/register
+    [isLoggedIn] => 1
+    [user_id] => 2
+    [userEmail] => farlyhaydy123@gmail.com
+    [username] => Farly
+    [role] => user
+)
+
+DEBUG - 2025-08-20 08:20:53 --> Redirecting to user dashboard
+CRITICAL - 2025-08-20 08:20:54 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "dashboard.php"
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dashboard.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard', [], true)
+ 3 APPPATH\Controllers\DashboardController.php(48): view('dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-20 08:23:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:23:59 --> Login attempt: Farly with password: 123456
+DEBUG - 2025-08-20 08:24:00 --> Search by email result: 
+DEBUG - 2025-08-20 08:24:00 --> Search by username result: Array
+(
+    [id] => 2
+    [user_id] => 2
+    [Email] => farlyhaydy123@gmail.com
+    [Password] => $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+    [Role] => user
+    [Username] => Farly
+)
+
+DEBUG - 2025-08-20 08:24:00 --> Password verify result: TRUE
+DEBUG - 2025-08-20 08:24:00 --> Input password: 123456
+DEBUG - 2025-08-20 08:24:00 --> Hash from DB: $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+DEBUG - 2025-08-20 08:24:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:24:00 --> Login success, role: user
+DEBUG - 2025-08-20 08:24:00 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755677987
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 2
+    [userEmail] => farlyhaydy123@gmail.com
+    [username] => Farly
+    [role] => user
+)
+
+DEBUG - 2025-08-20 08:24:00 --> Redirecting to user dashboard
+DEBUG - 2025-08-20 08:25:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:25:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:26:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:26:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:27:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:27:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:27:31 --> Login attempt: admin with password: admin123
+DEBUG - 2025-08-20 08:27:31 --> Search by email result: 
+DEBUG - 2025-08-20 08:27:31 --> Search by username result: Array
+(
+    [id] => 1
+    [user_id] => 1
+    [Email] => admin@banjarmasin.com
+    [Password] => $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+    [Role] => admin
+    [Username] => admin
+)
+
+DEBUG - 2025-08-20 08:27:31 --> Password verify result: TRUE
+DEBUG - 2025-08-20 08:27:31 --> Input password: admin123
+DEBUG - 2025-08-20 08:27:31 --> Hash from DB: $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+DEBUG - 2025-08-20 08:27:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:27:31 --> Login success, role: admin
+DEBUG - 2025-08-20 08:27:31 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755678344
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 1
+    [userEmail] => admin@banjarmasin.com
+    [username] => admin
+    [role] => admin
+)
+
+DEBUG - 2025-08-20 08:27:31 --> Redirecting to admin dashboard
+DEBUG - 2025-08-20 08:27:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:27:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:28:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:28:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:28:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:28:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:28:30 --> Login attempt: Farly with password: 123456
+DEBUG - 2025-08-20 08:28:30 --> Search by email result: 
+DEBUG - 2025-08-20 08:28:30 --> Search by username result: Array
+(
+    [id] => 2
+    [user_id] => 2
+    [Email] => farlyhaydy123@gmail.com
+    [Password] => $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+    [Role] => user
+    [Username] => Farly
+)
+
+DEBUG - 2025-08-20 08:28:30 --> Password verify result: TRUE
+DEBUG - 2025-08-20 08:28:30 --> Input password: 123456
+DEBUG - 2025-08-20 08:28:30 --> Hash from DB: $2y$10$GaTSfL1XFzOsd7oagSooBezBcOkBZSb7siCcIogDPX6TfuDK9u61m
+DEBUG - 2025-08-20 08:28:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:28:30 --> Login success, role: user
+DEBUG - 2025-08-20 08:28:30 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755678344
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 2
+    [userEmail] => farlyhaydy123@gmail.com
+    [username] => Farly
+    [role] => user
+)
+
+DEBUG - 2025-08-20 08:28:30 --> Redirecting to user dashboard
+DEBUG - 2025-08-20 08:43:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:43:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:43:27 --> Login attempt: admin with password: admin123
+DEBUG - 2025-08-20 08:43:27 --> Search by email result: 
+DEBUG - 2025-08-20 08:43:27 --> Search by username result: Array
+(
+    [id] => 1
+    [user_id] => 1
+    [Email] => admin@banjarmasin.com
+    [Password] => $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+    [Role] => admin
+    [Username] => admin
+)
+
+DEBUG - 2025-08-20 08:43:28 --> Password verify result: TRUE
+DEBUG - 2025-08-20 08:43:28 --> Input password: admin123
+DEBUG - 2025-08-20 08:43:28 --> Hash from DB: $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+DEBUG - 2025-08-20 08:43:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:43:28 --> Login success, role: admin
+DEBUG - 2025-08-20 08:43:28 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755679399
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 1
+    [userEmail] => admin@banjarmasin.com
+    [username] => admin
+    [role] => admin
+)
+
+DEBUG - 2025-08-20 08:43:28 --> Redirecting to admin dashboard
+DEBUG - 2025-08-20 08:43:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:43:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:44:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 08:44:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 09:22:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-20 09:22:25 --> ArgumentCountError: Too few arguments to function App\Models\WisataModel::getWithRelations(), 0 passed in C:\laragon\www\projek\app\Controllers\AdminController.php on line 32 and exactly 1 expected
+[Method: GET, Route: admin/dashboard]
+in APPPATH\Models\WisataModel.php on line 35.
+ 1 APPPATH\Controllers\AdminController.php(32): App\Models\WisataModel->getWithRelations()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->dashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-20 09:22:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 09:22:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 09:22:54 --> Login attempt: admin with password: admin123
+DEBUG - 2025-08-20 09:22:54 --> Search by email result: 
+DEBUG - 2025-08-20 09:22:54 --> Search by username result: Array
+(
+    [id] => 1
+    [user_id] => 1
+    [Email] => admin@banjarmasin.com
+    [Password] => $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+    [Role] => admin
+    [Username] => admin
+)
+
+DEBUG - 2025-08-20 09:22:54 --> Password verify result: TRUE
+DEBUG - 2025-08-20 09:22:54 --> Input password: admin123
+DEBUG - 2025-08-20 09:22:54 --> Hash from DB: $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+DEBUG - 2025-08-20 09:22:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 09:22:54 --> Login success, role: admin
+DEBUG - 2025-08-20 09:22:54 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755681745
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 1
+    [userEmail] => admin@banjarmasin.com
+    [username] => admin
+    [role] => admin
+)
+
+DEBUG - 2025-08-20 09:22:54 --> Redirecting to admin dashboard
+DEBUG - 2025-08-20 09:22:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-20 09:22:54 --> ArgumentCountError: Too few arguments to function App\Models\WisataModel::getWithRelations(), 0 passed in C:\laragon\www\projek\app\Controllers\AdminController.php on line 32 and exactly 1 expected
+[Method: GET, Route: admin/dashboard]
+in APPPATH\Models\WisataModel.php on line 35.
+ 1 APPPATH\Controllers\AdminController.php(32): App\Models\WisataModel->getWithRelations()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->dashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-20 09:29:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 09:29:21 --> Login attempt: admin with password: admin123
+DEBUG - 2025-08-20 09:29:21 --> Search by email result: 
+DEBUG - 2025-08-20 09:29:21 --> Search by username result: Array
+(
+    [id] => 1
+    [user_id] => 1
+    [Email] => admin@banjarmasin.com
+    [Password] => $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+    [Role] => admin
+    [Username] => admin
+)
+
+DEBUG - 2025-08-20 09:29:21 --> Password verify result: TRUE
+DEBUG - 2025-08-20 09:29:21 --> Input password: admin123
+DEBUG - 2025-08-20 09:29:21 --> Hash from DB: $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+DEBUG - 2025-08-20 09:29:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 09:29:21 --> Login success, role: admin
+DEBUG - 2025-08-20 09:29:21 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755682155
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 1
+    [userEmail] => admin@banjarmasin.com
+    [username] => admin
+    [role] => admin
+)
+
+DEBUG - 2025-08-20 09:29:21 --> Redirecting to admin dashboard
+DEBUG - 2025-08-20 09:29:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-20 09:29:21 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/dashboard.php"
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/dashboard.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 3 APPPATH\Controllers\AdminController.php(38): view('admin/dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-20 09:34:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 09:34:43 --> Login attempt: admin with password: admin123
+DEBUG - 2025-08-20 09:34:43 --> Search by email result: 
+DEBUG - 2025-08-20 09:34:43 --> Search by username result: Array
+(
+    [id] => 1
+    [user_id] => 1
+    [Email] => admin@banjarmasin.com
+    [Password] => $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+    [Role] => admin
+    [Username] => admin
+)
+
+DEBUG - 2025-08-20 09:34:43 --> Password verify result: TRUE
+DEBUG - 2025-08-20 09:34:43 --> Input password: admin123
+DEBUG - 2025-08-20 09:34:43 --> Hash from DB: $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+DEBUG - 2025-08-20 09:34:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 09:34:43 --> Login success, role: admin
+DEBUG - 2025-08-20 09:34:43 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755682478
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 1
+    [userEmail] => admin@banjarmasin.com
+    [username] => admin
+    [role] => admin
+)
+
+DEBUG - 2025-08-20 09:34:43 --> Redirecting to admin dashboard
+DEBUG - 2025-08-20 09:34:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 09:40:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 09:40:54 --> Wisata count: 1
+DEBUG - 2025-08-20 09:40:54 --> Kategori count: 3
+DEBUG - 2025-08-20 09:40:54 --> Kota count: 1
+DEBUG - 2025-08-20 09:40:54 --> Kecamatan count: 5
+DEBUG - 2025-08-20 09:54:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 09:54:02 --> Wisata count: 1
+DEBUG - 2025-08-20 09:54:02 --> Kategori count: 3
+DEBUG - 2025-08-20 09:54:02 --> Kota count: 1
+DEBUG - 2025-08-20 09:54:02 --> Kecamatan count: 5
+CRITICAL - 2025-08-20 09:54:02 --> ParseError: syntax error, unexpected end of file
+[Method: GET, Route: admin/dashboard]
+in APPPATH\Views\admin\dashboardAdmin.php on line 456.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboardAdmin', [], true)
+ 3 APPPATH\Controllers\AdminController.php(50): view('admin/dashboardAdmin', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-20 10:15:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:15:33 --> Login attempt: admin with password: admin123
+DEBUG - 2025-08-20 10:15:33 --> Search by email result: 
+DEBUG - 2025-08-20 10:15:33 --> Search by username result: Array
+(
+    [id] => 1
+    [user_id] => 1
+    [Email] => admin@banjarmasin.com
+    [Password] => $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+    [Role] => admin
+    [Username] => admin
+)
+
+DEBUG - 2025-08-20 10:15:33 --> Password verify result: TRUE
+DEBUG - 2025-08-20 10:15:33 --> Input password: admin123
+DEBUG - 2025-08-20 10:15:33 --> Hash from DB: $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+DEBUG - 2025-08-20 10:15:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:15:33 --> Login success, role: admin
+DEBUG - 2025-08-20 10:15:33 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755684927
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 1
+    [userEmail] => admin@banjarmasin.com
+    [username] => admin
+    [role] => admin
+)
+
+DEBUG - 2025-08-20 10:15:33 --> Redirecting to admin dashboard
+DEBUG - 2025-08-20 10:15:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:15:33 --> Wisata count: 1
+DEBUG - 2025-08-20 10:15:33 --> Kategori count: 3
+DEBUG - 2025-08-20 10:15:33 --> Kota count: 1
+DEBUG - 2025-08-20 10:15:33 --> Kecamatan count: 5
+DEBUG - 2025-08-20 10:15:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:15:56 --> Wisata count: 1
+DEBUG - 2025-08-20 10:15:56 --> Kategori count: 3
+DEBUG - 2025-08-20 10:15:56 --> Kota count: 1
+DEBUG - 2025-08-20 10:15:56 --> Kecamatan count: 5
+DEBUG - 2025-08-20 10:16:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:16:06 --> Wisata count: 1
+DEBUG - 2025-08-20 10:16:06 --> Kategori count: 3
+DEBUG - 2025-08-20 10:16:06 --> Kota count: 1
+DEBUG - 2025-08-20 10:16:06 --> Kecamatan count: 5
+DEBUG - 2025-08-20 10:18:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:18:25 --> Wisata count: 1
+DEBUG - 2025-08-20 10:18:25 --> Kategori count: 3
+DEBUG - 2025-08-20 10:18:25 --> Kota count: 1
+DEBUG - 2025-08-20 10:18:25 --> Kecamatan count: 5
+DEBUG - 2025-08-20 10:18:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:18:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:18:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:18:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:18:58 --> Wisata count: 1
+DEBUG - 2025-08-20 10:18:58 --> Kategori count: 3
+DEBUG - 2025-08-20 10:18:58 --> Kota count: 1
+DEBUG - 2025-08-20 10:18:58 --> Kecamatan count: 5
+DEBUG - 2025-08-20 10:22:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:25:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:25:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:25:04 --> Wisata count: 2
+DEBUG - 2025-08-20 10:25:04 --> Kategori count: 3
+DEBUG - 2025-08-20 10:25:04 --> Kota count: 1
+DEBUG - 2025-08-20 10:25:04 --> Kecamatan count: 5
+DEBUG - 2025-08-20 10:57:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:57:31 --> Wisata count: 2
+DEBUG - 2025-08-20 10:57:31 --> Kategori count: 3
+DEBUG - 2025-08-20 10:57:31 --> Kota count: 1
+DEBUG - 2025-08-20 10:57:31 --> Kecamatan count: 5
+DEBUG - 2025-08-20 10:57:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:57:58 --> Wisata count: 2
+DEBUG - 2025-08-20 10:57:58 --> Kategori count: 3
+DEBUG - 2025-08-20 10:57:58 --> Kota count: 1
+DEBUG - 2025-08-20 10:57:58 --> Kecamatan count: 5
+DEBUG - 2025-08-20 10:58:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 10:58:16 --> Wisata count: 2
+DEBUG - 2025-08-20 10:58:16 --> Kategori count: 3
+DEBUG - 2025-08-20 10:58:16 --> Kota count: 1
+DEBUG - 2025-08-20 10:58:16 --> Kecamatan count: 5
+DEBUG - 2025-08-20 15:49:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 15:49:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 15:49:53 --> Login attempt: admin with password: admin123
+DEBUG - 2025-08-20 15:49:53 --> Search by email result: 
+DEBUG - 2025-08-20 15:49:53 --> Search by username result: Array
+(
+    [id] => 1
+    [user_id] => 1
+    [Email] => admin@banjarmasin.com
+    [Password] => $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+    [Role] => admin
+    [Username] => admin
+)
+
+DEBUG - 2025-08-20 15:49:53 --> Password verify result: TRUE
+DEBUG - 2025-08-20 15:49:53 --> Input password: admin123
+DEBUG - 2025-08-20 15:49:53 --> Hash from DB: $2y$10$5iW2j4qMqg0s.yiOVhvQC.UgHJEWHGM0YZE2cc.q8Qbv43lM75XSm
+DEBUG - 2025-08-20 15:49:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 15:49:53 --> Login success, role: admin
+DEBUG - 2025-08-20 15:49:53 --> Session data: Array
+(
+    [__ci_last_regenerate] => 1755704986
+    [_ci_previous_url] => http://localhost:8080/index.php/login
+    [isLoggedIn] => 1
+    [user_id] => 1
+    [userEmail] => admin@banjarmasin.com
+    [username] => admin
+    [role] => admin
+)
+
+DEBUG - 2025-08-20 15:49:53 --> Redirecting to admin dashboard
+DEBUG - 2025-08-20 15:49:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 15:49:53 --> Wisata count: 2
+DEBUG - 2025-08-20 15:49:53 --> Kategori count: 3
+DEBUG - 2025-08-20 15:49:53 --> Kota count: 1
+DEBUG - 2025-08-20 15:49:53 --> Kecamatan count: 5
+DEBUG - 2025-08-20 16:12:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:12:44 --> Wisata count: 2
+DEBUG - 2025-08-20 16:12:44 --> Kategori count: 3
+DEBUG - 2025-08-20 16:12:44 --> Kota count: 1
+DEBUG - 2025-08-20 16:12:44 --> Kecamatan count: 5
+DEBUG - 2025-08-20 16:13:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:13:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:22:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:22:04 --> Wisata count: 2
+DEBUG - 2025-08-20 16:22:04 --> Kategori count: 3
+DEBUG - 2025-08-20 16:22:04 --> Kota count: 1
+DEBUG - 2025-08-20 16:22:04 --> Kecamatan count: 5
+DEBUG - 2025-08-20 16:22:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:22:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:22:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:22:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:26:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:26:55 --> Wisata count: 2
+DEBUG - 2025-08-20 16:26:55 --> Kategori count: 3
+DEBUG - 2025-08-20 16:26:55 --> Kota count: 1
+DEBUG - 2025-08-20 16:26:55 --> Kecamatan count: 5
+DEBUG - 2025-08-20 16:27:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:27:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:27:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:27:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:28:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:28:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:29:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:29:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:29:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:29:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:29:43 --> Wisata count: 2
+DEBUG - 2025-08-20 16:29:43 --> Kategori count: 3
+DEBUG - 2025-08-20 16:29:43 --> Kota count: 1
+DEBUG - 2025-08-20 16:29:43 --> Kecamatan count: 5
+DEBUG - 2025-08-20 16:29:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:29:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:31:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-08-20 16:31:19 --> mysqli_sql_exception: Unknown column 'updated_at' in 'field list' in C:\laragon\www\projek\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\projek\system\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `wisata`...', 0)
+#1 C:\laragon\www\projek\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `wisata`...')
+#2 C:\laragon\www\projek\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `wisata`...')
+#3 C:\laragon\www\projek\system\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `wisata`...', Array, false)
+#4 C:\laragon\www\projek\system\Model.php(461): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\laragon\www\projek\system\BaseModel.php(1031): CodeIgniter\Model->doUpdate(Array, Array)
+#6 C:\laragon\www\projek\system\Model.php(863): CodeIgniter\BaseModel->update(Array, Array)
+#7 C:\laragon\www\projek\app\Controllers\AdminController.php(169): CodeIgniter\Model->update('2', Array)
+#8 C:\laragon\www\projek\system\CodeIgniter.php(933): App\Controllers\AdminController->updateWisata('2')
+#9 C:\laragon\www\projek\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#10 C:\laragon\www\projek\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\projek\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\projek\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\projek\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\projek\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-08-20 16:31:19 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'updated_at' in 'field list'
+[Method: POST, Route: admin/wisata/update/2]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `wisata` SET `nama_wisata` = :nama_wisata:, `alamat` = :alamat:, `kategori_id` = :kategori_id:, `kota_id` = :kota_id:, `kecamatan_id` = :kecamatan_id:, `deskripsi` = :deskripsi:, `detail` = :detail:, `latitude` = :latitude:, `longitude` = :longitude:, `updated_at` = :updated_at:
+WHERE `wisata`.`wisata_id` IN :wisata.wisata_id:', [...], false)
+ 2 SYSTEMPATH\Model.php(461): CodeIgniter\Database\BaseBuilder->update()
+ 3 SYSTEMPATH\BaseModel.php(1031): CodeIgniter\Model->doUpdate([...], [...])
+ 4 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [...])
+ 5 APPPATH\Controllers\AdminController.php(169): CodeIgniter\Model->update('2', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->updateWisata('2')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+CRITICAL - 2025-08-20 16:31:19 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'updated_at' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `wisata` SET `nama_wisata` = \'Menara pandang\', `alamat` = \'jalan12345\', `kategori_id` = \'1\', `kota_id` = \'1\', `kecamatan_id` = \'1\', `deskripsi` = \'Menara Pandang Banjarmasin saat ini menjadi salah satu tempat wisata Banjarmasin sebagian besar pengunjung baik warga Banjarmasin itu sendiri maupun para wisatawan dari luar daerah. Menara ini menjadi sebuah ikon wisata baru setahun terakhir ini di Kota Banjarmasin, selain pasar terapung, Masjid Raya Sabilal Muhtadin, Masjid Sultan Suriansyah dan Masjid Jami’ Banjarmasin.\', `detail` = \'Menara Pandang Banjarmasin ini terletak di Siring Jalan Kapten Pierre Tendean Banjarmasin. Posisinya dekat pasar terapung buatan Pemerintah Kota Banjarmasin di tepi Sungai Martapura. Menara Pandang ini buka setiap hari senin sampai jum’at pada pukul 10.00-21.00 WITA. Hari Sabtu buka pukul 10.00-22.00 WITA  dan pada hari Minggu buka pukul 08.00-21.00 WITA. Pengunjungnya pun terdiri dari semua kalangan dan usia, dari anak kecil, remaja dan orang tua.\\r\\n\\r\\nIkon wisata yang menjadi salah satu Pesona Kota banjarmasin ini sering di penuhi warga setiap harinya, terutama saat hari Minggu dari pagi sampai sore bahkan malam. Menara pandang ini berlantai empat, di bagian atas atau lantai tiga menara ini adalah area terbuka. Jadi, para pengunjung bisa naik ke atas dan menikmati pemandangan yang indah Kota Banjarmasin dari atas sana, apalagi jika cuaca nya sedang cerah.\', `latitude` = \'-3.31693\', `longitude` = \'114.59312\', `updated_at` = \'2025-08-20 16:31:19\'
+WHERE `wisata`.`wisata_id` IN (\'2\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `wisata` SET `nama_wisata` = \'Menara pandang\', `alamat` = \'jalan12345\', `kategori_id` = \'1\', `kota_id` = \'1\', `kecamatan_id` = \'1\', `deskripsi` = \'Menara Pandang Banjarmasin saat ini menjadi salah satu tempat wisata Banjarmasin sebagian besar pengunjung baik warga Banjarmasin itu sendiri maupun para wisatawan dari luar daerah. Menara ini menjadi sebuah ikon wisata baru setahun terakhir ini di Kota Banjarmasin, selain pasar terapung, Masjid Raya Sabilal Muhtadin, Masjid Sultan Suriansyah dan Masjid Jami’ Banjarmasin.\', `detail` = \'Menara Pandang Banjarmasin ini terletak di Siring Jalan Kapten Pierre Tendean Banjarmasin. Posisinya dekat pasar terapung buatan Pemerintah Kota Banjarmasin di tepi Sungai Martapura. Menara Pandang ini buka setiap hari senin sampai jum’at pada pukul 10.00-21.00 WITA. Hari Sabtu buka pukul 10.00-22.00 WITA  dan pada hari Minggu buka pukul 08.00-21.00 WITA. Pengunjungnya pun terdiri dari semua kalangan dan usia, dari anak kecil, remaja dan orang tua.\\r\\n\\r\\nIkon wisata yang menjadi salah satu Pesona Kota banjarmasin ini sering di penuhi warga setiap harinya, terutama saat hari Minggu dari pagi sampai sore bahkan malam. Menara pandang ini berlantai empat, di bagian atas atau lantai tiga menara ini adalah area terbuka. Jadi, para pengunjung bisa naik ke atas dan menikmati pemandangan yang indah Kota Banjarmasin dari atas sana, apalagi jika cuaca nya sedang cerah.\', `latitude` = \'-3.31693\', `longitude` = \'114.59312\', `updated_at` = \'2025-08-20 16:31:19\'
+WHERE `wisata`.`wisata_id` IN (\'2\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `wisata` SET `nama_wisata` = :nama_wisata:, `alamat` = :alamat:, `kategori_id` = :kategori_id:, `kota_id` = :kota_id:, `kecamatan_id` = :kecamatan_id:, `deskripsi` = :deskripsi:, `detail` = :detail:, `latitude` = :latitude:, `longitude` = :longitude:, `updated_at` = :updated_at:
+WHERE `wisata`.`wisata_id` IN :wisata.wisata_id:', [...], false)
+ 4 SYSTEMPATH\Model.php(461): CodeIgniter\Database\BaseBuilder->update()
+ 5 SYSTEMPATH\BaseModel.php(1031): CodeIgniter\Model->doUpdate([...], [...])
+ 6 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [...])
+ 7 APPPATH\Controllers\AdminController.php(169): CodeIgniter\Model->update('2', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->updateWisata('2')
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+CRITICAL - 2025-08-20 16:31:19 --> [Caused by] mysqli_sql_exception: Unknown column 'updated_at' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `wisata` SET `nama_wisata` = \'Menara pandang\', `alamat` = \'jalan12345\', `kategori_id` = \'1\', `kota_id` = \'1\', `kecamatan_id` = \'1\', `deskripsi` = \'Menara Pandang Banjarmasin saat ini menjadi salah satu tempat wisata Banjarmasin sebagian besar pengunjung baik warga Banjarmasin itu sendiri maupun para wisatawan dari luar daerah. Menara ini menjadi sebuah ikon wisata baru setahun terakhir ini di Kota Banjarmasin, selain pasar terapung, Masjid Raya Sabilal Muhtadin, Masjid Sultan Suriansyah dan Masjid Jami’ Banjarmasin.\', `detail` = \'Menara Pandang Banjarmasin ini terletak di Siring Jalan Kapten Pierre Tendean Banjarmasin. Posisinya dekat pasar terapung buatan Pemerintah Kota Banjarmasin di tepi Sungai Martapura. Menara Pandang ini buka setiap hari senin sampai jum’at pada pukul 10.00-21.00 WITA. Hari Sabtu buka pukul 10.00-22.00 WITA  dan pada hari Minggu buka pukul 08.00-21.00 WITA. Pengunjungnya pun terdiri dari semua kalangan dan usia, dari anak kecil, remaja dan orang tua.\\r\\n\\r\\nIkon wisata yang menjadi salah satu Pesona Kota banjarmasin ini sering di penuhi warga setiap harinya, terutama saat hari Minggu dari pagi sampai sore bahkan malam. Menara pandang ini berlantai empat, di bagian atas atau lantai tiga menara ini adalah area terbuka. Jadi, para pengunjung bisa naik ke atas dan menikmati pemandangan yang indah Kota Banjarmasin dari atas sana, apalagi jika cuaca nya sedang cerah.\', `latitude` = \'-3.31693\', `longitude` = \'114.59312\', `updated_at` = \'2025-08-20 16:31:19\'
+WHERE `wisata`.`wisata_id` IN (\'2\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `wisata` SET `nama_wisata` = \'Menara pandang\', `alamat` = \'jalan12345\', `kategori_id` = \'1\', `kota_id` = \'1\', `kecamatan_id` = \'1\', `deskripsi` = \'Menara Pandang Banjarmasin saat ini menjadi salah satu tempat wisata Banjarmasin sebagian besar pengunjung baik warga Banjarmasin itu sendiri maupun para wisatawan dari luar daerah. Menara ini menjadi sebuah ikon wisata baru setahun terakhir ini di Kota Banjarmasin, selain pasar terapung, Masjid Raya Sabilal Muhtadin, Masjid Sultan Suriansyah dan Masjid Jami’ Banjarmasin.\', `detail` = \'Menara Pandang Banjarmasin ini terletak di Siring Jalan Kapten Pierre Tendean Banjarmasin. Posisinya dekat pasar terapung buatan Pemerintah Kota Banjarmasin di tepi Sungai Martapura. Menara Pandang ini buka setiap hari senin sampai jum’at pada pukul 10.00-21.00 WITA. Hari Sabtu buka pukul 10.00-22.00 WITA  dan pada hari Minggu buka pukul 08.00-21.00 WITA. Pengunjungnya pun terdiri dari semua kalangan dan usia, dari anak kecil, remaja dan orang tua.\\r\\n\\r\\nIkon wisata yang menjadi salah satu Pesona Kota banjarmasin ini sering di penuhi warga setiap harinya, terutama saat hari Minggu dari pagi sampai sore bahkan malam. Menara pandang ini berlantai empat, di bagian atas atau lantai tiga menara ini adalah area terbuka. Jadi, para pengunjung bisa naik ke atas dan menikmati pemandangan yang indah Kota Banjarmasin dari atas sana, apalagi jika cuaca nya sedang cerah.\', `latitude` = \'-3.31693\', `longitude` = \'114.59312\', `updated_at` = \'2025-08-20 16:31:19\'
+WHERE `wisata`.`wisata_id` IN (\'2\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `wisata` SET `nama_wisata` = \'Menara pandang\', `alamat` = \'jalan12345\', `kategori_id` = \'1\', `kota_id` = \'1\', `kecamatan_id` = \'1\', `deskripsi` = \'Menara Pandang Banjarmasin saat ini menjadi salah satu tempat wisata Banjarmasin sebagian besar pengunjung baik warga Banjarmasin itu sendiri maupun para wisatawan dari luar daerah. Menara ini menjadi sebuah ikon wisata baru setahun terakhir ini di Kota Banjarmasin, selain pasar terapung, Masjid Raya Sabilal Muhtadin, Masjid Sultan Suriansyah dan Masjid Jami’ Banjarmasin.\', `detail` = \'Menara Pandang Banjarmasin ini terletak di Siring Jalan Kapten Pierre Tendean Banjarmasin. Posisinya dekat pasar terapung buatan Pemerintah Kota Banjarmasin di tepi Sungai Martapura. Menara Pandang ini buka setiap hari senin sampai jum’at pada pukul 10.00-21.00 WITA. Hari Sabtu buka pukul 10.00-22.00 WITA  dan pada hari Minggu buka pukul 08.00-21.00 WITA. Pengunjungnya pun terdiri dari semua kalangan dan usia, dari anak kecil, remaja dan orang tua.\\r\\n\\r\\nIkon wisata yang menjadi salah satu Pesona Kota banjarmasin ini sering di penuhi warga setiap harinya, terutama saat hari Minggu dari pagi sampai sore bahkan malam. Menara pandang ini berlantai empat, di bagian atas atau lantai tiga menara ini adalah area terbuka. Jadi, para pengunjung bisa naik ke atas dan menikmati pemandangan yang indah Kota Banjarmasin dari atas sana, apalagi jika cuaca nya sedang cerah.\', `latitude` = \'-3.31693\', `longitude` = \'114.59312\', `updated_at` = \'2025-08-20 16:31:19\'
+WHERE `wisata`.`wisata_id` IN (\'2\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `wisata` SET `nama_wisata` = :nama_wisata:, `alamat` = :alamat:, `kategori_id` = :kategori_id:, `kota_id` = :kota_id:, `kecamatan_id` = :kecamatan_id:, `deskripsi` = :deskripsi:, `detail` = :detail:, `latitude` = :latitude:, `longitude` = :longitude:, `updated_at` = :updated_at:
+WHERE `wisata`.`wisata_id` IN :wisata.wisata_id:', [...], false)
+ 5 SYSTEMPATH\Model.php(461): CodeIgniter\Database\BaseBuilder->update()
+ 6 SYSTEMPATH\BaseModel.php(1031): CodeIgniter\Model->doUpdate([...], [...])
+ 7 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [...])
+ 8 APPPATH\Controllers\AdminController.php(169): CodeIgniter\Model->update('2', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->updateWisata('2')
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\projek\\public\\index.php')
+DEBUG - 2025-08-20 16:37:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:37:19 --> Wisata count: 2
+DEBUG - 2025-08-20 16:37:19 --> Kategori count: 3
+DEBUG - 2025-08-20 16:37:19 --> Kota count: 1
+DEBUG - 2025-08-20 16:37:19 --> Kecamatan count: 5
+DEBUG - 2025-08-20 16:37:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:37:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:37:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:37:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-20 16:37:51 --> Wisata count: 2
+DEBUG - 2025-08-20 16:37:51 --> Kategori count: 3
+DEBUG - 2025-08-20 16:37:51 --> Kota count: 1
+DEBUG - 2025-08-20 16:37:51 --> Kecamatan count: 5
+DEBUG - 2025-08-20 16:38:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

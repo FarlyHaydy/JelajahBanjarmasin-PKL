@@ -1,3 +1,7 @@
+<?php 
+// Menampilkan pesan sukses/error jika ada
+$session = session();
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -7,7 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="<?= base_url('css/login.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/login.css') ?>">
 </head>
 <body>
     <!-- Navigation -->
@@ -21,25 +25,42 @@
     <div class="login-container">
         <div class="login-form">
             <h2>Masuk Akun</h2>
-            <form>
+
+            <!-- Menampilkan pesan sukses/error -->
+            <?php if ($session->getFlashdata('success')): ?>
+                <div class="alert alert-success">
+                    <?= $session->getFlashdata('success') ?>
+                </div>
+            <?php elseif ($session->getFlashdata('error')): ?>
+                <div class="alert alert-danger">
+                    <?= $session->getFlashdata('error') ?>
+                </div>
+            <?php endif; ?>
+
+            <!-- Form Login -->
+            <form action="<?= base_url('/loginAction') ?>" method="post">
+                <?= csrf_field() ?>
+                
                 <div class="form-group">
                     <label for="email">Email / Username</label>
-                    <input type="text" id="email" class="form-control" placeholder="Masukkan Email atau Username Anda">
+                    <input type="text" name="email" id="email" class="form-control" 
+                           placeholder="Masukkan Email atau Username Anda" 
+                           value="<?= old('email') ?>" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">Sandi</label>
-                    <input type="password" id="password" class="form-control" placeholder="Masukkan Sandi Anda">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" 
+                           placeholder="Masukkan Password Anda" required>
                 </div>
                 
                 <div class="forgot-password">
-                    <a href="#">Lupa Sandi?</a>
+                    <a href="#">Lupa Password?</a>
                 </div>
                 
                 <button type="submit" class="btn-login">Masuk</button>
-                
                 <div class="register-link">
-                    Belum Punya Akun? <a href="#">Daftar Sekarang</a>
+                    Belum Punya Akun? <a href="/register">Daftar Sekarang</a>
                 </div>
             </form>
         </div>
