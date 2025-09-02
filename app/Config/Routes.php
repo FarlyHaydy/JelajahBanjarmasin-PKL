@@ -32,6 +32,9 @@ $routes->get('/detail/(:num)', 'UserController::detailWisata/$1');
 $routes->get('/wisata/detail/(:num)', 'UserController::detailWisata/$1');
 $routes->get('/wisata/(:num)', 'UserController::detailWisata/$1');
 
+// FAQ Routes (baru ditambahkan)
+$routes->get('/faq', 'UserController::faq');
+
 // Wishlist Routes - PINDAHKAN KE LUAR ADMIN GROUP
 $routes->group('wishlist', function($routes) {
     $routes->post('toggle', 'WishlistController::toggle');

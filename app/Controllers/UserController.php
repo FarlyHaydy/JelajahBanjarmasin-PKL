@@ -142,4 +142,8 @@ class UserController extends BaseController
         
         return $this->response->setJSON($results);
     }
+    public function faq()
+{
+    return view('user/faq'); 
+}
 }

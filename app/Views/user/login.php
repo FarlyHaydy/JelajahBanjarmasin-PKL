@@ -85,8 +85,7 @@ $session = session();
                 <div class="col-lg-2 col-md-4">
                     <h5>Support</h5>
                     <ul>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Support Centre</a></li>
+                        <li><a href="<?= base_url('/faq') ?>"><i class="fas fa-question-circle"></i> FAQs</a></li>
                         <li><a href="#">Feedback</a></li>
                     </ul>
                 </div>

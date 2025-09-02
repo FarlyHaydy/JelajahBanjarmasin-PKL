@@ -39,12 +39,12 @@ class AdminController extends BaseController
         $kecamatanData = $this->kecamatanModel->getWithKota();
         $usersData = $this->userModel->findAll(); // NEW: Ambil data users
         
-        // Debug log
-        log_message('debug', 'Wisata count: ' . count($wisataData));
-        log_message('debug', 'Kategori count: ' . count($kategoriData));
-        log_message('debug', 'Kota count: ' . count($kotaData));
-        log_message('debug', 'Kecamatan count: ' . count($kecamatanData));
-        log_message('debug', 'Users count: ' . count($usersData)); // NEW: Debug users
+        // // Debug log
+        // log_message('debug', 'Wisata count: ' . count($wisataData));
+        // log_message('debug', 'Kategori count: ' . count($kategoriData));
+        // log_message('debug', 'Kota count: ' . count($kotaData));
+        // log_message('debug', 'Kecamatan count: ' . count($kecamatanData));
+        // log_message('debug', 'Users count: ' . count($usersData)); // NEW: Debug users
         
         $data = [
             'wisata' => $wisataData,

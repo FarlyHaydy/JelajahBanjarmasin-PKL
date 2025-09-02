@@ -100,21 +100,21 @@
 </head>
 <body>
     <!-- Debug Info -->
-    <div class="debug-info">
+    <!-- <div class="debug-info">
         <strong>DEBUG:</strong><br>
         Wisata: <?= isset($wisata) ? count($wisata) : '0' ?><br>
         Kategori: <?= isset($kategori) ? count($kategori) : '0' ?><br>
         Kota: <?= isset($kota) ? count($kota) : '0' ?><br>
         Kecamatan: <?= isset($kecamatan) ? count($kecamatan) : '0' ?><br>
         Users: <?= isset($users) ? count($users) : '0' ?>
-    </div>
+    </div> -->
 
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-3 col-lg-2 sidebar">
                 <h4 class="text-white mb-4">
-                    <i class="fas fa-city"></i> Banjarmasin Admin
+                    <i class="fas fa-user-shield me-2"></i> JelajahBanjarmasin Admin
                 </h4>
                 
                 <nav class="nav flex-column">

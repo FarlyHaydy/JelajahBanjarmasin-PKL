@@ -21,20 +21,41 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#beranda">Beranda</a>
+                        <a class="nav-link" href="<?= base_url('/') ?>">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#rekreasi">Rekreasi</a>
+                        <a class="nav-link" href="<?= base_url('/rekreasi') ?>">Rekreasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#kuliner">Kuliner</a>
+                        <a class="nav-link active" href="<?= base_url('/kuliner') ?>">Kuliner</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#religi">Religi</a>
+                        <a class="nav-link" href="<?= base_url('/religi') ?>">Religi</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#profil">Profil</a>
-                    </li>
+
+                    <?php if (session()->get('isLoggedIn')): ?>
+                        <li class="nav-item profile-dropdown">
+                            <button class="profile-toggle" onclick="toggleProfileDropdown()">
+                                <i class="fas fa-user-circle"></i>
+                                <span><?= esc(session()->get('Nama_Asli')) ?? 'Profil' ?></span>
+                                <i class="fas fa-chevron-down dropdown-arrow" id="dropdownArrow"></i>
+                            </button>
+                            <div class="profile-dropdown-menu" id="profileDropdownMenu">
+                                <a href="/profil">
+                                    <i class="fas fa-user"></i>Lihat Profil
+                                </a>
+                                <a href="#" onclick="confirmLogout()" class="logout-btn">
+                                    <i class="fas fa-sign-out-alt"></i>Logout
+                                </a>
+                            </div>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

@@ -209,9 +209,11 @@
                                         <p class="card-description">
                                             <?= esc($w['deskripsi']) ?>
                                         </p>
-                                        <a href="<?= base_url('/detail/' . $w['wisata_id']) ?>" class="card-arrow" title="Lihat detail <?= esc($w['nama_wisata']) ?>">
-                                            <i class="fas fa-arrow-right"></i>
-                                        </a>
+                                        <a href="<?= base_url('/detail/' . $w['wisata_id']) ?>" 
+                                            class="btn-more btn btn-outline-light rounded-pill" 
+                                            title="Lihat detail <?= esc($w['nama_wisata']) ?>">
+                                            Lihat selengkapnya
+                                            </a>
                                     </div>
                                 </div>
                             </div>
@@ -228,9 +230,11 @@
                                         <p class="card-description">
                                             <?= esc($w['deskripsi']) ?>
                                         </p>
-                                        <a href="<?= base_url('/detail/' . $w['wisata_id']) ?>" class="card-arrow" title="Lihat detail <?= esc($w['nama_wisata']) ?>">
-                                            <i class="fas fa-arrow-right"></i>
-                                        </a>
+                                        <a href="<?= base_url('/detail/' . $w['wisata_id']) ?>" 
+                                            class="btn-more btn btn-outline-light rounded-pill" 
+                                            title="Lihat detail <?= esc($w['nama_wisata']) ?>">
+                                            Lihat selengkapnya
+                                            </a>
                                     </div>
                                 </div>
                             </div>
@@ -273,7 +277,7 @@
                 <div class="col-lg-2 col-md-4">
                     <h5>Support</h5>
                     <ul>
-                        <li><a href="#"><i class="fas fa-question-circle"></i> FAQs</a></li>
+                        <li><a href="<?= base_url('/faq') ?>"><i class="fas fa-question-circle"></i> FAQs</a></li>
                         <li><a href="#"><i class="fas fa-comment-dots"></i> Feedback</a></li>
                     </ul>
                 </div>
@@ -348,28 +352,6 @@
             });
         });
 
-        // Add loading state to card arrows
-        document.querySelectorAll('.card-arrow').forEach(arrow => {
-            arrow.addEventListener('click', function(e) {
-                // Optional: Add loading state
-                const icon = this.querySelector('i');
-                icon.classList.remove('fa-arrow-right');
-                icon.classList.add('fa-spinner', 'fa-spin');
-                
-                // Reset after a short delay (will be replaced by page navigation)
-                setTimeout(() => {
-                    icon.classList.remove('fa-spinner', 'fa-spin');
-                    icon.classList.add('fa-arrow-right');
-                }, 500);
-            });
-        });
-
-        // Debug: Log clicks for troubleshooting
-        document.querySelectorAll('.card-arrow').forEach(arrow => {
-            arrow.addEventListener('click', function(e) {
-                console.log('Navigating to:', this.href);
-            });
-        });
     </script>
 </body>
 </html>

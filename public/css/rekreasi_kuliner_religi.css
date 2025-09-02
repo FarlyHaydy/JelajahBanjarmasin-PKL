@@ -94,16 +94,18 @@ body {
 .card-content {
     padding: 40px;
     position: relative;
-    height: 300px;
+    /* height: 300px; */         /* HAPUS baris ini */
+    min-height: 300px;           /* cukup jaga tinggi minimum */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;  /* mulai dari atas */
+    gap: 1rem;                    /* jarak antar elemen */
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 /* Hover effect yang mengikuti style dashboard */
-.row.mb-5:hover .card-content {
+/* .row.mb-5:hover .card-content {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
 }
@@ -111,7 +113,7 @@ body {
 .row.mb-5:hover .card-image {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
-}
+} */
 
 .card-title {
     font-size: 2.2rem;
@@ -127,37 +129,41 @@ body {
     margin-bottom: 2rem;
 }
 
-.card-arrow {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    border: 2px solid white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background-color: transparent;
+/* Tombol 'Lihat selengkapnya' */
+.btn-more {
+  position: static;              
+  align-self: flex-end;          
+  margin-top: .5rem;             
+  padding: 10px 16px;
+  border: 2px solid #fff;
+  color: #fff;
+  background: transparent;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: .2px;
+  transition: all .25s ease;
+  line-height: 1;
 }
 
-.card-arrow:hover {
-    background-color: white;
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+.btn-more:hover,
+.btn-more:focus-visible {
+  background: #fff;
+  color: #0a0a0a;
+  box-shadow: 0 0 20px rgba(255,255,255,.3);
+  transform: scale(1.02);
 }
 
-.card-arrow:hover i {
-    color: #0a0a0a;
+.btn-more:active { transform: scale(.98); }
+
+/* Responsif */
+@media (max-width: 768px) {
+  .btn-more { bottom: 20px; right: 20px; padding: 8px 14px; }
+}
+@media (max-width: 576px) {
+  .btn-more { bottom: 15px; right: 15px; padding: 8px 12px; font-size: .875rem; }
 }
 
-.card-arrow i {
-    font-size: 1.2rem;
-    color: white;
-    transition: color 0.3s ease;
-}
 
 .wide-card {
     background: linear-gradient(135deg, #667eea, #764ba2);
