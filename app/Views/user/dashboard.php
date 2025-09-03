@@ -751,7 +751,6 @@
                     <h5>Support</h5>
                     <ul>
                         <li><a href="<?= base_url('/faq') ?>"><i class="fas fa-question-circle"></i> FAQs</a></li>
-                        <li><a href="#"><i class="fas fa-comment-dots"></i> Feedback</a></li>
                     </ul>
                 </div>
             </div>
