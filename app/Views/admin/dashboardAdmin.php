@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,96 +8,140 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
   body {
-    background-color: #f8f9fa;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  }
-  .sidebar {
-    background-color: #343a40;
+    /* Background and Base Styles */
+
+    background-color: #f4f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #1a1a1a;
+    color: #fff;
     min-height: 100vh;
-    padding: 1rem;
-  }
-  .sidebar .nav-link {
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+.sidebar .nav-link {
     color: #ffffff;
-    padding: 0.75rem 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 0.375rem;
-  }
-  .sidebar .nav-link:hover,
-  .sidebar .nav-link.active {
-    background-color: #0d6efd;
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    background-color: #333333;
     color: #ffffff;
-  }
-  .main-content {
-    background-color: #ffffff;
+}
+
+/* Main Content */
+.main-content {
+    background-color: #fff;
     min-height: 100vh;
-    padding: 2rem;
-  }
-  .content-section {
+    padding: 2.5rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Content Sections */
+.content-section {
     display: none;
-  }
-  .content-section.active {
+}
+.content-section.active {
     display: block;
-  }
-  .card {
+}
+
+/* Cards */
+.card {
     border: none;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    margin-bottom: 1.5rem;
-  }
-  .table th {
-    background-color: #f8f9fa;
-    border-top: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    border-radius: 12px;
+}
+.card-header {
+    background-color: #333333;
+    color: #fff;
+    border-radius: 12px 12px 0 0;
+    padding: 1rem;
+}
+.card-body {
+    padding: 2rem;
+}
+
+/* Table */
+.table th {
+    background-color: #ecf0f1;
+    color: #333333;
     font-weight: 600;
-  }
-  .btn-action {
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .coordinate-help {
-    background-color: #e3f2fd;
+}
+
+/* Buttons and Actions */
+.btn-action {
+    margin-right: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Coordinate Help Box */
+.coordinate-help {
+    background-color: #eaf4fc;
     border: 1px solid #bbdefb;
-    border-radius: 4px;
-    padding: 10px;
-    margin-top: 10px;
-  }
-  .coordinate-help small {
-    color: #1976d2;
-  }
-  .user-avatar {
-    width: 40px;
-    height: 40px;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+.coordinate-help small {
+    color: #2980b9;
+}
+
+/* User Avatar */
+.user-avatar {
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     object-fit: cover;
-  }
-  .status-badge {
-    font-size: 0.75rem;
-  }
-  .stats-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Status Badge */
+.status-badge {
+    font-size: 0.85rem;
+}
+
+/* Stats Card */
+.stats-card {
+    background: #333333;
     color: white;
-    border-radius: 15px;
-  }
-  .stats-card .card-body {
-    padding: 1.5rem;
-  }
-  .stats-number {
-    font-size: 2rem;
+    border-radius: 12px;
+}
+
+.stats-card .card-body {
+    padding: 2rem;
+}
+.stats-number {
+    font-size: 2.5rem;
     font-weight: bold;
-  }
-  .chart-container {
+}
+
+/* Chart Container */
+.chart-container {
     position: relative;
     height: 400px;
     margin-bottom: 2rem;
-  }
-  .export-section {
-    background-color: #f8f9fa;
-    border-radius: 10px;
+}
+
+/* Export Section */
+.export-section {
+    background-color: #ecf0f1;
     padding: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  .chart-card {
+    border-radius: 12px;
+}
+
+/* Chart Card */
+.chart-card {
     background: white;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
   }
 </style>
 
@@ -116,8 +159,12 @@
                     <a class="nav-link" href="#" onclick="showSection('edit')"><i class="fas fa-edit"></i> Edit Postingan</a>
                     <a class="nav-link" href="#" onclick="showSection('delete')"><i class="fas fa-trash"></i> Hapus Postingan</a>
                     <a class="nav-link" href="#" onclick="showSection('master')"><i class="fas fa-database"></i> Master Data</a>
+                    <a class="nav-link" href="#" onclick="showSection('destinasi')"><i class="fas fa-map"></i> Data Destinasi Wisata</a>
+                    <a class="nav-link" href="#" onclick="showSection('import')"><i class="fas fa-upload"></i> Import Destinasi Wisata</a>
                     <a class="nav-link" href="#" onclick="showSection('users')"><i class="fas fa-users"></i> Data Pengguna</a>
-                    <a class="nav-link" href="#" onclick="showSection('statistics')"><i class="fas fa-chart-bar"></i> Statistik</a>
+                    <a class="nav-link" href="#" onclick="showSection('statistics')"><i class="fas fa-chart-bar"></i> Statistik Pengguna</a>
+                    <a class="nav-link" href="<?= base_url('/') ?>"><i class="fas fa-home"></i> Beranda</a>
+
                     <hr class="text-white">
                     <a class="nav-link" href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </nav>
@@ -253,7 +300,7 @@
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><strong><?= esc($w['nama_wisata'] ?? 'N/A') ?></strong></td>
-                                                <td><span class="badge bg-primary"><?= esc($w['nama_kategori'] ?? 'N/A') ?></span></td>
+                                                <td><?= esc($w['nama_kategori'] ?? 'N/A') ?></span></td>
                                                 <td><?= esc($w['nama_kecamatan'] ?? 'N/A') ?>, <?= esc($w['nama_kota'] ?? 'N/A') ?></td>
                                                 <td>
                                                     <?php if (!empty($w['latitude']) && !empty($w['longitude'])): ?>
@@ -304,13 +351,14 @@
                                                     <strong><?= esc($w['nama_wisata'] ?? 'N/A') ?></strong><br>
                                                     <small class="text-muted"><?= substr(esc($w['deskripsi'] ?? ''), 0, 50) ?>...</small>
                                                 </td>
-                                                <td><span class="badge bg-primary"><?= esc($w['nama_kategori'] ?? 'N/A') ?></span></td>
+                                                <td><?= esc($w['nama_kategori'] ?? 'N/A') ?></span></td>
                                                 <td><?= esc($w['nama_kecamatan'] ?? 'N/A') ?>, <?= esc($w['nama_kota'] ?? 'N/A') ?></td>
                                                 <td>
                                                     <?php if (!empty($w['latitude']) && !empty($w['longitude'])): ?>
-                                                        <span class="badge bg-success"><i class="fas fa-map-marker-alt"></i> Presisi</span>
+                                                        <span class="badge bg-success"><i class="fas fa-map-marker-alt"></i> Ada</span><br>
+                                                        <small class="text-muted"><?= number_format($w['latitude'], 6) ?>, <?= number_format($w['longitude'], 6) ?></small>
                                                     <?php else: ?>
-                                                        <span class="badge bg-warning"><i class="fas fa-map-marker"></i> Alamat</span>
+                                                        <span class="badge bg-warning"><i class="fas fa-map-marker"></i> Belum</span>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
@@ -328,7 +376,99 @@
                     </div>
                 </div>
 
-                <!-- Master Data Section -->
+                <!-- Modal Edit Wisata -->
+                <!-- Modal Edit Wisata -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form id="editForm" method="post" enctype="multipart/form-data">
+            <?= csrf_field() ?>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-edit"></i> Edit Wisata</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Nama Wisata</label>
+                        <input type="text" id="editNamaWisata" name="nama_wisata" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Alamat</label>
+                        <input type="text" id="editAlamat" name="alamat" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Kategori</label>
+                        <select id="editKategori" name="kategori_id" class="form-select" required>
+                            <option value="">Pilih Kategori</option>
+                            <?php if (isset($kategori)): foreach ($kategori as $kat): ?>
+                                <option value="<?= $kat['kategori_id'] ?>"><?= esc($kat['nama_kategori']) ?></option>
+                            <?php endforeach; endif; ?>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Kota</label>
+                            <select id="editKota" name="kota_id" class="form-select" required>
+                                <option value="">Pilih Kota</option>
+                                <?php if (isset($kota)): foreach ($kota as $k): ?>
+                                    <option value="<?= $k['kota_id'] ?>"><?= esc($k['nama_kota']) ?></option>
+                                <?php endforeach; endif; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Kecamatan</label>
+                            <select id="editKecamatan" name="kecamatan_id" class="form-select" required>
+                                <option value="">Pilih Kecamatan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Deskripsi Singkat</label>
+                        <textarea id="editDeskripsi" name="deskripsi" class="form-control" rows="2" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Detail Lengkap</label>
+                        <textarea id="editDetail" name="detail" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><i class="fas fa-map-marker-alt text-primary"></i> Latitude</label>
+                            <input type="number" step="any" id="editLatitude" name="latitude" class="form-control" placeholder="Contoh: -3.316694">
+                            <small class="text-muted">Range: -90 sampai 90</small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><i class="fas fa-map-marker-alt text-primary"></i> Longitude</label>
+                            <input type="number" step="any" id="editLongitude" name="longitude" class="form-control" placeholder="Contoh: 114.590111">
+                            <small class="text-muted">Range: -180 sampai 180</small>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-images text-primary"></i> Gambar Baru (Opsional)</label>
+                        <input type="file" name="gambar[]" class="form-control" multiple accept="image/*">
+                        <small class="text-muted">
+                            <i class="fas fa-info-circle"></i> 
+                            Biarkan kosong jika tidak ingin mengubah gambar. 
+                            <strong>Perhatian:</strong> Upload gambar baru akan mengganti <strong>semua</strong> gambar lama.
+                        </small>
+                    </div>
+                    <div class="alert alert-info mb-0">
+                        <i class="fas fa-lightbulb"></i> 
+                        <strong>Tips:</strong> Pastikan gambar berkualitas baik dengan ukuran maksimal 2MB per file.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i> Batal
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Simpan Perubahan
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+                <!-- Master Data Section - Enhanced with Edit Feature -->
                 <div id="master-section" class="content-section">
                     <div class="row">
                         <!-- Kategori -->
@@ -347,8 +487,15 @@
                                         <div class="list-group">
                                             <?php foreach ($kategori as $kat): ?>
                                                 <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <?= esc($kat['nama_kategori']) ?>
-                                                    <button class="btn btn-outline-danger btn-sm" onclick="deleteMaster('kategori', <?= $kat['kategori_id'] ?>, '<?= esc($kat['nama_kategori']) ?>')"><i class="fas fa-trash"></i></button>
+                                                    <span><?= esc($kat['nama_kategori']) ?></span>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-warning btn-sm" onclick="editKategori(<?= $kat['kategori_id'] ?>, '<?= esc($kat['nama_kategori']) ?>')" title="Edit">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-sm" onclick="deleteMaster('kategori', <?= $kat['kategori_id'] ?>, '<?= esc($kat['nama_kategori']) ?>')" title="Hapus">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
@@ -373,8 +520,15 @@
                                         <div class="list-group">
                                             <?php foreach ($kota as $k): ?>
                                                 <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <?= esc($k['nama_kota']) ?>
-                                                    <button class="btn btn-outline-danger btn-sm" onclick="deleteMaster('kota', <?= $k['kota_id'] ?>, '<?= esc($k['nama_kota']) ?>')"><i class="fas fa-trash"></i></button>
+                                                    <span><?= esc($k['nama_kota']) ?></span>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-warning btn-sm" onclick="editKota(<?= $k['kota_id'] ?>, '<?= esc($k['nama_kota']) ?>')" title="Edit">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-sm" onclick="deleteMaster('kota', <?= $k['kota_id'] ?>, '<?= esc($k['nama_kota']) ?>')" title="Hapus">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
@@ -409,7 +563,14 @@
                                                         <strong><?= esc($kec['nama_kecamatan']) ?></strong><br>
                                                         <small class="text-muted"><?= esc($kec['nama_kota']) ?></small>
                                                     </div>
-                                                    <button class="btn btn-outline-danger btn-sm" onclick="deleteMaster('kecamatan', <?= $kec['kecamatan_id'] ?>, '<?= esc($kec['nama_kecamatan']) ?>')"><i class="fas fa-trash"></i></button>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-warning btn-sm" onclick="editKecamatan(<?= $kec['kecamatan_id'] ?>, '<?= esc($kec['nama_kecamatan']) ?>', <?= $kec['kota_id'] ?>, '<?= esc($kec['nama_kota']) ?>')" title="Edit">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-sm" onclick="deleteMaster('kecamatan', <?= $kec['kecamatan_id'] ?>, '<?= esc($kec['nama_kecamatan']) ?>')" title="Hapus">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
@@ -419,6 +580,130 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Data Destinasi Wisata Section -->
+<div id="destinasi-section" class="content-section">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5><i class="fas fa-map"></i> Data Destinasi Wisata</h5>
+            <div class="export-section">
+                <button class="btn btn-danger" onclick="exportDestinasiToPDF()"><i class="fas fa-file-pdf"></i> Export PDF</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Pencarian dan Filter -->
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchDestinasi" placeholder="Cari nama destinasi...">
+                        <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <label class="form-label me-2 mb-0">Filter Kategori:</label>
+                        <select class="form-select w-auto" id="filterKategori">
+                            <option value="">Semua</option>
+                            <?php if (isset($kategori)): foreach ($kategori as $kat): ?>
+                                <option value="<?= $kat['kategori_id'] ?>"><?= esc($kat['nama_kategori']) ?></option>
+                            <?php endforeach; endif; ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabel Destinasi Wisata -->
+            <div class="table-responsive">
+                <table class="table table-hover" id="destinasiTable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Wisata</th>
+                            <th>Kategori</th>
+                            <th>Lokasi</th>
+                            <th>Koordinat</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                   <tbody>
+                    <?php if (isset($wisata) && !empty($wisata)): $no = 1; foreach ($wisata as $w): ?>
+                        <tr data-kategori-id="<?= esc($w['kategori_id']) ?>"> <!-- Tambahkan data-kategori-id -->
+                            <td><?= $no++ ?></td>
+                            <td><strong><?= esc($w['nama_wisata'] ?? 'N/A') ?></strong></td>
+                            <td><?= esc($w['nama_kategori'] ?? 'N/A') ?></td>
+                            <td><?= esc($w['nama_kecamatan'] ?? 'N/A') ?>, <?= esc($w['nama_kota'] ?? 'N/A') ?></td>
+                            <td>
+                                <?php if (!empty($w['latitude']) && !empty($w['longitude'])): ?>
+                                    <span class="badge bg-success"><i class="fas fa-map-marker-alt"></i> Ada</span><br>
+                                    <small class="text-muted"><?= number_format($w['latitude'], 6) ?>, <?= number_format($w['longitude'], 6) ?></small>
+                                <?php else: ?>
+                                    <span class="badge bg-warning"><i class="fas fa-map-marker"></i> Belum</span>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                 <a href="<?= base_url('detail/' . ($w['wisata_id'] ?? 0)) ?>" class="btn btn-info btn-sm btn-action" target="_blank"><i class="fas fa-eye"></i> Detail</a>
+                                              
+                            </td>
+                        </tr>
+                    <?php endforeach; else: ?>
+                        <tr><td colspan="6" class="text-center"><div class="alert alert-info">Belum ada data destinasi wisata.</div></td></tr>
+                    <?php endif; ?>
+                </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-section" id="import-section">
+    <div class="card">
+        <div class="card-header">
+            <h5><i class="fas fa-upload"></i> Import Destinasi Wisata</h5>
+        </div>
+        <div class="card-body">
+            <!-- Tampilkan pesan error/success jika ada -->
+            <?php if (session()->getFlashdata('error')): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?= session()->getFlashdata('error') ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            <?php endif; ?>
+           
+            <?php if (session()->getFlashdata('success')): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?= session()->getFlashdata('success') ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            <?php endif; ?>
+            
+            <!-- Form untuk upload file TXT -->
+            <form action="<?= base_url('admin/wisata/import') ?>" method="POST" enctype="multipart/form-data">
+                <?= csrf_field() ?>
+                <div class="mb-3">
+                    <label for="file_txt" class="form-label">Pilih File TXT</label>
+                    <input type="file" name="file_txt" id="file_txt" class="form-control" accept=".txt" required>
+                    <small class="text-muted d-block mt-1">
+                        <strong>Format TXT:</strong> Nama | Alamat | Kategori_ID | Kota_ID | Kecamatan_ID | Deskripsi | Detail | Latitude | Longitude
+                    </small>
+                    <small class="text-muted d-block mt-1">
+                        Delimiter otomatis terdeteksi (|, tab, ;, atau ,)
+                    </small>
+                    <small class="text-muted d-block mt-1">
+                        <strong>Contoh isi file:</strong><br>
+                        <code>Pantai Indah | Jl. Pantai No. 1 | 1 | 1 | 1 | Pantai yang indah | Detail lengkap | -6.123456 | 106.789012</code>
+                    </small>
+                    <small class="text-muted d-block mt-1">
+                        Ukuran maksimal: 5MB
+                    </small>
+                </div>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-upload"></i> Import Data
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 
                 <!-- Data Pengguna Section -->
                 <div id="users-section" class="content-section">
@@ -457,7 +742,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <!-- <div class="col-md-3">
                                     <div class="card stats-card">
                                         <div class="card-body text-center">
                                             <i class="fas fa-user-plus fa-2x mb-2"></i>
@@ -465,7 +750,7 @@
                                             <small>Baru (30 Hari)</small>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-3">
                                     <div class="card stats-card">
                                         <div class="card-body text-center">
@@ -525,7 +810,7 @@
                                                 <tr data-gender="<?= esc($user['Jenis_Kelamin']) ?>">
                                                     <td><?= $no++ ?></td>
                                                     <td>
-                                                        <div class="user-avatar bg-primary d-flex align-items-center justify-content-center text-white">
+                                                        <div class="user-avatar bg-secondary d-flex align-items-center justify-content-center text-white">
                                                             <?= strtoupper(substr($user['Nama_Asli'], 0, 1)) ?>
                                                         </div>
                                                     </td>
@@ -533,10 +818,11 @@
                                                         <div>
                                                             <strong><?= esc($user['Nama_Asli']) ?></strong><br>
                                                             <small class="text-muted">@<?= esc($user['Username']) ?></small><br>
-                                                            <span class="badge bg-<?= ($user['Jenis_Kelamin'] === 'Laki-Laki') ? 'info' : 'pink' ?> status-badge">
+                                                            <span class="badge <?= ($user['Jenis_Kelamin'] === 'Laki-Laki') ? 'bg-info' : 'bg-danger' ?> status-badge">
                                                                 <i class="fas fa-<?= ($user['Jenis_Kelamin'] === 'Laki-Laki') ? 'mars' : 'venus' ?>"></i>
                                                                 <?= esc($user['Jenis_Kelamin']) ?>
                                                             </span>
+
                                                         </div>
                                                     </td>
                                                     <td>
@@ -569,7 +855,7 @@
 
                 <!-- Statistics Section -->
                 <div id="statistics-section" class="content-section">
-                    <h2><i class="fas fa-chart-bar text-primary"></i> Statistik Pengguna</h2>
+                    <h2><i class="fas fa-chart-bar"></i> Statistik Pengguna</h2>
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="row align-items-end">
@@ -628,7 +914,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-4 text-center">
-                            <div class="user-avatar bg-primary d-flex align-items-center justify-content-center text-white mx-auto" style="width: 100px; height: 100px; font-size: 2rem;" id="viewUserAvatar">A</div>
+                            <div class="user-avatar bg-secondary d-flex align-items-center justify-content-center text-white mx-auto" style="width: 100px; height: 100px; font-size: 2rem;" id="viewUserAvatar">A</div>
                             <h5 class="mt-3" id="viewUserName">Nama Pengguna</h5>
                             <p class="text-muted" id="viewUserUsername">@username</p>
                         </div>
@@ -646,6 +932,90 @@
                 </div>
                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button></div>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Kategori -->
+    <div class="modal fade" id="editKategoriModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="editKategoriForm" method="post">
+                <?= csrf_field() ?>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fas fa-edit"></i> Edit Kategori</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Kategori</label>
+                            <input type="text" id="editNamaKategori" name="nama_kategori" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Edit Kota -->
+    <div class="modal fade" id="editKotaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="editKotaForm" method="post">
+                <?= csrf_field() ?>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fas fa-edit"></i> Edit Kota</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Kota</label>
+                            <input type="text" id="editNamaKota" name="nama_kota" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Edit Kecamatan -->
+    <div class="modal fade" id="editKecamatanModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="editKecamatanForm" method="post">
+                <?= csrf_field() ?>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fas fa-edit"></i> Edit Kecamatan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Kecamatan</label>
+                            <input type="text" id="editNamaKecamatan" name="nama_kecamatan" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Kota</label>
+                            <select id="editKotaKecamatan" name="kota_id" class="form-select" required>
+                                <option value="">Pilih Kota</option>
+                                <?php if (isset($kota)): foreach ($kota as $k): ?>
+                                    <option value="<?= $k['kota_id'] ?>"><?= esc($k['nama_kota']) ?></option>
+                                <?php endforeach; endif; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -826,28 +1196,52 @@
                 kecSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
             }
         }
-        function editWisata(id){
-            fetch(`<?= base_url('admin/wisata/get/') ?>${id}`)
-                .then(r => r.json())
-                .then(data => {
-                    const w = data.wisata;
-                    document.getElementById('editNamaWisata').value = w.nama_wisata;
-                    document.getElementById('editAlamat').value = w.alamat;
-                    document.getElementById('editKategori').value = w.kategori_id;
-                    document.getElementById('editKota').value = w.kota_id;
-                    document.getElementById('editDeskripsi').value = w.deskripsi;
-                    document.getElementById('editDetail').value = w.detail;
-                    document.getElementById('editLatitude').value = w.latitude || '';
-                    document.getElementById('editLongitude').value = w.longitude || '';
-                    loadKecamatan(w.kota_id, 'editKecamatan');
-                    setTimeout(()=>{ document.getElementById('editKecamatan').value = w.kecamatan_id; }, 500);
-                    document.getElementById('editForm').action = `<?= base_url('admin/wisata/update/') ?>${id}`;
+        function editWisata(id) {
+            const url = "<?= site_url('admin/wisata/get') ?>/" + id; // PENTING: pakai site_url
+
+            fetch(url, { headers: { 'Accept': 'application/json' } })
+                .then(async (r) => {
+                    if (!r.ok) {
+                        const text = await r.text();       // untuk melihat isi error (404/500)
+                        console.error('GET gagal:', r.status, text);
+                        throw new Error('HTTP ' + r.status);
+                    }
+                    return r.json();
+                })
+                .then(({ status, wisata, message }) => {
+                    if (status !== 'success' || !wisata) {
+                        console.error('Response tidak valid:', message);
+                        alert('Data wisata tidak valid');
+                        return;
+                    }
+
+                    // isi form modal
+                    document.getElementById('editNamaWisata').value = wisata.nama_wisata || '';
+                    document.getElementById('editAlamat').value     = wisata.alamat || '';
+                    document.getElementById('editKategori').value   = wisata.kategori_id || '';
+                    document.getElementById('editKota').value       = wisata.kota_id || '';
+                    document.getElementById('editDeskripsi').value  = wisata.deskripsi || '';
+                    document.getElementById('editDetail').value     = wisata.detail || '';
+                    document.getElementById('editLatitude').value   = wisata.latitude ?? '';
+                    document.getElementById('editLongitude').value  = wisata.longitude ?? '';
+
+                    // load kecamatan berdasar kota lalu set valuenya
+                    loadKecamatan(wisata.kota_id, 'editKecamatan');
+                    setTimeout(() => {
+                        document.getElementById('editKecamatan').value = wisata.kecamatan_id || '';
+                    }, 300);
+
+                    // set action update
+                    document.getElementById('editForm').action = "<?= site_url('admin/wisata/update') ?>/" + id;
+
                     new bootstrap.Modal(document.getElementById('editModal')).show();
                 })
-                .catch(() => alert('Error loading data wisata'));
+                .catch((e) => {
+                    console.error(e);
+                    alert('Error loading data wisata');
+                });
         }
         function deleteWisata(id, nama){ if (confirm(`Apakah Anda yakin ingin menghapus wisata "${nama}"?\n\nTindakan ini tidak dapat dibatalkan.`)) { window.location.href = `<?= base_url('admin/wisata/delete/') ?>${id}`; } }
-        function deleteMaster(type, id, nama){ if (confirm(`Apakah Anda yakin ingin menghapus ${type} "${nama}"?`)) { window.location.href = `<?= base_url('admin/') ?>${type}/delete/${id}`; } }
 
         // Auto hide alerts
         setTimeout(()=>{ document.querySelectorAll('.alert.alert-dismissible').forEach(a => (new bootstrap.Alert(a)).close()); }, 5000);
@@ -867,6 +1261,137 @@
                 }
             });
         });
+
+        // ====== Enhanced Master Data Functions ======
+
+        // Edit Kategori
+        function editKategori(id, nama) {
+            document.getElementById('editNamaKategori').value = nama;
+            document.getElementById('editKategoriForm').action = '<?= base_url('admin/kategori/update/') ?>' + id;
+            new bootstrap.Modal(document.getElementById('editKategoriModal')).show();
+        }
+
+        // Edit Kota
+        function editKota(id, nama) {
+            document.getElementById('editNamaKota').value = nama;
+            document.getElementById('editKotaForm').action = '<?= base_url('admin/kota/update/') ?>' + id;
+            new bootstrap.Modal(document.getElementById('editKotaModal')).show();
+        }
+
+        // Edit Kecamatan
+        function editKecamatan(id, nama, kotaId, namaKota) {
+            document.getElementById('editNamaKecamatan').value = nama;
+            document.getElementById('editKotaKecamatan').value = kotaId;
+            document.getElementById('editKecamatanForm').action = '<?= base_url('admin/kecamatan/update/') ?>' + id;
+            new bootstrap.Modal(document.getElementById('editKecamatanModal')).show();
+        }
+
+        // Enhanced delete function with better confirmation
+        function deleteMaster(type, id, nama) {
+            const typeNames = {
+                'kategori': 'kategori',
+                'kota': 'kota',
+                'kecamatan': 'kecamatan'
+            };
+            
+            const typeName = typeNames[type] || type;
+            
+            if (confirm(`Apakah Anda yakin ingin menghapus ${typeName} "${nama}"?\n\nPeringatan: Data yang terkait dengan ${typeName} ini mungkin akan terpengaruh.`)) {
+                // Show loading state
+                const button = event.target.closest('button');
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                button.disabled = true;
+                
+                // Redirect to delete
+                window.location.href = `<?= base_url('admin/') ?>${type}/delete/${id}`;
+            }
+        }
+
+
+        // Add enter key support for quick editing
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.matches('#editNamaKategori, #editNamaKota, #editNamaKecamatan')) {
+                e.target.closest('form').querySelector('button[type="submit"]').click();
+            }
+        });
+    
+    function exportDestinasiToPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.setFontSize(20);
+    doc.text('Laporan Data Destinasi Wisata', 14, 22);
+    doc.setFontSize(12);
+    doc.text(`JelajahBanjarmasin - ${new Date().toLocaleDateString('id-ID')}`, 14, 30);
+
+    const headers = ['No', 'Nama Wisata', 'Kategori', 'Lokasi', 'Koordinat'];
+    const rows = [];
+
+    // Gather rows from the table
+    document.querySelectorAll('#destinasiTable tbody tr').forEach((row, index) => {
+        const cells = row.querySelectorAll('td');
+        rows.push([
+            index + 1,
+            cells[1].textContent,
+            cells[2].textContent,
+            cells[3].textContent,
+            cells[4].textContent
+        ]);
+    });
+
+    // Define custom styles for table headers and rows
+    doc.autoTable({
+        head: [headers],
+        body: rows,
+        startY: 40,
+        styles: {
+            fontSize: 8,
+            cellPadding: 2
+        },
+        headStyles: {
+            fillColor: [45, 52, 54], // Dark grey color (adjusted to match the header in data pengguna PDF)
+            textColor: 255, // White text color
+            fontSize: 10,
+            halign: 'center'
+        },
+        alternateRowStyles: {
+            fillColor: [240, 240, 240] // Light grey background for alternating rows
+        }
+    });
+
+    const finalY = doc.lastAutoTable.finalY + 10;
+    doc.text(`Total Destinasi: ${rows.length}`, 14, finalY);
+    doc.text(`Dicetak pada: ${new Date().toLocaleString('id-ID')}`, 14, finalY + 7);
+    doc.save(`data-destinasi-wisata-${new Date().toISOString().split('T')[0]}.pdf`);
+    alert('File PDF berhasil diunduh!');
+}
+
+document.getElementById('searchDestinasi').addEventListener('input', function() {
+    const q = this.value.toLowerCase();
+    document.querySelectorAll('#destinasiTable tbody tr').forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+});
+
+document.getElementById('filterKategori').addEventListener('change', function() {
+    const kategoriId = this.value;  // Ambil ID kategori yang dipilih
+    document.querySelectorAll('#destinasiTable tbody tr').forEach(row => {
+        const kategori = row.getAttribute('data-kategori-id');  // Ambil kategori ID dari data atribut
+        // Jika kategori kosong (semua kategori) atau kategori sesuai, tampilkan baris
+        row.style.display = (kategoriId === '' || kategori === kategoriId) ? '' : 'none';
+    });
+});
+
+function showSection(sectionName) {
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(sectionName + '-section').classList.add('active');
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    event.target.classList.add('active');
+    if (sectionName === 'import') setTimeout(initializeChart, 100); // Menambahkan pemeriksaan untuk section import
+}
+
+
+
     </script>
 </body>
 </html>

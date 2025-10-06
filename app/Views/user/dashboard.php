@@ -312,7 +312,12 @@
             position: relative;
             display: flex;
             align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
             justify-content: center;
+        }
+        .slide:hover {
+            transform: scale(1.02) translateX(0);
         }
     
         .slide-1 {
@@ -566,19 +571,31 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="<?= base_url('/') ?>">Banjarmasin</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="<?= base_url('/') ?>">Banjarmasin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('/') ?>">Beranda</a>
+                </li>
+                
+                <!-- Dynamic Kategori Menu -->
+                <?php if (isset($kategori) && !empty($kategori)): ?>
+                    <?php foreach ($kategori as $kat): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('/kategori/' . strtolower($kat['nama_kategori'])) ?>">
+                                <?= esc($kat['nama_kategori']) ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <!-- Fallback ke kategori static jika tidak ada data -->
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/') ?>">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url('/rekreasi') ?>">Rekreasi</a>
+                        <a class="nav-link" href="<?= base_url('/rekreasi') ?>">Rekreasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/kuliner') ?>">Kuliner</a>
@@ -586,36 +603,45 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/religi') ?>">Religi</a>
                     </li>
+                <?php endif; ?>
+
+        <!-- Profile Dropdown or Login Link -->
+        <?php if (session()->get('isLoggedIn')): ?>
+            <li class="nav-item profile-dropdown">
+                <button class="profile-toggle" onclick="toggleProfileDropdown()">
+                    <i class="fas fa-user-circle"></i>
+                    <span><?= esc(session()->get('username')) ?? 'Profil' ?></span>
+                    <i class="fas fa-chevron-down dropdown-arrow" id="dropdownArrow"></i>
+                </button>
+                <div class="profile-dropdown-menu" id="profileDropdownMenu">
+                    <a href="/profil">
+                        <i class="fas fa-user"></i>Lihat Profil
+                    </a>
                     
-                    <!-- Profile Dropdown or Login Link -->
-                    <?php if (session()->get('isLoggedIn')): ?>
-                        <li class="nav-item profile-dropdown">
-                            <button class="profile-toggle" onclick="toggleProfileDropdown()">
-                                <i class="fas fa-user-circle"></i>
-                                <span><?= esc(session()->get('Nama_Asli')) ?? 'Profil' ?></span>
-                                <i class="fas fa-chevron-down dropdown-arrow" id="dropdownArrow"></i>
-                            </button>
-                            <div class="profile-dropdown-menu" id="profileDropdownMenu">
-                                <a href="/profil">
-                                    <i class="fas fa-user"></i>Lihat Profil
-                                </a>
-                                <a href="#" onclick="confirmLogout()" class="logout-btn">
-                                    <i class="fas fa-sign-out-alt"></i>Logout
-                                </a>
-                            </div>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">
-                                <i class="fas fa-sign-in-alt"></i> Login
-                            </a>
-                        </li>
+                    <!-- Dashboard Admin - Hanya untuk Admin -->
+                    <?php if (session()->get('role') === 'admin'): ?>
+                        <a href="/admin/dashboard">
+                            <i class="fas fa-user-shield"></i>Dashboard Admin
+                        </a>
                     <?php endif; ?>
-                </ul>
+                    
+                    <a href="#" onclick="confirmLogout()" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>Logout
+                    </a>
+                </div>
+            </li>
+        <?php else: ?>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+            </li>
+        <?php endif; ?>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-    
+        </nav>
+            
     <!-- Hero Section -->
     <section id="beranda" class="hero-section">
         <div class="hero-content">
@@ -626,92 +652,100 @@
     </section>
 
     <!-- Destinations Section -->
-    <section id="rekreasi" class="destinations-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Destinasi Terbaik</h2>
-                <p>Jelajahi kota Banjarmasin yang mempesona<br>mulai dari rekreasi, kuliner serta religi</p>
+    <!-- Destinations Section -->
+<section id="rekreasi" class="destinations-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Destinasi Terbaik</h2>
+            <p>Jelajahi kota Banjarmasin yang mempesona<br>mulai dari rekreasi, kuliner serta religi</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="destination-card large pasar-terapung" 
+                     onclick="navigateToDetail(2)">
+                    <div class="card-content">
+                        <h3>Pasar Terapung</h3>
+                        <p>Pasar Terapung tradisional yang berlokasi di siring</p>
+                    </div>
+                </div>
             </div>
-            
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="destination-card large pasar-terapung" onclick="navigateToPage('/rekreasi')">
-                        <div class="card-content">
-                            <h3>Pasar Terapung</h3>
-                            <p>Pasar Terapung tradisional yang berlokasi di siring</p>
-                        </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="destination-card large musik-panting" 
+                     onclick="navigateToDetail(5)">
+                    <div class="card-content">
+                        <h3>Musik Panting</h3>
+                        <p>Seni tradisional Kalimantan Selatan yang memukau dengan harmonisasi musik dan cerita</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="destination-card large musik-panting" onclick="navigateToPage('/kuliner')">
-                        <div class="card-content">
-                            <h3>Musik Panting</h3>
-                            <p>Seni tradisional Kalimantan Selatan yang memukau dengan harmonisasi musik dan cerita</p>
-                        </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="destination-card large masjid-sabilal" 
+                     onclick="navigateToDetail(6)">
+                    <div class="card-content">
+                        <h3>Masjid Sabilal Muhtadin</h3>
+                        <p>Masjid raya yang menjadi kebanggaan masyarakat Banjarmasin dengan arsitektur yang megah</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="destination-card large masjid-sabilal" onclick="navigateToPage('/religi')">
-                        <div class="card-content">
-                            <h3>Masjid Sabilal Muhtadin</h3>
-                            <p>Masjid raya yang menjadi kebanggaan masyarakat Banjarmasin dengan arsitektur yang megah</p>
-                        </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="destination-card large menara-pandang" 
+                     onclick="navigateToDetail(2)">
+                    <div class="card-content">
+                        <h3>Menara Pandang</h3>
+                        <p>Menara yang menawarkan pemandangan kota Banjarmasin dari ketinggian</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="destination-card large menara-pandang" onclick="navigateToPage('/rekreasi')">
-                        <div class="card-content">
-                            <h3>Menara Pandang</h3>
-                            <p>Menara yang menawarkan pemandangan kota Banjarmasin dari ketinggian</p>
-                        </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="destination-card large masjid-sultan" 
+                     onclick="navigateToDetail(6)">
+                    <div class="card-content">
+                        <h3>Masjid Sultan Suriansyah</h3>
+                        <p>Masjid tertua di Kalimantan Selatan dengan nilai sejarah yang tinggi</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="destination-card large masjid-sultan" onclick="navigateToPage('/religi')">
-                        <div class="card-content">
-                            <h3>Masjid Sultan Suriansyah</h3>
-                            <p>Masjid tertua di Kalimantan Selatan dengan nilai sejarah yang tinggi</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="destination-card large pulau-kembang" onclick="navigateToPage('/kuliner')">
-                        <div class="card-content">
-                            <h3>Pulau Kembang</h3>
-                            <p>Pulau kecil yang menjadi habitat bekantan dan tempat wisata alam yang menarik</p>
-                        </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="destination-card large pulau-kembang" 
+                     onclick="navigateToDetail(5)">
+                    <div class="card-content">
+                        <h3>Pulau Kembang</h3>
+                        <p>Pulau kecil yang menjadi habitat bekantan dan tempat wisata alam yang menarik</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Explore dan slider Banjarmasin -->
-    <section class="explore-section">
-        <div class="container">
-            <h2>Destinasi Populer</h2>
-            <div class="slider-container">
+    <!-- Explore dan slider Banjarmasin -->
+<section class="explore-section">
+    <div class="container">
+        <h2>Destinasi Populer</h2>
+        <div class="slider-container">
             <div class="slider-wrapper" id="sliderWrapper">
-                <div class="slide slide-1"></div>
-                <div class="slide slide-2"></div>
-                <div class="slide slide-3"></div>
-                <div class="slide slide-4"></div>
-            </div>
-                
-                <!-- Navigation Arrows -->
-                <button class="nav-arrow prev" onclick="changeSlide(-1)">❮</button>
-                <button class="nav-arrow next" onclick="changeSlide(1)">❯</button>
-            </div>
+                <div class="slide slide-1" onclick="navigateToDetail(2)"></div>
+                <div class="slide slide-2" onclick="navigateToDetail(5)"></div>
+                <div class="slide slide-3" onclick="navigateToDetail(6)"></div>
+                <div class="slide slide-4" onclick="navigateToDetail(5)"></div>
+            </div>   
             
-            <!-- Dots Indicator -->
-            <div class="dots-container">
-                <span class="dot active" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-            </div>
+            <!-- Navigation Arrows -->
+            <button class="nav-arrow prev" onclick="changeSlide(-1)">❮</button>
+            <button class="nav-arrow next" onclick="changeSlide(1)">❯</button>
         </div>
-    </section>
+        
+        <!-- Dots Indicator -->
+        <div class="dots-container">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+    </div>
+</section>
 
     <!-- Jelajah Banjarmasin Section -->
     <section class="jelajah-section">
@@ -758,173 +792,39 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
+    <script src="<?= base_url('js/dashboard.js') ?>"></script>
     <script>
-        // Navigation function for cards
-        function navigateToPage(url) {
-            console.log('=== NAVIGATION DEBUG ===');
-            console.log('Target URL:', url);
-            console.log('Current location:', window.location);
-            console.log('Origin:', window.location.origin);
-            console.log('Pathname:', window.location.pathname);
-            
-            // Test berbagai format URL
-            const testUrls = [
-                url, // URL asli
-                window.location.origin + url, // Origin + path
-                window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/') + url, // Relative ke current dir
-                window.location.protocol + '//' + window.location.host + url // Protocol + host + path
-            ];
-            
-            console.log('Testing URLs:', testUrls);
-            
-            // Gunakan URL yang paling sederhana dulu
-            console.log('Navigating to:', testUrls[0]);
-            
-            try {
-                window.location.href = testUrls[0];
-            } catch (error) {
-                console.error('Navigation error:', error);
-                // Coba URL kedua
-                console.log('Trying alternative URL:', testUrls[1]);
-                window.location.href = testUrls[1];
-            }
+        // Tambahan untuk dashboard.js
+// Function untuk navigate ke kategori
+function navigateToKategori(kategoriName) {
+    const kategoriUrl = `/kategori/${kategoriName.toLowerCase()}`;
+    window.location.href = kategoriUrl;
+}
+
+// Function untuk highlight active kategori di navbar
+function setActiveNavItem() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+    navLinks.forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
         }
+    });
+}
 
-        // Test function untuk manual testing
-        function testNavigation() {
-            console.log('Testing navigation...');
-            navigateToPage('/rekreasi');
+// Jalankan saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+    setActiveNavItem();
+});
+
+ function navigateToDetail(wisataId) {
+            window.location.href = '<?= base_url('/detail/') ?>' + wisataId;
         }
-
-        // Tambahkan event listener untuk debug
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.destination-card')) {
-                console.log('Card clicked:', e.target.closest('.destination-card'));
-            }
-        });
-
-        // Profile dropdown functionality
-        function toggleProfileDropdown() {
-            const dropdownMenu = document.getElementById('profileDropdownMenu');
-            const dropdownArrow = document.getElementById('dropdownArrow');
-            
-            dropdownMenu.classList.toggle('show');
-            dropdownArrow.classList.toggle('rotated');
-        }
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            const profileDropdown = document.querySelector('.profile-dropdown');
-            const dropdownMenu = document.getElementById('profileDropdownMenu');
-            const dropdownArrow = document.getElementById('dropdownArrow');
-            
-            if (profileDropdown && !profileDropdown.contains(event.target)) {
-                dropdownMenu.classList.remove('show');
-                dropdownArrow.classList.remove('rotated');
-            }
-        });
-
-        // Logout confirmation
-        function confirmLogout() {
-            if (confirm('Apakah Anda yakin ingin logout?')) {
-                window.location.href = '/logout';
-            }
-        }
-
-        // Close dropdown when pressing Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const dropdownMenu = document.getElementById('profileDropdownMenu');
-                const dropdownArrow = document.getElementById('dropdownArrow');
-                
-                if (dropdownMenu && dropdownMenu.classList.contains('show')) {
-                    dropdownMenu.classList.remove('show');
-                    dropdownArrow.classList.remove('rotated');
-                }
-            }
-        });
-
-        // Navbar scroll effect (dari JS dashboard asli)
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling for navigation links (dari JS dashboard asli)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add hover effects to destination cards (dari JS dashboard asli)
-        document.querySelectorAll('.destination-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Slider functionality (dari JS dashboard asli)
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const sliderWrapper = document.getElementById('sliderWrapper');
-
-        function showSlide(index) {
-            // Reset jika index melebihi jumlah slide
-            if (index >= slides.length) slideIndex = 0;
-            if (index < 0) slideIndex = slides.length - 1;
-            
-            // Geser slider
-            if (sliderWrapper) {
-                sliderWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
-            }
-            
-            // Update dots
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === slideIndex);
-            });
-        }
-
-        function changeSlide(direction) {
-            slideIndex += direction;
-            showSlide(slideIndex);
-        }
-
-        function currentSlide(index) {
-            slideIndex = index - 1;
-            showSlide(slideIndex);
-        }
-
-        // Initialize slider when DOM is loaded (dari JS dashboard asli)
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize slider jika elemen ada
-            if (slides.length > 0) {
-                showSlide(slideIndex);
-                
-                // Auto slide (opsional)
-                setInterval(() => {
-                    slideIndex++;
-                    showSlide(slideIndex);
-                }, 5000); // Ganti slide setiap 5 detik
-            }
-        });
+        
     </script>
 </body>
 </html>

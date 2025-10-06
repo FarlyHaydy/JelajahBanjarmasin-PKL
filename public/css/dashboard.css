@@ -10,7 +10,6 @@
             color: #333;
         }
 
-        /* Navigation */
         .navbar {
             background: rgba(0, 0, 0, 0.1) !important;
             backdrop-filter: blur(10px);

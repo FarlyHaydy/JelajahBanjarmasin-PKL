@@ -27,6 +27,9 @@ $routes->get('/rekreasi', 'UserController::rekreasi');
 $routes->get('/kuliner', 'UserController::kuliner');
 $routes->get('/religi', 'UserController::religi');
 
+// Route untuk kategori dinamis
+$routes->get('/kategori/(:segment)', 'UserController::kategoriWisata/$1');
+
 // Detail Wisata Routes (Multiple URL formats supported)
 $routes->get('/detail/(:num)', 'UserController::detailWisata/$1');
 $routes->get('/wisata/detail/(:num)', 'UserController::detailWisata/$1');
@@ -47,6 +50,9 @@ $routes->group('wishlist', function($routes) {
 $routes->group('admin', ['filter' => 'auth'], function($routes) {
     // Dashboard
     $routes->get('dashboard', 'AdminController::dashboard');
+
+    //import routes
+    $routes->post('wisata/import', 'AdminController::importWisata');
     
     // Wisata CRUD
     $routes->post('wisata/create', 'AdminController::createWisata');
@@ -60,16 +66,26 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->post('user/update/(:num)', 'AdminController::updateUser/$1');
     $routes->get('user/delete/(:num)', 'AdminController::deleteUser/$1');
 
+    // Destinasi view for admin
+    $routes->get('destinasi', 'AdminController::destinasi');
+
     
     // Master Data CRUD
     $routes->post('kategori/create', 'AdminController::createKategori');
+    $routes->get('kategori/get/(:num)', 'AdminController::getKategori/$1');      // NEW
+    $routes->post('kategori/update/(:num)', 'AdminController::updateKategori/$1');
     $routes->get('kategori/delete/(:num)', 'AdminController::deleteKategori/$1');
     
     $routes->post('kota/create', 'AdminController::createKota');
+    $routes->get('kota/get/(:num)', 'AdminController::getKota/$1');              // NEW
+    $routes->post('kota/update/(:num)', 'AdminController::updateKota/$1');
     $routes->get('kota/delete/(:num)', 'AdminController::deleteKota/$1');
     
     $routes->post('kecamatan/create', 'AdminController::createKecamatan');
+    $routes->get('kecamatan/get/(:num)', 'AdminController::getKecamatan/$1');    // NEW
+    $routes->post('kecamatan/update/(:num)', 'AdminController::updateKecamatan/$1');
     $routes->get('kecamatan/delete/(:num)', 'AdminController::deleteKecamatan/$1');
+
     
     // AJAX Routes
     $routes->get('kecamatan/by-kota/(:num)', 'AdminController::getKecamatanByKota/$1');

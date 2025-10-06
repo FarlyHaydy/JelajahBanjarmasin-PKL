@@ -41,6 +41,80 @@
             transform: translateY(-2px);
         }
 
+         .profile-dropdown {
+            position: relative;
+        }
+        
+        .profile-toggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .profile-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .profile-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            min-width: 180px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+        
+        .profile-dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .profile-dropdown-menu a {
+            display: block;
+            padding: 12px 16px;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .profile-dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .profile-dropdown-menu a:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .profile-dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .profile-dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .profile-dropdown-menu i {
+            margin-right: 8px;
+            width: 16px;
+        }
+        
+
 
         .faq-section {
             background-color: #1a1a1a;

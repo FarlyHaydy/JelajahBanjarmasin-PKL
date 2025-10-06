@@ -4,81 +4,130 @@ namespace App\Controllers;
 
 use App\Models\WisataModel;
 use App\Models\GaleriModel;
+use App\Models\KategoriModel;
 
 class UserController extends BaseController
 {
     protected $wisataModel;
     protected $galeriModel;
+    protected $wishlistModel;
+    protected $kategoriModel; 
 
     public function __construct()
     {
         $this->wisataModel = new WisataModel();
         $this->galeriModel = new GaleriModel();
         $this->wishlistModel = new \App\Models\WishlistModel();
+        $this->kategoriModel = new KategoriModel();
     }
 
-    // Halaman Rekreasi
-    public function rekreasi()
-    {
-        $wisataRekreasi = $this->wisataModel->getByKategori('Rekreasi');
-        
-        // Ambil gambar utama untuk setiap wisata
-        foreach ($wisataRekreasi as &$wisata) {
-            $primaryImage = $this->galeriModel->getPrimaryImage($wisata['wisata_id']);
-            $wisata['primary_image'] = $primaryImage ? $primaryImage['nama_file'] : 'default.jpg';
-        }
-        
-        $data = [
-            'wisata' => $wisataRekreasi,
-            'kategori' => 'Rekreasi'
-        ];
-        
-        return view('user/rekreasi', $data);
+    private function getKategoriData()
+{
+    return $this->kategoriModel->findAll();
+}
+
+// Update method rekreasi
+public function rekreasi()
+{
+    $wisataRekreasi = $this->wisataModel->getByKategori('Rekreasi');
+    
+    // Ambil gambar utama untuk setiap wisata
+    foreach ($wisataRekreasi as &$wisata) {
+        $primaryImage = $this->galeriModel->getPrimaryImage($wisata['wisata_id']);
+        $wisata['primary_image'] = $primaryImage ? $primaryImage['nama_file'] : 'default.jpg';
+    }
+    
+    $data = [
+        'kategori' => $this->getKategoriData(),    // TAMBAHAN: Data kategori untuk navbar dinamis
+        'wisata' => $wisataRekreasi,
+        'namaKategori' => 'Rekreasi'
+    ];
+    
+    return view('user/rekreasi', $data);
+}
+
+// Update method kuliner
+public function kuliner()
+{
+    $wisataKuliner = $this->wisataModel->getByKategori('Kuliner');
+    
+    // Ambil gambar utama untuk setiap wisata
+    foreach ($wisataKuliner as &$wisata) {
+        $primaryImage = $this->galeriModel->getPrimaryImage($wisata['wisata_id']);
+        $wisata['primary_image'] = $primaryImage ? $primaryImage['nama_file'] : 'default.jpg';
+    }
+    
+    $data = [
+        'kategori' => $this->getKategoriData(),    // TAMBAHAN: Data kategori untuk navbar dinamis
+        'wisata' => $wisataKuliner,
+        'namaKategori' => 'Kuliner'
+    ];
+    
+    return view('user/kuliner', $data);
+}
+
+// Update method religi  
+public function religi()
+{
+    $wisataReligi = $this->wisataModel->getByKategori('Religi');
+    
+    // Ambil gambar utama untuk setiap wisata
+    foreach ($wisataReligi as &$wisata) {
+        $primaryImage = $this->galeriModel->getPrimaryImage($wisata['wisata_id']);
+        $wisata['primary_image'] = $primaryImage ? $primaryImage['nama_file'] : 'default.jpg';
+    }
+    
+    $data = [
+        'kategori' => $this->getKategoriData(),    // TAMBAHAN: Data kategori untuk navbar dinamis
+        'wisata' => $wisataReligi,
+        'namaKategori' => 'Religi'
+    ];
+    
+    return view('user/religi', $data);
+}
+
+// Update method kategoriWisata
+public function kategoriWisata($namaKategori = null)
+{
+    if (!$namaKategori) {
+        throw new \CodeIgniter\Exceptions\PageNotFoundException('Kategori tidak ditemukan');
     }
 
-    // Halaman Kuliner
-    public function kuliner()
-    {
-        $wisataKuliner = $this->wisataModel->getByKategori('Kuliner');
-        
-        // Ambil gambar utama untuk setiap wisata
-        foreach ($wisataKuliner as &$wisata) {
-            $primaryImage = $this->galeriModel->getPrimaryImage($wisata['wisata_id']);
-            $wisata['primary_image'] = $primaryImage ? $primaryImage['nama_file'] : 'default.jpg';
-        }
-        
-        $data = [
-            'wisata' => $wisataKuliner,
-            'kategori' => 'Kuliner'
-        ];
-        
-        return view('user/kuliner', $data);
+    // Ubah URL-friendly name kembali ke nama asli
+    $namaKategori = ucfirst(strtolower($namaKategori));
+    
+    // Cek apakah kategori exists
+    $kategoriData = $this->kategoriModel->where('nama_kategori', $namaKategori)->first();
+    if (!$kategoriData) {
+        throw new \CodeIgniter\Exceptions\PageNotFoundException('Kategori tidak ditemukan');
     }
 
-    // Halaman Religi
-    public function religi()
-    {
-        $wisataReligi = $this->wisataModel->getByKategori('Religi');
+    // Ambil wisata berdasarkan kategori
+    $wisataByKategori = $this->wisataModel->getByKategori($namaKategori);
+    
+    // ✅ PERBAIKAN: Ambil gambar utama untuk setiap wisata (SAMA seperti kategori bawaan)
+    foreach ($wisataByKategori as &$wisata) {
+        $primaryImage = $this->galeriModel->getPrimaryImage($wisata['wisata_id']);
+        $wisata['primary_image'] = $primaryImage ? $primaryImage['nama_file'] : 'default.jpg';
         
-        // Ambil gambar utama untuk setiap wisata
-        foreach ($wisataReligi as &$wisata) {
-            $primaryImage = $this->galeriModel->getPrimaryImage($wisata['wisata_id']);
-            $wisata['primary_image'] = $primaryImage ? $primaryImage['nama_file'] : 'default.jpg';
-        }
         
-        $data = [
-            'wisata' => $wisataReligi,
-            'kategori' => 'Religi'
-        ];
-        
-        return view('user/religi', $data);
     }
+    
+    $data = [
+        'wisata' => $wisataByKategori,
+        'kategori' => $namaKategori,
+        'kategoriData' => $kategoriData,
+        'kategori_list' => $this->getKategoriData()
+    ];
+    
+    return view('user/kategori_wisata', $data);
+}
 
-    // Detail Wisata - Method yang diperbaiki
-      public function detailWisata($id)
+public function detailWisata($id)
     {
         // Ambil data wisata dengan relasi
         $wisata = $this->wisataModel->getWithRelations($id);
+        $kategoriData = $this->getKategoriData();
         
         if (!$wisata) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Wisata tidak ditemukan');
@@ -94,9 +143,10 @@ class UserController extends BaseController
         }
 
         $data = [
+            'kategori' => $kategoriData,
             'wisata' => $wisata,
             'images' => $images,
-            'isBookmarked' => $isBookmarked // NEW
+            'isBookmarked' => $isBookmarked
         ];
 
         return view('user/detailWisata', $data);
@@ -142,8 +192,15 @@ class UserController extends BaseController
         
         return $this->response->setJSON($results);
     }
+
     public function faq()
-{
-    return view('user/faq'); 
-}
+    {
+        $kategoriData = $this->getKategoriData();
+        $data = [
+            'kategori' => $kategoriData
+        ];
+
+
+        return view('user/faq', $data); 
+    }
 }

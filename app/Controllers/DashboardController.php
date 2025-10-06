@@ -21,6 +21,9 @@ class DashboardController extends BaseController
 
     public function index()
     {
+        // TAMBAHAN: Ambil semua data kategori dari database
+        $kategoriData = $this->kategoriModel->findAll();
+
         // Ambil data wisata populer (6 wisata terbaru) dengan gambar utama
         $wisataPopuler = $this->wisataModel
             ->select('wisata.*, kategori.nama_kategori, kota.nama_kota, kecamatan.nama_kecamatan, galeri.nama_file as primary_image')
@@ -40,7 +43,9 @@ class DashboardController extends BaseController
             ->limit(4)
             ->findAll();
 
+        // PERBAIKAN: Tambahkan data kategori ke array data
         $data = [
+            'kategori' => $kategoriData,           // TAMBAHAN: Data kategori dinamis
             'wisataPopuler' => $wisataPopuler,
             'sliderWisata' => $sliderWisata
         ];

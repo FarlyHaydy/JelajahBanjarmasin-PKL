@@ -328,7 +328,7 @@
 
         .fullwidth-map-container {
             width: 100%;
-            height: 300px;
+            height: 400px;
             position: relative;
         }
 
@@ -447,7 +447,7 @@
             color: white;
             padding: 3rem 0 1rem;
             margin-top: 60px;
-            border-top: 1px solid #333;
+            
         }
 
         .footer-logo {
@@ -605,19 +605,31 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="<?= base_url('/') ?>">Banjarmasin</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="<?= base_url('/') ?>">Banjarmasin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('/') ?>">Beranda</a>
+                </li>
+                
+                <!-- Dynamic Kategori Menu -->
+                <?php if (isset($kategori) && !empty($kategori)): ?>
+                    <?php foreach ($kategori as $kat): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('/kategori/' . strtolower($kat['nama_kategori'])) ?>">
+                                <?= esc($kat['nama_kategori']) ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <!-- Fallback ke kategori static jika tidak ada data -->
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/') ?>">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url('/rekreasi') ?>">Rekreasi</a>
+                        <a class="nav-link" href="<?= base_url('/rekreasi') ?>">Rekreasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/kuliner') ?>">Kuliner</a>
@@ -625,35 +637,45 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/religi') ?>">Religi</a>
                     </li>
+                <?php endif; ?>
+
+        <!-- Profile Dropdown or Login Link -->
+        <?php if (session()->get('isLoggedIn')): ?>
+            <li class="nav-item profile-dropdown">
+                <button class="profile-toggle" onclick="toggleProfileDropdown()">
+                    <i class="fas fa-user-circle"></i>
+                    <span><?= esc(session()->get('username')) ?? 'Profil' ?></span>
+                    <i class="fas fa-chevron-down dropdown-arrow" id="dropdownArrow"></i>
+                </button>
+                <div class="profile-dropdown-menu" id="profileDropdownMenu">
+                    <a href="/profil">
+                        <i class="fas fa-user"></i>Lihat Profil
+                    </a>
                     
-                    <!-- Profile Dropdown or Login Link -->
-                    <?php if (session()->get('isLoggedIn')): ?>
-                        <li class="nav-item profile-dropdown">
-                            <button class="profile-toggle" onclick="toggleProfileDropdown()">
-                                <i class="fas fa-user-circle"></i>
-                                <span><?= esc(session()->get('Nama_Asli')) ?? 'Profil' ?></span>
-                                <i class="fas fa-chevron-down dropdown-arrow" id="dropdownArrow"></i>
-                            </button>
-                            <div class="profile-dropdown-menu" id="profileDropdownMenu">
-                                <a href="/profil">
-                                    <i class="fas fa-user"></i>Lihat Profil
-                                </a>
-                                <a href="#" onclick="confirmLogout()" class="logout-btn">
-                                    <i class="fas fa-sign-out-alt"></i>Logout
-                                </a>
-                            </div>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">
-                                <i class="fas fa-sign-in-alt"></i> Login
-                            </a>
-                        </li>
+                    <!-- Dashboard Admin - Hanya untuk Admin -->
+                    <?php if (session()->get('role') === 'admin'): ?>
+                        <a href="/admin/dashboard">
+                            <i class="fas fa-user-shield"></i>Dashboard Admin
+                        </a>
                     <?php endif; ?>
-                </ul>
+                    
+                    <a href="#" onclick="confirmLogout()" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>Logout
+                    </a>
+                </div>
+            </li>
+        <?php else: ?>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+            </li>
+        <?php endif; ?>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+            
 
     <!-- Main Container -->
     <div class="main-container">
@@ -754,26 +776,6 @@
                             <strong>Total Foto:</strong> <?= count($images) ?> gambar
                         </div>
                     </div>
-                    
-                    <div class="detail-item">
-                        <div class="detail-icon">
-                            <i class="fas fa-share-alt"></i>
-                        </div>
-                        <div class="detail-content">
-                            <strong>Bagikan:</strong>
-                            <div class="mt-2">
-                                <a href="#" class="btn btn-sm btn-primary me-1">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" class="btn btn-sm btn-info me-1">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#" class="btn btn-sm btn-success">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Navigasi ke kategori -->
@@ -807,34 +809,44 @@
         </div>
 
         <div class="direction-buttons-fullwidth">
-            <?php if (!empty($wisata['latitude']) && !empty($wisata['longitude'])): ?>
-                <a href="https://www.google.com/maps/search/?api=1&query=<?= $wisata['latitude'] ?>,<?= $wisata['longitude'] ?>" 
-                   target="_blank" class="btn-direction-fullwidth">
-                    <i class="fab fa-google"></i> Buka di Google Maps
-                </a>
-                <a href="https://maps.apple.com/?q=<?= $wisata['latitude'] ?>,<?= $wisata['longitude'] ?>" 
-                   target="_blank" class="btn-direction-fullwidth">
-                    <i class="fab fa-apple"></i> Buka di Apple Maps
-                </a>
-                <a href="https://waze.com/ul?ll=<?= $wisata['latitude'] ?>,<?= $wisata['longitude'] ?>" 
-                   target="_blank" class="btn-direction-fullwidth">
-                    <i class="fas fa-route"></i> Buka di Waze
-                </a>
-            <?php else: ?>
-                <a href="https://www.google.com/maps/search/?api=1&query=<?= urlencode($wisata['alamat'] . ', ' . $wisata['nama_kecamatan'] . ', ' . $wisata['nama_kota']) ?>" 
-                   target="_blank" class="btn-direction-fullwidth">
-                    <i class="fab fa-google"></i> Buka di Google Maps
-                </a>
-                <a href="https://maps.apple.com/?q=<?= urlencode($wisata['alamat'] . ', ' . $wisata['nama_kecamatan'] . ', ' . $wisata['nama_kota']) ?>" 
-                   target="_blank" class="btn-direction-fullwidth">
-                    <i class="fab fa-apple"></i> Buka di Apple Maps
-                </a>
-                <a href="https://waze.com/ul?q=<?= urlencode($wisata['alamat'] . ', ' . $wisata['nama_kecamatan'] . ', ' . $wisata['nama_kota']) ?>" 
-                   target="_blank" class="btn-direction-fullwidth">
-                    <i class="fas fa-route"></i> Buka di Waze
-                </a>
-            <?php endif; ?>
-        </div>
+    <?php if (!empty($wisata['latitude']) && !empty($wisata['longitude'])): ?>
+        <?php 
+            $lat = $wisata['latitude'];
+            $lng = $wisata['longitude'];
+            $dest = $lat . ',' . $lng; 
+        ?>
+        <a class="btn-direction-fullwidth" target="_blank"
+           href="https://www.google.com/maps/dir/?api=1&destination=<?= $dest ?>&travelmode=driving">
+            <i class="fas fa-car"></i> Rute Mobil
+        </a>
+        <a class="btn-direction-fullwidth" target="_blank"
+           href="https://www.google.com/maps/dir/?api=1&destination=<?= $dest ?>&travelmode=walking">
+            <i class="fas fa-person-walking"></i> Rute Jalan Kaki
+        </a>
+        <a class="btn-direction-fullwidth" target="_blank"
+           href="https://www.google.com/maps/search/?api=1&query=<?= $dest ?>">
+            <i class="fas fa-map-location-dot"></i> Buka di Google Maps
+        </a>
+    <?php else: ?>
+        <?php 
+            $alamatFull = trim($wisata['alamat'] . ', ' . $wisata['nama_kecamatan'] . ', ' . $wisata['nama_kota']);
+            $alamatQ = urlencode($alamatFull);
+        ?>
+        <a class="btn-direction-fullwidth" target="_blank"
+           href="https://www.google.com/maps/dir/?api=1&destination=<?= $alamatQ ?>&travelmode=driving">
+            <i class="fas fa-car"></i> Rute Mobil
+        </a>
+        <a class="btn-direction-fullwidth" target="_blank"
+           href="https://www.google.com/maps/dir/?api=1&destination=<?= $alamatQ ?>&travelmode=walking">
+            <i class="fas fa-person-walking"></i> Rute Jalan Kaki
+        </a>
+        <a class="btn-direction-fullwidth" target="_blank"
+           href="https://www.google.com/maps/search/?api=1&query=<?= $alamatQ ?>">
+            <i class="fas fa-map-location-dot"></i> Buka di Google Maps
+        </a>
+    <?php endif; ?>
+</div>
+
     </div>
 
     <!-- Image Modal -->
@@ -1091,6 +1103,32 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+         // Function untuk navigate ke kategori
+function navigateToKategori(kategoriName) {
+    const kategoriUrl = `/kategori/${kategoriName.toLowerCase()}`;
+    window.location.href = kategoriUrl;
+}
+
+// Function untuk highlight active kategori di navbar
+function setActiveNavItem() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+    navLinks.forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// Jalankan saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+    setActiveNavItem();
+});
     </script>
 </body>
 </html>

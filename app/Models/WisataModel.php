@@ -11,13 +11,11 @@ class WisataModel extends Model
     protected $allowedFields = [
         'nama_wisata', 'alamat', 'deskripsi', 'detail', 
         'kategori_id', 'kecamatan_id', 'kota_id',
-        'latitude', 'longitude', 'created_at', 'updated_at'  // FIXED: Manual timestamps
+        'latitude', 'longitude', 'created_at', 'updated_at'
     ];
     
-    // FIXED: Disable automatic timestamps untuk avoid error
+    // Disable automatic timestamps karena kita handle manual
     protected $useTimestamps = false;
-    // protected $createdField = 'created_at';
-    // protected $updatedField = 'updated_at';
 
     public function getAllWithRelations()
     {
@@ -48,7 +46,9 @@ class WisataModel extends Model
                     ->first();
     }
 
-    // Method untuk validasi koordinat
+    /**
+     * Method untuk validasi koordinat
+     */
     public function validateCoordinates($latitude, $longitude)
     {
         if (empty($latitude) || empty($longitude)) {
@@ -68,7 +68,46 @@ class WisataModel extends Model
         return true;
     }
 
-    // Method untuk mendapatkan wisata berdasarkan koordinat terdekat
+    /**
+     * Method untuk validasi foreign keys
+     */
+    public function validateForeignKeys($kategori_id, $kota_id, $kecamatan_id)
+    {
+        $db = \Config\Database::connect();
+        
+        // Cek kategori_id exists
+        $kategori = $db->table('kategori')
+                      ->where('kategori_id', $kategori_id)
+                      ->countAllResults();
+        
+        if ($kategori == 0) {
+            return false;
+        }
+        
+        // Cek kota_id exists
+        $kota = $db->table('kota')
+                  ->where('kota_id', $kota_id)
+                  ->countAllResults();
+        
+        if ($kota == 0) {
+            return false;
+        }
+        
+        // Cek kecamatan_id exists
+        $kecamatan = $db->table('kecamatan')
+                       ->where('kecamatan_id', $kecamatan_id)
+                       ->countAllResults();
+        
+        if ($kecamatan == 0) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    /**
+     * Method untuk mendapatkan wisata berdasarkan koordinat terdekat
+     */
     public function getNearbyWisata($latitude, $longitude, $radius = 10)
     {
         // Menggunakan formula Haversine untuk mencari wisata dalam radius tertentu (km)
@@ -82,5 +121,35 @@ class WisataModel extends Model
                 ORDER BY distance LIMIT 10";
         
         return $this->db->query($sql, [$latitude, $longitude, $latitude, $radius])->getResultArray();
+    }
+    
+    /**
+     * Method untuk import data secara batch
+     */
+    public function importBatch($data)
+    {
+        // Validasi data sebelum insert
+        foreach ($data as $index => $row) {
+            // Validasi koordinat jika diisi
+            if (!empty($row['latitude']) && !empty($row['longitude'])) {
+                if (!$this->validateCoordinates($row['latitude'], $row['longitude'])) {
+                    throw new \Exception("Baris " . ($index + 2) . ": Koordinat tidak valid (Latitude: {$row['latitude']}, Longitude: {$row['longitude']})");
+                }
+            }
+            
+            // Validasi foreign key exists
+            if (!$this->validateForeignKeys($row['kategori_id'], $row['kota_id'], $row['kecamatan_id'])) {
+                throw new \Exception("Baris " . ($index + 2) . ": ID Kategori ({$row['kategori_id']}), Kota ({$row['kota_id']}), atau Kecamatan ({$row['kecamatan_id']}) tidak ditemukan di database");
+            }
+        }
+        
+        // Insert batch
+        $result = $this->builder()->insertBatch($data);
+        
+        if ($result === false) {
+            throw new \Exception("Gagal melakukan insert batch ke database");
+        }
+        
+        return $result;
     }
 }

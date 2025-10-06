@@ -54,9 +54,9 @@ $session = session();
                            placeholder="Masukkan Password Anda" required>
                 </div>
                 
-                <div class="forgot-password">
+                <!-- <div class="forgot-password">
                     <a href="#">Lupa Password?</a>
-                </div>
+                </div> -->
                 
                 <button type="submit" class="btn-login">Masuk</button>
                 <div class="register-link">

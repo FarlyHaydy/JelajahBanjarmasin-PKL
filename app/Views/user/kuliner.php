@@ -137,55 +137,76 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="<?= base_url('/') ?>">Banjarmasin</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/') ?>">Beranda</a>
-                    </li>
+   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="<?= base_url('/') ?>">Banjarmasin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('/') ?>">Beranda</a>
+                </li>
+                
+                <!-- Dynamic Kategori Menu -->
+                <?php if (isset($kategori) && !empty($kategori)): ?>
+                    <?php foreach ($kategori as $kat): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('/kategori/' . strtolower($kat['nama_kategori'])) ?>">
+                                <?= esc($kat['nama_kategori']) ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <!-- Fallback ke kategori static jika tidak ada data -->
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/rekreasi') ?>">Rekreasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url('/kuliner') ?>">Kuliner</a>
+                        <a class="nav-link" href="<?= base_url('/kuliner') ?>">Kuliner</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/religi') ?>">Religi</a>
                     </li>
+                <?php endif; ?>
+
+        <!-- Profile Dropdown or Login Link -->
+        <?php if (session()->get('isLoggedIn')): ?>
+            <li class="nav-item profile-dropdown">
+                <button class="profile-toggle" onclick="toggleProfileDropdown()">
+                    <i class="fas fa-user-circle"></i>
+                    <span><?= esc(session()->get('username')) ?? 'Profil' ?></span>
+                    <i class="fas fa-chevron-down dropdown-arrow" id="dropdownArrow"></i>
+                </button>
+                <div class="profile-dropdown-menu" id="profileDropdownMenu">
+                    <a href="/profil">
+                        <i class="fas fa-user"></i>Lihat Profil
+                    </a>
                     
-                    <!-- Profile Dropdown or Login Link -->
-                    <?php if (session()->get('isLoggedIn')): ?>
-                        <li class="nav-item profile-dropdown">
-                            <button class="profile-toggle" onclick="toggleProfileDropdown()">
-                                <i class="fas fa-user-circle"></i>
-                                <span><?= esc(session()->get('Nama_Asli')) ?? 'Profil' ?></span>
-                                <i class="fas fa-chevron-down dropdown-arrow" id="dropdownArrow"></i>
-                            </button>
-                            <div class="profile-dropdown-menu" id="profileDropdownMenu">
-                                <a href="/profil">
-                                    <i class="fas fa-user"></i>Lihat Profil
-                                </a>
-                                <a href="#" onclick="confirmLogout()" class="logout-btn">
-                                    <i class="fas fa-sign-out-alt"></i>Logout
-                                </a>
-                            </div>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">
-                                <i class="fas fa-sign-in-alt"></i> Login
-                            </a>
-                        </li>
+                    <!-- Dashboard Admin - Hanya untuk Admin -->
+                    <?php if (session()->get('role') === 'admin'): ?>
+                        <a href="/admin/dashboard">
+                            <i class="fas fa-user-shield"></i>Dashboard Admin
+                        </a>
                     <?php endif; ?>
-                </ul>
+                    
+                    <a href="#" onclick="confirmLogout()" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>Logout
+                    </a>
+                </div>
+            </li>
+        <?php else: ?>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+            </li>
+        <?php endif; ?>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     
     <div class="container-fluid main-container">
         <div class="row justify-content-center">
@@ -373,6 +394,41 @@
                 console.log('Navigating to:', this.href);
             });
         });
+
+        // Function untuk navigate ke kategori
+function navigateToKategori(kategoriName) {
+    const kategoriUrl = `/kategori/${kategoriName.toLowerCase()}`;
+    window.location.href = kategoriUrl;
+}
+
+// Function untuk highlight active kategori di navbar
+function setActiveNavItem() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+    navLinks.forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// Jalankan saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+    setActiveNavItem();
+});
+
+function navigateToDetail(wisataId) {
+    if (wisataId && wisataId !== '#') {
+        window.location.href = `<?= base_url('/detail/') ?>${wisataId}`;
+    } else {
+        alert('Wisata belum tersedia di database');
+    }
+}
+
     </script>
 </body>
 </html>
