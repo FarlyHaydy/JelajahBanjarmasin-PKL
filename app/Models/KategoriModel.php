@@ -17,7 +17,7 @@ class KategoriModel extends Model
                 ->join('kecamatan', 'kecamatan.kecamatan_id = wisata.kecamatan_id')
                 ->join('kota', 'kota.kota_id = wisata.kota_id')
                 ->select('wisata.*, kategori.nama_kategori, kecamatan.nama_kecamatan, kota.nama_kota')
-                ->orderBy('wisata.created_at', 'DESC')
+                ->orderBy('wisata.created_at', 'ASCC')
                 ->findAll(); 
 }
 }

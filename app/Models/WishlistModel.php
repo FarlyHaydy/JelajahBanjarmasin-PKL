@@ -9,7 +9,7 @@ class WishlistModel extends Model
     protected $table = 'wishlist';
     protected $primaryKey = 'wishlist_id';
     protected $allowedFields = [
-        'user_id', 'wisata_id', 'created_at', 'updated_at'
+        'user_id', 'wisata_id', 'created_at'
     ];
     
     protected $useTimestamps = false; // Manual handling untuk konsistensi
@@ -34,7 +34,6 @@ class WishlistModel extends Model
             'user_id' => $userId,
             'wisata_id' => $wisataId,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
         ];
 
         return $this->insert($data);

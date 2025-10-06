@@ -555,101 +555,102 @@ $kotaKeys    = array_keys($kotaKecamatan ?? []);
     }
 
     function displayBookmarks(bookmarks) {
-      const content = document.getElementById('bookmarkContent');
-      
-      if (!bookmarks || bookmarks.length === 0) {
-        content.innerHTML = `
-          <table class="table bookmark-table">
-            <thead>
-              <tr>
-                <th style="width: 5%;">No</th>
-                <th style="width: 35%;">Destinasi Wisata</th>
-                <th style="width: 15%;">Kategori</th>
-                <th style="width: 25%;">Lokasi</th>
-                <th style="width: 20%;">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="5" class="text-center py-5">
-                  <div class="empty-bookmarks">
-                    <i class="far fa-bookmark"></i>
-                    <h4>Belum Ada Bookmark</h4>
-                    <p>Mulai jelajahi destinasi dan tambahkan ke favorit Anda.</p>
-                    <a href="<?= base_url('/') ?>" class="btn btn-primary">Jelajahi Sekarang</a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        `;
-        return;
-      }
-
-      let tableHTML = `
-        <table class="table bookmark-table">
-          <thead>
-            <tr>
-              <th style="width: 5%;">No</th>
-              <th style="width: 35%;">Destinasi Wisata</th>
-              <th style="width: 15%;">Kategori</th>
-              <th style="width: 25%;">Lokasi</th>
-              <th style="width: 20%;">Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-      `;
-
-      bookmarks.forEach((bookmark, index) => {
-        tableHTML += `
+  const content = document.getElementById('bookmarkContent');
+  
+  // Jika tidak ada bookmark
+  if (!bookmarks || bookmarks.length === 0) {
+    content.innerHTML = `
+      <table class="table bookmark-table">
+        <thead>
           <tr>
-            <td class="text-center">
-              <span class="fw-bold text-muted">${index + 1}</span>
-            </td>
-            <td>
-              <div class="bookmark-card-mini">
-                <div class="bookmark-info-mini">
-                  <h6>${bookmark.nama_wisata || 'Nama tidak tersedia'}</h6>
-                  <p class="text-muted small mb-0">
-                    <i class="fas fa-map-marker-alt me-1"></i>
-                    ${bookmark.alamat ? bookmark.alamat.substring(0, 80) + (bookmark.alamat.length > 80 ? '...' : '') : 'Alamat tidak tersedia'}
-                  </p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <span class="bookmark-category-badge">${bookmark.nama_kategori || 'Kategori'}</span>
-            </td>
-            <td>
-              <div class="text-muted small">
-                <div><i class="fas fa-building me-1"></i>${bookmark.nama_kecamatan || 'Kecamatan tidak tersedia'}</div>
-                <div><i class="fas fa-city me-1"></i>${bookmark.nama_kota || 'Kota tidak tersedia'}</div>
-              </div>
-            </td>
-            <td>
-              <div class="bookmark-actions">
-                <a href="<?= base_url('detail/') ?>${bookmark.wisata_id}" 
-                   class="btn btn-sm btn-outline-primary" title="Lihat Detail">
-                   <i class="fas fa-eye"></i> Detail
-                </a>
-                <button class="btn btn-sm btn-outline-danger ms-1" 
-                        onclick="removeBookmark(${bookmark.wisata_id})" 
-                        title="Hapus Bookmark">
-                  <i class="fas fa-trash"></i> Hapus
-                </button>
+            <th style="width: 40%;">Destinasi Wisata</th>
+            <th style="width: 15%;">Kategori</th>
+            <th style="width: 25%;">Lokasi</th>
+            <th style="width: 20%;">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="4" class="text-center py-5">
+              <div class="empty-bookmarks">
+                <i class="far fa-bookmark"></i>
+                <h4>Belum Ada Bookmark</h4>
+                <p>Mulai jelajahi destinasi dan tambahkan ke favorit Anda.</p>
+                <a href="<?= base_url('/') ?>" class="btn btn-primary">Jelajahi Sekarang</a>
               </div>
             </td>
           </tr>
-        `;
-      });
+        </tbody>
+      </table>
+    `;
+    return;
+  }
 
-      tableHTML += `
-          </tbody>
-        </table>
-      `;
+  let tableHTML = `
+    <table class="table bookmark-table">
+      <thead>
+        <tr>
+          <th style="width: 40%;">Destinasi Wisata</th>
+          <th style="width: 15%;">Kategori</th>
+          <th style="width: 25%;">Lokasi</th>
+          <th style="width: 20%;">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
 
-      content.innerHTML = tableHTML;
-    }
+  bookmarks.forEach((bookmark) => {
+    // Potong alamat jika terlalu panjang
+    const alamat = bookmark.alamat || 'Alamat tidak tersedia';
+    const alamatShort = alamat.length > 80 ? alamat.substring(0, 80) + '...' : alamat;
+    
+    tableHTML += `
+      <tr>
+        <td>
+          <div class="bookmark-card-mini">
+            <div class="bookmark-info-mini">
+              <h6>${bookmark.nama_wisata || 'Nama tidak tersedia'}</h6>
+              <p class="text-muted small mb-0">
+                <i class="fas fa-map-marker-alt me-1"></i>
+                ${alamatShort}
+              </p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <span class="bookmark-category-badge">${bookmark.nama_kategori || 'Kategori'}</span>
+        </td>
+        <td>
+          <div class="text-muted small">
+            <div><i class="fas fa-building me-1"></i>${bookmark.nama_kecamatan || 'Kecamatan tidak tersedia'}</div>
+            <div><i class="fas fa-city me-1"></i>${bookmark.nama_kota || 'Kota tidak tersedia'}</div>
+          </div>
+        </td>
+        <td>
+          <div class="bookmark-actions">
+            <a href="<?= base_url('detail/') ?>${bookmark.wisata_id}" 
+               class="btn btn-sm btn-outline-primary" 
+               title="Lihat Detail">
+              <i class="fas fa-eye"></i> Detail
+            </a>
+            <button class="btn btn-sm btn-outline-danger ms-1" 
+                    onclick="removeBookmark(${bookmark.wisata_id})" 
+                    title="Hapus Bookmark">
+              <i class="fas fa-trash"></i> Hapus
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+
+  tableHTML += `
+      </tbody>
+    </table>
+  `;
+
+  content.innerHTML = tableHTML;
+}
 
     function removeBookmark(wisataId) {
       if (!confirm('Apakah Anda yakin ingin menghapus bookmark ini?')) return;
