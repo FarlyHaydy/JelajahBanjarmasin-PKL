@@ -538,46 +538,49 @@
                         </div>
 
                         <!-- Kecamatan -->
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header"><h6><i class="fas fa-map-marker-alt"></i> Kecamatan</h6></div>
-                                <div class="card-body">
-                                    <form action="<?= base_url('admin/kecamatan/create') ?>" method="post">
-                                        <?= csrf_field() ?>
-                                        <select name="kota_id" class="form-select mb-2" required>
-                                            <option value="">Pilih Kota</option>
-                                            <?php if (isset($kota)): foreach ($kota as $k): ?>
-                                                <option value="<?= $k['kota_id'] ?>"><?= $k['nama_kota'] ?></option>
-                                            <?php endforeach; endif; ?>
-                                        </select>
-                                        <div class="input-group mb-3">
-                                            <input type="text" name="nama_kecamatan" class="form-control" placeholder="Nama Kecamatan" required>
-                                            <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i></button>
-                                        </div>
-                                    </form>
-                                    <?php if (isset($kecamatan) && !empty($kecamatan)): ?>
-                                        <div class="list-group" style="max-height: 300px; overflow-y: auto;">
-                                            <?php foreach ($kecamatan as $kec): ?>
-                                                <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                        <strong><?= esc($kec['nama_kecamatan']) ?></strong><br>
-                                                        <small class="text-muted"><?= esc($kec['nama_kota']) ?></small>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-warning btn-sm" onclick="editKecamatan(<?= $kec['kecamatan_id'] ?>, '<?= esc($kec['nama_kecamatan']) ?>', <?= $kec['kota_id'] ?>, '<?= esc($kec['nama_kota']) ?>')" title="Edit">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-danger btn-sm" onclick="deleteMaster('kecamatan', <?= $kec['kecamatan_id'] ?>, '<?= esc($kec['nama_kecamatan']) ?>')" title="Hapus">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
+                        <!-- Kecamatan -->
+<div class="col-md-4">
+    <div class="card">
+        <div class="card-header"><h6><i class="fas fa-map-marker-alt"></i> Kecamatan</h6></div>
+        <div class="card-body">
+            <form action="<?= base_url('admin/kecamatan/create') ?>" method="post">
+                <?= csrf_field() ?>
+                <select name="kota_id" id="filterKotaKecamatan" class="form-select mb-2" required>
+                    <option value="">Pilih Kota</option>
+                    <?php if (isset($kota)): foreach ($kota as $k): ?>
+                        <option value="<?= $k['kota_id'] ?>"><?= $k['nama_kota'] ?></option>
+                    <?php endforeach; endif; ?>
+                </select>
+                <div class="input-group mb-3">
+                    <input type="text" name="nama_kecamatan" class="form-control" placeholder="Nama Kecamatan" required>
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i></button>
+                </div>
+            </form>
+                        
+            <!-- List kecamatan (hidden by default) -->
+            <div id="kecamatanList" class="list-group" style="max-height: 300px; overflow-y: auto; display: none;">
+                <?php if (isset($kecamatan) && !empty($kecamatan)): ?>
+                    <?php foreach ($kecamatan as $kec): ?>
+                        <div class="list-group-item d-flex justify-content-between align-items-center" data-kota-id="<?= $kec['kota_id'] ?>">
+                            <div>
+                                <strong><?= esc($kec['nama_kecamatan']) ?></strong><br>
+                                <small class="text-muted"><?= esc($kec['nama_kota']) ?></small>
+                            </div>
+                            <div class="btn-group">
+                                <button class="btn btn-warning btn-sm" onclick="editKecamatan(<?= $kec['kecamatan_id'] ?>, '<?= esc($kec['nama_kecamatan']) ?>', <?= $kec['kota_id'] ?>, '<?= esc($kec['nama_kota']) ?>')" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger btn-sm" onclick="deleteMaster('kecamatan', <?= $kec['kecamatan_id'] ?>, '<?= esc($kec['nama_kecamatan']) ?>')" title="Hapus">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </div>
                         </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
                     </div>
                 </div>
 
@@ -1389,6 +1392,42 @@ function showSection(sectionName) {
     event.target.classList.add('active');
     if (sectionName === 'import') setTimeout(initializeChart, 100); // Menambahkan pemeriksaan untuk section import
 }
+
+// Filter kecamatan berdasarkan kota yang dipilih
+document.getElementById('filterKotaKecamatan').addEventListener('change', function() {
+    const selectedKotaId = this.value;
+    const kecamatanList = document.getElementById('kecamatanList');
+    const noKotaInfo = document.getElementById('noKotaSelected');
+    const allKecamatan = kecamatanList.querySelectorAll('.list-group-item');
+    
+    if (selectedKotaId === '') {
+        // Jika tidak ada kota dipilih, sembunyikan list
+        kecamatanList.style.display = 'none';
+        noKotaInfo.style.display = 'block';
+        return;
+    }
+    
+    // Tampilkan list dan sembunyikan info
+    kecamatanList.style.display = 'block';
+    noKotaInfo.style.display = 'none';
+    
+    // Filter kecamatan berdasarkan kota_id
+    let visibleCount = 0;
+    allKecamatan.forEach(item => {
+        const kotaId = item.getAttribute('data-kota-id');
+        if (kotaId === selectedKotaId) {
+            item.style.display = '';
+            visibleCount++;
+        } else {
+            item.style.display = 'none';
+        }
+    });
+    
+    // Jika tidak ada kecamatan untuk kota tersebut
+    if (visibleCount === 0) {
+        kecamatanList.innerHTML = '<div class="list-group-item text-center text-muted">Belum ada kecamatan untuk kota ini</div>';
+    }
+});
 
 
 
