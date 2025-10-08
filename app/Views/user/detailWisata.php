@@ -988,7 +988,7 @@
             const formData = new FormData();
             formData.append('wisata_id', wisataId);
             
-            fetch('<?= base_url('wishlist/toggle') ?>', {
+            fetch('<?= base_url('bookmark/toggle') ?>', {
                 method: 'POST',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest'
@@ -1075,7 +1075,7 @@
             <?php endif; ?>
             
             // Double check with server for current status
-            fetch(`<?= base_url('wishlist/check-status/') ?>${wisataId}`)
+            fetch(`<?= base_url('bookmark/check-status/') ?>${wisataId}`)
                 .then(response => {
                     console.log('Check status response:', response.status);
                     if (!response.ok) {

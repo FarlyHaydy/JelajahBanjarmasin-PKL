@@ -12,7 +12,7 @@ use App\Models\UserModel; // NEW: Tambah UserModel
 class AdminController extends BaseController
 {
     protected $wisataModel;
-    protected $wishlistModel;
+    protected $bookmarkModel;
     protected $galeriModel;
     protected $kategoriModel;
     protected $kotaModel;
@@ -27,7 +27,7 @@ class AdminController extends BaseController
         $this->kotaModel = new KotaModel();
         $this->kecamatanModel = new KecamatanModel();
         $this->userModel = new UserModel(); // NEW: Inisialisasi UserModel
-        $this->wishlistModel = new \App\Models\WishlistModel();
+        $this->bookmarkModel = new \App\Models\BookmarkModel();
     }
 
     // Dashboard utama
@@ -149,8 +149,8 @@ class AdminController extends BaseController
         }
 
         try {
-            // Hapus semua wishlist user ini
-            $this->wishlistModel->where('user_id', $id)->delete();
+            // Hapus semua bookmark user ini
+            $this->bookmarkModel->where('user_id', $id)->delete();
             
             // Hapus user
             $this->userModel->delete($id);
@@ -352,7 +352,7 @@ class AdminController extends BaseController
             $this->deleteWisataImages($id);
 
             // NEW: Hapus semua bookmark untuk wisata ini
-            $this->wishlistModel->deleteWisataBookmarks($id);
+            $this->bookmarkModel->deleteWisataBookmarks($id);
 
             // Hapus data wisata
             $this->wisataModel->delete($id);

@@ -530,7 +530,7 @@ $kotaKeys    = array_keys($kotaKecamatan ?? []);
         </div>
       `;
 
-      fetch('<?= base_url('wishlist/user-bookmarks') ?>')
+      fetch('<?= base_url('bookmark/user-bookmarks') ?>')
         .then(response => {
           if (!response.ok) throw new Error(response.status);
           return response.json();
@@ -658,7 +658,7 @@ $kotaKeys    = array_keys($kotaKecamatan ?? []);
       const formData = new FormData();
       formData.append('_method', 'DELETE');
 
-      fetch(`<?= base_url('wishlist/remove/') ?>${wisataId}`, {
+      fetch(`<?= base_url('bookmark/remove/') ?>${wisataId}`, {
         method: 'POST',
         headers: { 'X-Requested-With': 'XMLHttpRequest' },
         body: formData

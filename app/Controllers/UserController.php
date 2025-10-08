@@ -10,14 +10,14 @@ class UserController extends BaseController
 {
     protected $wisataModel;
     protected $galeriModel;
-    protected $wishlistModel;
+    protected $bookmarkModel;
     protected $kategoriModel; 
 
     public function __construct()
     {
         $this->wisataModel = new WisataModel();
         $this->galeriModel = new GaleriModel();
-        $this->wishlistModel = new \App\Models\WishlistModel();
+        $this->bookmarkModel = new \App\Models\BookmarkModel();
         $this->kategoriModel = new KategoriModel();
     }
 
@@ -139,7 +139,7 @@ public function detailWisata($id)
         // NEW: Cek apakah user sudah bookmark wisata ini
         $isBookmarked = false;
         if (session()->get('user_id')) {
-            $isBookmarked = $this->wishlistModel->isBookmarked(session()->get('user_id'), $id);
+            $isBookmarked = $this->bookmarkModel->isBookmarked(session()->get('user_id'), $id);
         }
 
         $data = [

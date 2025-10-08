@@ -168,7 +168,7 @@ class AuthController extends BaseController
         // Hitung bookmark langsung dari DB (tanpa fetch di client)
         // GANTI 'wishlist' bila nama tabelmu berbeda.
         $db            = \Config\Database::connect();
-        $bookmarkCount = (int) $db->table('wishlist')->where('user_id', $userId)->countAllResults();
+        $bookmarkCount = (int) $db->table('bookmark')->where('user_id', $userId)->countAllResults();
 
         return view('user/profil', [
             'user'          => $user,

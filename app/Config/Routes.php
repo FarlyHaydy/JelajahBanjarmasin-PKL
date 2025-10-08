@@ -39,11 +39,11 @@ $routes->get('/wisata/(:num)', 'UserController::detailWisata/$1');
 $routes->get('/faq', 'UserController::faq');
 
 // Wishlist Routes - PINDAHKAN KE LUAR ADMIN GROUP
-$routes->group('wishlist', function($routes) {
-    $routes->post('toggle', 'WishlistController::toggle');
-    $routes->get('check-status/(:num)', 'WishlistController::checkStatus/$1');
-    $routes->get('user-bookmarks', 'WishlistController::getUserBookmarks');
-    $routes->delete('remove/(:num)', 'WishlistController::remove/$1');
+$routes->group('bookmark', function($routes) {
+    $routes->post('toggle', 'BookmarkController::toggle');
+    $routes->get('check-status/(:num)', 'BookmarkController::checkStatus/$1');
+    $routes->get('user-bookmarks', 'BookmarkController::getUserBookmarks');
+    $routes->delete('remove/(:num)', 'BookmarkController::remove/$1');
 });
 
 // Admin Routes (Protected)

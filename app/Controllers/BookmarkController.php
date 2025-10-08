@@ -1,33 +1,28 @@
 <?php
 
-// app/Controllers/WishlistController.php
 namespace App\Controllers;
 
-use App\Models\WishlistModel;
+use App\Models\BookmarkModel;
 use App\Models\WisataModel;
 
-class WishlistController extends BaseController
+class BookmarkController extends BaseController
 {
-    protected $wishlistModel;
+    protected $bookmarkModel;
     protected $wisataModel;
 
     public function __construct()
     {
-        $this->wishlistModel = new WishlistModel();
+        $this->bookmarkModel = new BookmarkModel();
         $this->wisataModel = new WisataModel();
     }
 
     // Toggle bookmark via AJAX
     public function toggle()
-    
     {
-        // DEBUG: Log semua request data
-    log_message('debug', 'Wishlist toggle called');
-    log_message('debug', 'Session data: ' . json_encode(session()->get()));
-    log_message('debug', 'POST data: ' . json_encode($this->request->getPost()));
-    log_message('debug', 'Headers: ' . json_encode($this->request->getHeaders()));
-    
-        // Cek apakah user sudah login
+        log_message('debug', 'Bookmark toggle called');
+        log_message('debug', 'Session data: ' . json_encode(session()->get()));
+        log_message('debug', 'POST data: ' . json_encode($this->request->getPost()));
+        
         if (!session()->get('user_id')) {
             return $this->response->setJSON([
                 'status' => 'error',
@@ -38,7 +33,6 @@ class WishlistController extends BaseController
         $userId = session()->get('user_id');
         $wisataId = $this->request->getPost('wisata_id');
 
-        // Validasi input
         if (!$wisataId || !is_numeric($wisataId)) {
             return $this->response->setJSON([
                 'status' => 'error',
@@ -46,7 +40,6 @@ class WishlistController extends BaseController
             ]);
         }
 
-        // Cek apakah wisata exists
         $wisata = $this->wisataModel->find($wisataId);
         if (!$wisata) {
             return $this->response->setJSON([
@@ -56,7 +49,7 @@ class WishlistController extends BaseController
         }
 
         try {
-            $result = $this->wishlistModel->toggleBookmark($userId, $wisataId);
+            $result = $this->bookmarkModel->toggleBookmark($userId, $wisataId);
             
             if ($result === 'added') {
                 return $this->response->setJSON([
@@ -74,7 +67,7 @@ class WishlistController extends BaseController
                 ]);
             }
         } catch (\Exception $e) {
-            log_message('error', 'Wishlist toggle error: ' . $e->getMessage());
+            log_message('error', 'Bookmark toggle error: ' . $e->getMessage());
             return $this->response->setJSON([
                 'status' => 'error',
                 'message' => 'Terjadi kesalahan sistem'
@@ -93,7 +86,7 @@ class WishlistController extends BaseController
         }
 
         $userId = session()->get('user_id');
-        $isBookmarked = $this->wishlistModel->isBookmarked($userId, $wisataId);
+        $isBookmarked = $this->bookmarkModel->isBookmarked($userId, $wisataId);
 
         return $this->response->setJSON([
             'bookmarked' => $isBookmarked,
@@ -101,7 +94,7 @@ class WishlistController extends BaseController
         ]);
     }
 
-    // Dapatkan semua bookmark user untuk halaman profil
+    // Dapatkan semua bookmark user
     public function getUserBookmarks()
     {
         if (!session()->get('user_id')) {
@@ -109,7 +102,7 @@ class WishlistController extends BaseController
         }
 
         $userId = session()->get('user_id');
-        $bookmarks = $this->wishlistModel->getUserBookmarks($userId);
+        $bookmarks = $this->bookmarkModel->getUserBookmarks($userId);
 
         return $this->response->setJSON([
             'status' => 'success',
@@ -118,7 +111,7 @@ class WishlistController extends BaseController
         ]);
     }
 
-    // Hapus bookmark dari halaman profil
+    // Hapus bookmark
     public function remove($wisataId)
     {
         if (!session()->get('user_id')) {
@@ -128,7 +121,7 @@ class WishlistController extends BaseController
         $userId = session()->get('user_id');
         
         try {
-            $this->wishlistModel->removeBookmark($userId, $wisataId);
+            $this->bookmarkModel->removeBookmark($userId, $wisataId);
             
             return $this->response->setJSON([
                 'status' => 'success',
