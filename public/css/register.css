@@ -8,7 +8,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/Tampilan_Awal.png');
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/background_awal.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -245,4 +245,9 @@
             .login-container {
                 padding: 80px 10px 30px;
             }
+        }
+        .select2-container .select2-selection--single {
+            height: 38px;
+            padding: 0 10px;
+            font-size: 1rem;
         }

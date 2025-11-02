@@ -26,7 +26,7 @@ class UserController extends BaseController
     return $this->kategoriModel->findAll();
 }
 
-// Update method rekreasi
+
 public function rekreasi()
 {
     $wisataRekreasi = $this->wisataModel->getByKategori('Rekreasi');
@@ -46,7 +46,7 @@ public function rekreasi()
     return view('user/rekreasi', $data);
 }
 
-// Update method kuliner
+
 public function kuliner()
 {
     $wisataKuliner = $this->wisataModel->getByKategori('Kuliner');

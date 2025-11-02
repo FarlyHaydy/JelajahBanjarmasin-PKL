@@ -1,6 +1,5 @@
 <?php
 
-// app/Models/GaleriModel.php
 namespace App\Models;
 use CodeIgniter\Model;
 
@@ -10,6 +9,7 @@ class GaleriModel extends Model
     protected $primaryKey = 'galeri_id';
     protected $allowedFields = ['wisata_id', 'nama_file', 'is_primary'];
     
+    // Mengambil semua gambar berdasarkan wisata_id, diurutkan primary terlebih dahulu
     public function getByWisata($wisataId)
     {
         return $this->where('wisata_id', $wisataId)
@@ -18,13 +18,15 @@ class GaleriModel extends Model
                     ->findAll();
     }
     
+    // Mengambil gambar utama (primary) dari suatu wisata
     public function getPrimaryImage($wisataId)
     {
         return $this->where('wisata_id', $wisataId)
-                    ->where('is_primary', 1)  // Gunakan 1 instead of true untuk konsistensi
+                    ->where('is_primary', 1) 
                     ->first();
     }
     
+    // Set gambar tertentu sebagai primary dan reset gambar lainnya
     public function setPrimaryImage($wisataId, $galeriId)
     {
         // Reset semua gambar menjadi bukan primary

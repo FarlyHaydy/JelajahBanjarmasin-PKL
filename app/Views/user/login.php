@@ -38,31 +38,34 @@ $session = session();
             <?php endif; ?>
 
             <!-- Form Login -->
-            <form action="<?= base_url('/loginAction') ?>" method="post">
-                <?= csrf_field() ?>
-                
-                <div class="form-group">
-                    <label for="email">Email / Username</label>
-                    <input type="text" name="email" id="email" class="form-control" 
-                           placeholder="Masukkan Email atau Username Anda" 
-                           value="<?= old('email') ?>" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-control" 
-                           placeholder="Masukkan Password Anda" required>
-                </div>
-                
-                <!-- <div class="forgot-password">
-                    <a href="#">Lupa Password?</a>
-                </div> -->
-                
-                <button type="submit" class="btn-login">Masuk</button>
-                <div class="register-link">
-                    Belum Punya Akun? <a href="/register">Daftar Sekarang</a>
-                </div>
-            </form>
+           <!-- Form Login -->
+<form action="<?= base_url('/loginAction') ?>" method="post" id="loginForm">
+    <?= csrf_field() ?>
+    
+    <div class="form-group">
+        <label for="email">Email / Username</label>
+        <input type="text" name="email" id="email" class="form-control" 
+               placeholder="Masukkan Email atau Username Anda" 
+               value="<?= old('email') ?>">
+        <div class="invalid-feedback" id="emailError"></div>
+    </div>
+    
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="form-control" 
+               placeholder="Masukkan Password Anda">
+        <div class="invalid-feedback" id="passwordError"></div>
+    </div>
+    
+    <!-- <div class="forgot-password">
+        <a href="#">Lupa Password?</a>
+    </div> -->
+    
+    <button type="submit" class="btn-login">Masuk</button>
+    <div class="register-link">
+        Belum Punya Akun? <a href="/register">Daftar Sekarang</a>
+    </div>
+</form>
         </div>
     </div>
 
@@ -82,17 +85,61 @@ $session = session();
                         <li><a href="#">Facebook</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-4">
-                    <h5>Support</h5>
-                    <ul>
-                        <li><a href="<?= base_url('/faq') ?>"><i class="fas fa-question-circle"></i> FAQs</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="<?= base_url('js/login.js') ?>"></script>
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        let isValid = true;
+
+        // Reset previous error states
+        email.classList.remove('is-invalid');
+        password.classList.remove('is-invalid');
+        document.getElementById('emailError').textContent = '';
+        document.getElementById('passwordError').textContent = '';
+
+        // Validate email/username
+        if (!email.value.trim()) {
+            email.classList.add('is-invalid');
+            document.getElementById('emailError').textContent = 'Username/Email belum diisi';
+            isValid = false;
+        }
+
+        // Validate password
+        if (!password.value.trim()) {
+            password.classList.add('is-invalid');
+            document.getElementById('passwordError').textContent = 'Password belum diisi';
+            isValid = false;
+        }
+
+        if (!isValid) {
+            e.preventDefault();
+            
+            // Scroll to first error
+            const firstError = document.querySelector('.is-invalid');
+            if (firstError) {
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    });
+
+    // Optional: Remove error state when user starts typing
+    document.getElementById('email').addEventListener('input', function() {
+        if (this.value.trim()) {
+            this.classList.remove('is-invalid');
+        }
+    });
+
+    document.getElementById('password').addEventListener('input', function() {
+        if (this.value.trim()) {
+            this.classList.remove('is-invalid');
+        }
+    });
+</script>
 </body>
 </html>

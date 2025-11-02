@@ -63,22 +63,25 @@ class UserModel extends Model
     protected $skipValidation = false;
     protected $cleanValidationRules = true;
 
-    // Custom methods
+    // Mengambil data user berdasarkan username
     public function getUserByUsername($username)
     {
         return $this->where('Username', $username)->first();
     }
 
+    // Mengambil data user berdasarkan ID
     public function getUserById($id)
     {
         return $this->find($id);
     }
 
+    // Membuat user baru
     public function createUser($data)
     {
         return $this->insert($data);
     }
 
+    // Update data user berdasarkan ID
     public function updateUser($id, $data)
     {
         return $this->update($id, $data);

@@ -21,6 +21,10 @@ class AuthController extends BaseController
         $emailOrUsername = $this->request->getPost('email');
         $password        = $this->request->getPost('password');
 
+        if (empty($emailOrUsername) || empty($password)) {
+        return redirect()->back()->with('error', 'Harap isi username/email dan password');
+    }
+
         // Cari akun berdasarkan email terlebih dahulu
         $akun = $this->akunModel->where('Email', $emailOrUsername)->first();
 
@@ -55,7 +59,7 @@ class AuthController extends BaseController
                 : redirect()->to('/dashboard');
         }
 
-        return redirect()->back()->with('error', 'Email/Username atau password salah');
+        return redirect()->back()->with('error', 'Email/username atau Password yang anda masukan salah');
     }
 
     public function registerAction()
@@ -203,7 +207,7 @@ class AuthController extends BaseController
         $kecamatan    = $this->request->getPost('kecamatan');
         $password     = $this->request->getPost('password');
 
-        if (empty($namaAsli) || empty($email) || empty($alamat) || empty($nomorTelepon)) {
+        if (empty($namaAsli) || empty($email) || empty($alamat) || empty($nomorTelepon) || empty($jenisKelamin) || empty($kota) || empty($kecamatan)) {
             return redirect()->back()->withInput()->with('error', 'Field yang wajib tidak boleh kosong');
         }
 

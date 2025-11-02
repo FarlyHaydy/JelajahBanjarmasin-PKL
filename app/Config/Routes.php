@@ -5,10 +5,9 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-// $routes->get('/', 'DashboardController::index');
 
-// Home/Landing page routes - PERBAIKI INI
-$routes->get('/', 'DashboardController::index'); // Beranda mengarah ke dashboard
+// Beranda Routes
+$routes->get('/', 'DashboardController::index'); 
 
 // Auth Routes
 $routes->get('/register', 'AuthController::register');
@@ -30,15 +29,11 @@ $routes->get('/religi', 'UserController::religi');
 // Route untuk kategori dinamis
 $routes->get('/kategori/(:segment)', 'UserController::kategoriWisata/$1');
 
-// Detail Wisata Routes (Multiple URL formats supported)
+// Detail Wisata Routes
 $routes->get('/detail/(:num)', 'UserController::detailWisata/$1');
-$routes->get('/wisata/detail/(:num)', 'UserController::detailWisata/$1');
-$routes->get('/wisata/(:num)', 'UserController::detailWisata/$1');
 
-// FAQ Routes (baru ditambahkan)
-$routes->get('/faq', 'UserController::faq');
 
-// Wishlist Routes - PINDAHKAN KE LUAR ADMIN GROUP
+// Bookmark Routes
 $routes->group('bookmark', function($routes) {
     $routes->post('toggle', 'BookmarkController::toggle');
     $routes->get('check-status/(:num)', 'BookmarkController::checkStatus/$1');
@@ -53,6 +48,7 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
 
     //import routes
     $routes->post('wisata/import', 'AdminController::importWisata');
+    $routes->get('wisata/download-template', 'AdminController::downloadTemplate');
     
     // Wisata CRUD
     $routes->post('wisata/create', 'AdminController::createWisata');
@@ -60,11 +56,17 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->post('wisata/update/(:num)', 'AdminController::updateWisata/$1');
     $routes->get('wisata/delete/(:num)', 'AdminController::deleteWisata/$1');
 
-     // Routes untuk User Management (tambahkan di dalam grup admin)
-    // Routes untuk User Management - PERBAIKI INI
+    // Routes untuk Gallery Management 
+    $routes->group('wisata/(:num)/gallery', function($routes) {
+        $routes->get('', 'GaleriController::getByWisata/$1');
+        $routes->post('upload', 'GaleriController::upload/$1');
+        $routes->post('set-primary', 'GaleriController::setPrimary/$1');
+        $routes->post('delete', 'GaleriController::delete/$1');
+    });
+
+    // Routes untuk User Management
     $routes->get('user/get/(:num)', 'AdminController::getUser/$1');
-    $routes->post('user/update/(:num)', 'AdminController::updateUser/$1');
-    $routes->get('user/delete/(:num)', 'AdminController::deleteUser/$1');
+    
 
     // Destinasi view for admin
     $routes->get('destinasi', 'AdminController::destinasi');
@@ -72,17 +74,17 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     
     // Master Data CRUD
     $routes->post('kategori/create', 'AdminController::createKategori');
-    $routes->get('kategori/get/(:num)', 'AdminController::getKategori/$1');      // NEW
+    $routes->get('kategori/get/(:num)', 'AdminController::getKategori/$1');      
     $routes->post('kategori/update/(:num)', 'AdminController::updateKategori/$1');
     $routes->get('kategori/delete/(:num)', 'AdminController::deleteKategori/$1');
     
     $routes->post('kota/create', 'AdminController::createKota');
-    $routes->get('kota/get/(:num)', 'AdminController::getKota/$1');              // NEW
+    $routes->get('kota/get/(:num)', 'AdminController::getKota/$1');              
     $routes->post('kota/update/(:num)', 'AdminController::updateKota/$1');
     $routes->get('kota/delete/(:num)', 'AdminController::deleteKota/$1');
     
     $routes->post('kecamatan/create', 'AdminController::createKecamatan');
-    $routes->get('kecamatan/get/(:num)', 'AdminController::getKecamatan/$1');    // NEW
+    $routes->get('kecamatan/get/(:num)', 'AdminController::getKecamatan/$1');    
     $routes->post('kecamatan/update/(:num)', 'AdminController::updateKecamatan/$1');
     $routes->get('kecamatan/delete/(:num)', 'AdminController::deleteKecamatan/$1');
 

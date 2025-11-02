@@ -6,144 +6,7 @@
     <title>Admin Dashboard - Banjarmasin</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-  body {
-    /* Background and Base Styles */
-
-    background-color: #f4f7fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Sidebar */
-.sidebar {
-    background-color: #1a1a1a;
-    color: #fff;
-    min-height: 100vh;
-    padding: 20px;
-    transition: all 0.3s ease;
-}
-.sidebar .nav-link {
-    color: #ffffff;
-    padding: 1rem 1.5rem;
-    margin-bottom: 0.75rem;
-    border-radius: 0.5rem;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-}
-.sidebar .nav-link:hover,
-.sidebar .nav-link.active {
-    background-color: #333333;
-    color: #ffffff;
-}
-
-/* Main Content */
-.main-content {
-    background-color: #fff;
-    min-height: 100vh;
-    padding: 2.5rem;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Content Sections */
-.content-section {
-    display: none;
-}
-.content-section.active {
-    display: block;
-}
-
-/* Cards */
-.card {
-    border: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
-    border-radius: 12px;
-}
-.card-header {
-    background-color: #333333;
-    color: #fff;
-    border-radius: 12px 12px 0 0;
-    padding: 1rem;
-}
-.card-body {
-    padding: 2rem;
-}
-
-/* Table */
-.table th {
-    background-color: #ecf0f1;
-    color: #333333;
-    font-weight: 600;
-}
-
-/* Buttons and Actions */
-.btn-action {
-    margin-right: 0.75rem;
-    margin-bottom: 0.75rem;
-}
-
-/* Coordinate Help Box */
-.coordinate-help {
-    background-color: #eaf4fc;
-    border: 1px solid #bbdefb;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 20px;
-}
-.coordinate-help small {
-    color: #2980b9;
-}
-
-/* User Avatar */
-.user-avatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-/* Status Badge */
-.status-badge {
-    font-size: 0.85rem;
-}
-
-/* Stats Card */
-.stats-card {
-    background: #333333;
-    color: white;
-    border-radius: 12px;
-}
-
-.stats-card .card-body {
-    padding: 2rem;
-}
-.stats-number {
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
-/* Chart Container */
-.chart-container {
-    position: relative;
-    height: 400px;
-    margin-bottom: 2rem;
-}
-
-/* Export Section */
-.export-section {
-    background-color: #ecf0f1;
-    padding: 1rem;
-    border-radius: 12px;
-}
-
-/* Chart Card */
-.chart-card {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-  }
-</style>
+    <link rel="stylesheet" href="<?= base_url('css/adminDashboard.css') ?>">
 
 </head>
 <body>
@@ -166,7 +29,10 @@
                     <a class="nav-link" href="<?= base_url('/') ?>"><i class="fas fa-home"></i> Beranda</a>
 
                     <hr class="text-white">
-                    <a class="nav-link" href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <a id="logoutLink" class="nav-link" href="<?= base_url('logout') ?>">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+
                 </nav>
             </div>
 
@@ -268,9 +134,11 @@
                                 </div>
 
                                 <div class="mb-3 mt-3">
-                                    <label class="form-label">Gambar (Maksimal 5)</label>
-                                    <input type="file" name="gambar[]" class="form-control" multiple accept="image/*" required>
-                                </div>
+                            <label class="form-label">Gambar (Maksimal 5)</label>
+                            <input type="file" name="gambar[]" id="createGambar" class="form-control" multiple accept="image/*" required>
+                            <small class="text-muted">Pilih maksimal 5 gambar</small>
+                            <div id="createImagePreview" class="mt-2"></div>
+                        </div>
 
                                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan Postingan</button>
                             </form>
@@ -363,7 +231,7 @@
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-danger btn-sm btn-action" onclick="deleteWisata(<?= $w['wisata_id'] ?? 0 ?>, '<?= esc($w['nama_wisata'] ?? '') ?>')"><i class="fas fa-trash"></i> Hapus</button>
-                                                    <a href="<?= base_url('detail/' . ($w['wisata_id'] ?? 0)) ?>" class="btn btn-outline-info btn-sm btn-action" target="_blank"><i class="fas fa-eye"></i> Preview</a>
+                                                    <a href="<?= base_url('detail/' . ($w['wisata_id'] ?? 0)) ?>" class="btn btn-info btn-sm btn-action" target="_blank"><i class="fas fa-eye"></i> Lihat</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; else: ?>
@@ -377,10 +245,10 @@
                 </div>
 
                 <!-- Modal Edit Wisata -->
-                <!-- Modal Edit Wisata -->
+                 <!-- Modal Edit Wisata -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <form id="editForm" method="post" enctype="multipart/form-data">
+    <div class="modal-dialog modal-xl">
+        <form id="editForm" method="post">
             <?= csrf_field() ?>
             <div class="modal-content">
                 <div class="modal-header">
@@ -388,72 +256,108 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Nama Wisata</label>
-                        <input type="text" id="editNamaWisata" name="nama_wisata" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Alamat</label>
-                        <input type="text" id="editAlamat" name="alamat" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Kategori</label>
-                        <select id="editKategori" name="kategori_id" class="form-select" required>
-                            <option value="">Pilih Kategori</option>
-                            <?php if (isset($kategori)): foreach ($kategori as $kat): ?>
-                                <option value="<?= $kat['kategori_id'] ?>"><?= esc($kat['nama_kategori']) ?></option>
-                            <?php endforeach; endif; ?>
-                        </select>
-                    </div>
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Kota</label>
-                            <select id="editKota" name="kota_id" class="form-select" required>
-                                <option value="">Pilih Kota</option>
-                                <?php if (isset($kota)): foreach ($kota as $k): ?>
-                                    <option value="<?= $k['kota_id'] ?>"><?= esc($k['nama_kota']) ?></option>
-                                <?php endforeach; endif; ?>
-                            </select>
+                        <div class="col-md-8">
+                            <!-- Form Data Wisata -->
+                            <div class="mb-3">
+                                <label class="form-label">Nama Wisata</label>
+                                <input type="text" id="editNamaWisata" name="nama_wisata" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Alamat</label>
+                                <input type="text" id="editAlamat" name="alamat" class="form-control" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Kategori</label>
+                                    <select id="editKategori" name="kategori_id" class="form-select" required>
+                                        <option value="">Pilih Kategori</option>
+                                        <?php if (isset($kategori)): foreach ($kategori as $kat): ?>
+                                            <option value="<?= $kat['kategori_id'] ?>"><?= esc($kat['nama_kategori']) ?></option>
+                                        <?php endforeach; endif; ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Kota</label>
+                                    <select id="editKota" name="kota_id" class="form-select" required>
+                                        <option value="">Pilih Kota</option>
+                                        <?php if (isset($kota)): foreach ($kota as $k): ?>
+                                            <option value="<?= $k['kota_id'] ?>"><?= esc($k['nama_kota']) ?></option>
+                                        <?php endforeach; endif; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Kecamatan</label>
+                                    <select id="editKecamatan" name="kecamatan_id" class="form-select" required>
+                                        <option value="">Pilih Kecamatan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Deskripsi Singkat</label>
+                                <textarea id="editDeskripsi" name="deskripsi" class="form-control" rows="2" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Detail Lengkap</label>
+                                <textarea id="editDetail" name="detail" class="form-control" rows="4" required></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label"><i class="fas fa-map-marker-alt text-primary"></i> Latitude</label>
+                                    <input type="number" step="any" id="editLatitude" name="latitude" class="form-control" placeholder="Contoh: -3.316694">
+                                    <small class="text-muted">Range: -90 sampai 90</small>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label"><i class="fas fa-map-marker-alt text-primary"></i> Longitude</label>
+                                    <input type="number" step="any" id="editLongitude" name="longitude" class="form-control" placeholder="Contoh: 114.590111">
+                                    <small class="text-muted">Range: -180 sampai 180</small>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Kecamatan</label>
-                            <select id="editKecamatan" name="kecamatan_id" class="form-select" required>
-                                <option value="">Pilih Kecamatan</option>
-                            </select>
+                        
+                        <div class="col-md-4">
+                            <!-- Gallery Management -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="fas fa-images"></i> Kelola Gambar</h6>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Current Images -->
+                                    <div id="galleryContainer" class="mb-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <small class="text-muted">Gambar saat ini:</small>
+                                            <span id="imageCount" class="badge bg-secondary">0/5</span>
+                                        </div>
+                                        <div id="currentImages" class="current-images-container">
+                                            <!-- Images will be loaded here -->
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Upload New Image -->
+                                    <div class="upload-section">
+                                        <label class="form-label"><i class="fas fa-plus"></i> Tambah Gambar Baru</label>
+                                        <div class="input-group mb-2">
+                                            <input type="file" id="newImage" class="form-control" accept="image/*">
+                                            <button type="button" class="btn btn-primary" onclick="uploadNewImage()">
+                                                <i class="fas fa-upload"></i>
+                                            </button>
+                                        </div>
+                                        <small class="text-muted">Maksimal 5 gambar per wisata</small>
+                                    </div>
+                            <div class="alert alert-info mb-3">
+                            <small>
+                                <i class="fas fa-info-circle"></i> 
+                                <strong>Perubahan gambar akan disimpan ketika Anda menekan "Simpan Perubahan Data"</strong><br>
+                                • Gambar yang ditandai akan dihapus<br>
+                                • Gambar baru akan ditambahkan<br>
+                                • Primary image akan diubah
+                            </small>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Deskripsi Singkat</label>
-                        <textarea id="editDeskripsi" name="deskripsi" class="form-control" rows="2" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Detail Lengkap</label>
-                        <textarea id="editDetail" name="detail" class="form-control" rows="4" required></textarea>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label"><i class="fas fa-map-marker-alt text-primary"></i> Latitude</label>
-                            <input type="number" step="any" id="editLatitude" name="latitude" class="form-control" placeholder="Contoh: -3.316694">
-                            <small class="text-muted">Range: -90 sampai 90</small>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label"><i class="fas fa-map-marker-alt text-primary"></i> Longitude</label>
-                            <input type="number" step="any" id="editLongitude" name="longitude" class="form-control" placeholder="Contoh: 114.590111">
-                            <small class="text-muted">Range: -180 sampai 180</small>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label"><i class="fas fa-images text-primary"></i> Gambar Baru (Opsional)</label>
-                        <input type="file" name="gambar[]" class="form-control" multiple accept="image/*">
-                        <small class="text-muted">
-                            <i class="fas fa-info-circle"></i> 
-                            Biarkan kosong jika tidak ingin mengubah gambar. 
-                            <strong>Perhatian:</strong> Upload gambar baru akan mengganti <strong>semua</strong> gambar lama.
-                        </small>
-                    </div>
-                    <div class="alert alert-info mb-0">
-                        <i class="fas fa-lightbulb"></i> 
-                        <strong>Tips:</strong> Pastikan gambar berkualitas baik dengan ukuran maksimal 2MB per file.
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -461,128 +365,127 @@
                         <i class="fas fa-times"></i> Batal
                     </button>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Simpan Perubahan
+                        <i class="fas fa-save"></i> Simpan Perubahan Data
                     </button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-                <!-- Master Data Section - Enhanced with Edit Feature -->
-                <div id="master-section" class="content-section">
-                    <div class="row">
-                        <!-- Kategori -->
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header"><h6><i class="fas fa-tags"></i> Kategori</h6></div>
-                                <div class="card-body">
-                                    <form action="<?= base_url('admin/kategori/create') ?>" method="post">
-                                        <?= csrf_field() ?>
-                                        <div class="input-group mb-3">
-                                            <input type="text" name="nama_kategori" class="form-control" placeholder="Nama Kategori" required>
-                                            <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i></button>
-                                        </div>
-                                    </form>
-                                    <?php if (isset($kategori) && !empty($kategori)): ?>
-                                        <div class="list-group">
-                                            <?php foreach ($kategori as $kat): ?>
-                                                <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <span><?= esc($kat['nama_kategori']) ?></span>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-warning btn-sm" onclick="editKategori(<?= $kat['kategori_id'] ?>, '<?= esc($kat['nama_kategori']) ?>')" title="Edit">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-danger btn-sm" onclick="deleteMaster('kategori', <?= $kat['kategori_id'] ?>, '<?= esc($kat['nama_kategori']) ?>')" title="Hapus">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Kota -->
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header"><h6><i class="fas fa-city"></i> Kota</h6></div>
-                                <div class="card-body">
-                                    <form action="<?= base_url('admin/kota/create') ?>" method="post">
-                                        <?= csrf_field() ?>
-                                        <div class="input-group mb-3">
-                                            <input type="text" name="nama_kota" class="form-control" placeholder="Nama Kota" required>
-                                            <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i></button>
-                                        </div>
-                                    </form>
-                                    <?php if (isset($kota) && !empty($kota)): ?>
-                                        <div class="list-group">
-                                            <?php foreach ($kota as $k): ?>
-                                                <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <span><?= esc($k['nama_kota']) ?></span>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-warning btn-sm" onclick="editKota(<?= $k['kota_id'] ?>, '<?= esc($k['nama_kota']) ?>')" title="Edit">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-danger btn-sm" onclick="deleteMaster('kota', <?= $k['kota_id'] ?>, '<?= esc($k['nama_kota']) ?>')" title="Hapus">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
+<div id="master-section" class="content-section">
+    <div class="row">
+        <!-- Kategori -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header"><h6><i class="fas fa-tags"></i> Kategori</h6></div>
+                <div class="card-body">
+                    <form action="<?= base_url('admin/kategori/create') ?>" method="post">
+                        <?= csrf_field() ?>
+                        <div class="input-group mb-3">
+                            <input type="text" name="nama_kategori" class="form-control" placeholder="Nama Kategori" required>
+                            <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i></button>
                         </div>
-
-                        <!-- Kecamatan -->
-                        <!-- Kecamatan -->
-<div class="col-md-4">
-    <div class="card">
-        <div class="card-header"><h6><i class="fas fa-map-marker-alt"></i> Kecamatan</h6></div>
-        <div class="card-body">
-            <form action="<?= base_url('admin/kecamatan/create') ?>" method="post">
-                <?= csrf_field() ?>
-                <select name="kota_id" id="filterKotaKecamatan" class="form-select mb-2" required>
-                    <option value="">Pilih Kota</option>
-                    <?php if (isset($kota)): foreach ($kota as $k): ?>
-                        <option value="<?= $k['kota_id'] ?>"><?= $k['nama_kota'] ?></option>
-                    <?php endforeach; endif; ?>
-                </select>
-                <div class="input-group mb-3">
-                    <input type="text" name="nama_kecamatan" class="form-control" placeholder="Nama Kecamatan" required>
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i></button>
+                    </form>
+                    <?php if (isset($kategori) && !empty($kategori)): ?>
+                        <div class="list-group">
+                            <?php foreach ($kategori as $kat): ?>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><?= esc($kat['nama_kategori']) ?></span>
+                                    <div class="btn-group">
+                                        <button class="btn btn-warning btn-sm" onclick="editKategori(<?= $kat['kategori_id'] ?>, '<?= esc($kat['nama_kategori']) ?>')" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" onclick="deleteMaster('kategori', <?= $kat['kategori_id'] ?>, '<?= esc($kat['nama_kategori']) ?>')" title="Hapus">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
-            </form>
-                        
-            <!-- List kecamatan (hidden by default) -->
-            <div id="kecamatanList" class="list-group" style="max-height: 300px; overflow-y: auto; display: none;">
-                <?php if (isset($kecamatan) && !empty($kecamatan)): ?>
-                    <?php foreach ($kecamatan as $kec): ?>
-                        <div class="list-group-item d-flex justify-content-between align-items-center" data-kota-id="<?= $kec['kota_id'] ?>">
-                            <div>
-                                <strong><?= esc($kec['nama_kecamatan']) ?></strong><br>
-                                <small class="text-muted"><?= esc($kec['nama_kota']) ?></small>
-                            </div>
-                            <div class="btn-group">
-                                <button class="btn btn-warning btn-sm" onclick="editKecamatan(<?= $kec['kecamatan_id'] ?>, '<?= esc($kec['nama_kecamatan']) ?>', <?= $kec['kota_id'] ?>, '<?= esc($kec['nama_kota']) ?>')" title="Edit">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm" onclick="deleteMaster('kecamatan', <?= $kec['kecamatan_id'] ?>, '<?= esc($kec['nama_kecamatan']) ?>')" title="Hapus">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
             </div>
         </div>
-    </div>
-</div>
+
+        <!-- Kota -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header"><h6><i class="fas fa-city"></i> Kota</h6></div>
+                <div class="card-body">
+                    <form action="<?= base_url('admin/kota/create') ?>" method="post">
+                        <?= csrf_field() ?>
+                        <div class="input-group mb-3">
+                            <input type="text" name="nama_kota" class="form-control" placeholder="Nama Kota" required>
+                            <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </form>
+                    <?php if (isset($kota) && !empty($kota)): ?>
+                        <div class="list-group">
+                            <?php foreach ($kota as $k): ?>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><?= esc($k['nama_kota']) ?></span>
+                                    <div class="btn-group">
+                                        <button class="btn btn-warning btn-sm" onclick="editKota(<?= $k['kota_id'] ?>, '<?= esc($k['nama_kota']) ?>')" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" onclick="deleteMaster('kota', <?= $k['kota_id'] ?>, '<?= esc($k['nama_kota']) ?>')" title="Hapus">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kecamatan -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header"><h6><i class="fas fa-map-marker-alt"></i> Kecamatan</h6></div>
+                <div class="card-body">
+                    <form action="<?= base_url('admin/kecamatan/create') ?>" method="post">
+                        <?= csrf_field() ?>
+                        <select name="kota_id" id="filterKotaKecamatan" class="form-select mb-2" onchange="filterKecamatanByKota()" required>
+                            <option value="">Pilih Kota</option>
+                            <?php if (isset($kota)): foreach ($kota as $k): ?>
+                                <option value="<?= $k['kota_id'] ?>"><?= esc($k['nama_kota']) ?></option>
+                            <?php endforeach; endif; ?>
+                        </select>
+                        <div class="input-group mb-3">
+                            <input type="text" name="nama_kecamatan" class="form-control" placeholder="Nama Kecamatan" required>
+                            <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </form>
+                    
+                    <!-- List kecamatan -->
+                    <div id="kecamatanList" class="list-group" style="max-height: 300px; overflow-y: auto; display: none;">
+                        <?php if (isset($kecamatan) && !empty($kecamatan)): ?>
+                            <?php foreach ($kecamatan as $kec): ?>
+                                <div class="list-group-item d-flex justify-content-between align-items-center" data-kota-id="<?= $kec['kota_id'] ?>">
+                                    <div>
+                                        <strong><?= esc($kec['nama_kecamatan']) ?></strong><br>
+                                        <small class="text-muted"><?= esc($kec['nama_kota']) ?></small>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn btn-warning btn-sm" onclick="editKecamatan(<?= $kec['kecamatan_id'] ?>, '<?= addslashes(esc($kec['nama_kecamatan'])) ?>', <?= $kec['kota_id'] ?>, '<?= addslashes(esc($kec['nama_kota'])) ?>')" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" onclick="deleteMaster('kecamatan', <?= $kec['kecamatan_id'] ?>, '<?= addslashes(esc($kec['nama_kecamatan'])) ?>')" title="Hapus">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div> <!-- /row -->
+</div> <!-- /master-section -->
 
                 <!-- Data Destinasi Wisata Section -->
 <div id="destinasi-section" class="content-section">
@@ -616,21 +519,22 @@
             </div>
 
             <!-- Tabel Destinasi Wisata -->
-            <div class="table-responsive">
-                <table class="table table-hover" id="destinasiTable">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Wisata</th>
-                            <th>Kategori</th>
-                            <th>Lokasi</th>
-                            <th>Koordinat</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                   <tbody>
+            <!-- Tabel Destinasi Wisata -->
+        <div class="table-responsive">
+            <table class="table table-hover" id="destinasiTable">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Wisata</th>
+                        <th>Kategori</th>
+                        <th>Lokasi</th>
+                        <th>Koordinat</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <?php if (isset($wisata) && !empty($wisata)): $no = 1; foreach ($wisata as $w): ?>
-                        <tr data-kategori-id="<?= esc($w['kategori_id']) ?>"> <!-- Tambahkan data-kategori-id -->
+                        <tr data-kategori-id="<?= esc($w['kategori_id']) ?>">
                             <td><?= $no++ ?></td>
                             <td><strong><?= esc($w['nama_wisata'] ?? 'N/A') ?></strong></td>
                             <td><?= esc($w['nama_kategori'] ?? 'N/A') ?></td>
@@ -644,17 +548,15 @@
                                 <?php endif; ?>
                             </td>
                             <td>
-                                 <a href="<?= base_url('detail/' . ($w['wisata_id'] ?? 0)) ?>" class="btn btn-info btn-sm btn-action" target="_blank"><i class="fas fa-eye"></i> Detail</a>
-                                              
+                                <a href="<?= base_url('detail/' . ($w['wisata_id'] ?? 0)) ?>" class="btn btn-info btn-sm btn-action" target="_blank"><i class="fas fa-eye"></i> Detail</a>
                             </td>
                         </tr>
                     <?php endforeach; else: ?>
                         <tr><td colspan="6" class="text-center"><div class="alert alert-info">Belum ada data destinasi wisata.</div></td></tr>
                     <?php endif; ?>
                 </tbody>
-
-                </table>
-            </div>
+            </table>
+        </div>
         </div>
     </div>
 </div>
@@ -680,24 +582,28 @@
                 </div>
             <?php endif; ?>
             
-            <!-- Form untuk upload file TXT -->
+            <!-- Form untuk upload file XLSX -->
             <form action="<?= base_url('admin/wisata/import') ?>" method="POST" enctype="multipart/form-data">
                 <?= csrf_field() ?>
                 <div class="mb-3">
-                    <label for="file_txt" class="form-label">Pilih File TXT</label>
-                    <input type="file" name="file_txt" id="file_txt" class="form-control" accept=".txt" required>
+                    <label for="file_xlsx" class="form-label">Pilih File Excel (XLSX)</label>
+                    <input type="file" name="file_xlsx" id="file_xlsx" class="form-control" accept=".xlsx,.xls" required>
                     <small class="text-muted d-block mt-1">
-                        <strong>Format TXT:</strong> Nama | Alamat | Kategori_ID | Kota_ID | Kecamatan_ID | Deskripsi | Detail | Latitude | Longitude
+                        <strong>Format Excel:</strong> 
+                        <a href="<?= base_url('admin/wisata/download-template') ?>" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-download"></i> Download Template XLSX
+                        </a>
                     </small>
                     <small class="text-muted d-block mt-1">
-                        Delimiter otomatis terdeteksi (|, tab, ;, atau ,)
+                        <strong>Kolom yang diperlukan:</strong><br>
+                        Nama Wisata | Alamat | Kategori_ID | Kota_ID | Kecamatan_ID | Deskripsi | Detail | Latitude | Longitude
                     </small>
                     <small class="text-muted d-block mt-1">
-                        <strong>Contoh isi file:</strong><br>
-                        <code>Pantai Indah | Jl. Pantai No. 1 | 1 | 1 | 1 | Pantai yang indah | Detail lengkap | -6.123456 | 106.789012</code>
+                        <strong>Contoh data:</strong><br>
+                        Pantai Indah | Jl. Pantai No. 1 | 1 | 1 | 1 | Pantai yang indah | Detail lengkap pantai... | -6.123456 | 106.789012
                     </small>
                     <small class="text-muted d-block mt-1">
-                        Ukuran maksimal: 5MB
+                        Ukuran maksimal: 10MB
                     </small>
                 </div>
                 <button type="submit" class="btn btn-success">
@@ -865,6 +771,7 @@
                                 <div class="col-md-4">
                                     <label class="form-label">Tipe Statistik</label>
                                     <select class="form-select" id="chartType" onchange="updateChart()">
+                                        <option value="" selected>Pilih Statistik</option>
                                         <option value="kota">Berdasarkan Kabupaten/Kota</option>
                                         <option value="kecamatan">Berdasarkan Kecamatan</option>
                                         <option value="gender">Berdasarkan Jenis Kelamin</option>
@@ -888,9 +795,9 @@
 
                     <div class="row"><div class="col-md-12">
                         <div class="card chart-card">
-                            <div class="card-header"><h6 class="mb-0" id="chartTitle"><i class="fas fa-chart-bar"></i> Distribusi Pengguna per Kabupaten/Kota</h6></div>
-                            <div class="card-body"><div class="chart-container"><canvas id="userStatsChart"></canvas></div></div>
-                        </div>
+                        <div class="card-header"><h6 class="mb-0" id="chartTitle"><i class="fas fa-chart-bar"></i> Pilih Tipe Statistik</h6></div>
+                        <div class="card-body"><div class="chart-container"><canvas id="userStatsChart"></canvas></div></div>
+                    </div>
                     </div></div>
 
                     <div class="card">
@@ -898,9 +805,9 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-striped" id="statsTable">
-                                    <thead><tr id="statsTableHeader"><th>No</th><th>Kabupaten/Kota</th><th>Jumlah Pengguna</th><th>Persentase</th></tr></thead>
-                                    <tbody id="statsTableBody"></tbody>
-                                </table>
+                                <thead><tr id="statsTableHeader"><th>No</th><th>Kategori</th><th>Jumlah</th><th>Persentase</th></tr></thead>
+                                <tbody id="statsTableBody"></tbody>
+                            </table>
                             </div>
                         </div>
                     </div>
@@ -1086,18 +993,68 @@
             const tableData = Object.entries(genderCount).map(([g, count], i)=>({ no:i+1, name:g, count, percentage: total? ((count/total)*100).toFixed(1)+'%':'0%' }));
             return { chartData, tableData };
         }
-        function initializeChart(){ if (userChart) userChart.destroy(); updateChart(); }
-        function updateChart(){
-            const chartType = document.getElementById('chartType').value;
-            const chartStyle = document.getElementById('chartStyle').value;
-            let data, title, headers;
-            if (chartType==='kota'){ data=getDataByKota(); title='Distribusi Pengguna per Kabupaten/Kota'; headers=['No','Kabupaten/Kota','Jumlah Pengguna','Persentase']; }
-            else if (chartType==='kecamatan'){ data=getDataByKecamatan(); title='Distribusi Pengguna per Kecamatan'; headers=['No','Kecamatan','Jumlah Pengguna','Persentase']; }
-            else { data=getDataByGender(); title='Distribusi Pengguna per Jenis Kelamin'; headers=['No','Jenis Kelamin','Jumlah Pengguna','Persentase']; }
-            document.getElementById('chartTitle').innerHTML = `<i class="fas fa-chart-bar"></i> ${title}`;
-            updateStatsTable(data.tableData, headers);
-            createChart(data.chartData, chartStyle, title);
+    
+        function initializeChart() { 
+    if (userChart) {
+        userChart.destroy();
+        userChart = null;
+    }
+    
+    // Set initial empty state
+    document.getElementById('chartTitle').innerHTML = '<i class="fas fa-chart-bar"></i> Pilih Tipe Statistik';
+    
+    // ✅ RESET HEADER TABEL KE STATE AWAL
+    const headerRow = document.getElementById('statsTableHeader');
+    headerRow.innerHTML = '<th>No</th><th>Kategori</th><th>Jumlah</th><th>Persentase</th>';
+    
+    // Reset body tabel
+    document.getElementById('statsTableBody').innerHTML = '<tr><td colspan="4" class="text-center"><div class="alert alert-info"><i class="fas fa-info-circle"></i> Silakan pilih tipe statistik terlebih dahulu</div></td></tr>';
+}
+    function updateChart(){
+    const chartType = document.getElementById('chartType').value;
+    const chartStyle = document.getElementById('chartStyle').value;
+    
+    // Jika belum pilih statistik, reset ke state awal
+    if (!chartType || chartType === '') {
+        // ✅ RESET CHART TITLE
+        document.getElementById('chartTitle').innerHTML = '<i class="fas fa-chart-bar"></i> Pilih Tipe Statistik';
+        
+        // ✅ RESET HEADER TABEL
+        const headerRow = document.getElementById('statsTableHeader');
+        headerRow.innerHTML = '<th>No</th><th>Kategori</th><th>Jumlah</th><th>Persentase</th>';
+        
+        // ✅ RESET BODY TABEL
+        document.getElementById('statsTableBody').innerHTML = '<tr><td colspan="4" class="text-center"><div class="alert alert-info"><i class="fas fa-info-circle"></i> Silakan pilih tipe statistik terlebih dahulu</div></td></tr>';
+        
+        // ✅ DESTROY CHART
+        if (userChart) {
+            userChart.destroy();
+            userChart = null;
         }
+        return; // Stop execution
+    }
+    
+    let data, title, headers;
+    if (chartType==='kota'){ 
+        data=getDataByKota(); 
+        title='Distribusi Pengguna per Kabupaten/Kota'; 
+        headers=['No','Kabupaten/Kota','Jumlah Pengguna','Persentase']; 
+    }
+    else if (chartType==='kecamatan'){ 
+        data=getDataByKecamatan(); 
+        title='Distribusi Pengguna per Kecamatan'; 
+        headers=['No','Kecamatan','Jumlah Pengguna','Persentase']; 
+    }
+    else if (chartType==='gender'){ 
+        data=getDataByGender(); 
+        title='Distribusi Pengguna per Jenis Kelamin'; 
+        headers=['No','Jenis Kelamin','Jumlah Pengguna','Persentase']; 
+    }
+    
+    document.getElementById('chartTitle').innerHTML = `<i class="fas fa-chart-bar"></i> ${title}`;
+    updateStatsTable(data.tableData, headers);
+    createChart(data.chartData, chartStyle, title);
+}    
         function createChart(data, style, title){
             const ctx = document.getElementById('userStatsChart').getContext('2d');
             if (userChart) userChart.destroy();
@@ -1199,52 +1156,425 @@
                 kecSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
             }
         }
-        function editWisata(id) {
-            const url = "<?= site_url('admin/wisata/get') ?>/" + id; // PENTING: pakai site_url
+        let currentWisataId = null;
+let galleryChanges = {
+    toDelete: [],
+    toSetPrimary: null,
+    newImages: []
+};
 
-            fetch(url, { headers: { 'Accept': 'application/json' } })
-                .then(async (r) => {
-                    if (!r.ok) {
-                        const text = await r.text();       // untuk melihat isi error (404/500)
-                        console.error('GET gagal:', r.status, text);
-                        throw new Error('HTTP ' + r.status);
-                    }
-                    return r.json();
-                })
-                .then(({ status, wisata, message }) => {
-                    if (status !== 'success' || !wisata) {
-                        console.error('Response tidak valid:', message);
-                        alert('Data wisata tidak valid');
-                        return;
-                    }
+function editWisata(id) {
+    currentWisataId = id;
+    
+    // Reset gallery changes
+    galleryChanges = {
+        toDelete: [],
+        toSetPrimary: null,
+        newImages: []
+    };
+    
+    const url = "<?= site_url('admin/wisata/get') ?>/" + id;
 
-                    // isi form modal
-                    document.getElementById('editNamaWisata').value = wisata.nama_wisata || '';
-                    document.getElementById('editAlamat').value     = wisata.alamat || '';
-                    document.getElementById('editKategori').value   = wisata.kategori_id || '';
-                    document.getElementById('editKota').value       = wisata.kota_id || '';
-                    document.getElementById('editDeskripsi').value  = wisata.deskripsi || '';
-                    document.getElementById('editDetail').value     = wisata.detail || '';
-                    document.getElementById('editLatitude').value   = wisata.latitude ?? '';
-                    document.getElementById('editLongitude').value  = wisata.longitude ?? '';
+    fetch(url, { headers: { 'Accept': 'application/json' } })
+        .then(async (r) => {
+            if (!r.ok) {
+                const text = await r.text();
+                console.error('GET gagal:', r.status, text);
+                throw new Error('HTTP ' + r.status);
+            }
+            return r.json();
+        })
+        .then(({ status, wisata, message }) => {
+            if (status !== 'success' || !wisata) {
+                console.error('Response tidak valid:', message);
+                alert('Data wisata tidak valid');
+                return;
+            }
 
-                    // load kecamatan berdasar kota lalu set valuenya
-                    loadKecamatan(wisata.kota_id, 'editKecamatan');
-                    setTimeout(() => {
-                        document.getElementById('editKecamatan').value = wisata.kecamatan_id || '';
-                    }, 300);
+            // isi form modal
+            document.getElementById('editNamaWisata').value = wisata.nama_wisata || '';
+            document.getElementById('editAlamat').value     = wisata.alamat || '';
+            document.getElementById('editKategori').value   = wisata.kategori_id || '';
+            document.getElementById('editKota').value       = wisata.kota_id || '';
+            document.getElementById('editDeskripsi').value  = wisata.deskripsi || '';
+            document.getElementById('editDetail').value     = wisata.detail || '';
+            document.getElementById('editLatitude').value   = wisata.latitude ?? '';
+            document.getElementById('editLongitude').value  = wisata.longitude ?? '';
 
-                    // set action update
-                    document.getElementById('editForm').action = "<?= site_url('admin/wisata/update') ?>/" + id;
+            // load kecamatan berdasar kota lalu set valuenya
+            loadKecamatan(wisata.kota_id, 'editKecamatan');
+            setTimeout(() => {
+                document.getElementById('editKecamatan').value = wisata.kecamatan_id || '';
+            }, 300);
 
-                    new bootstrap.Modal(document.getElementById('editModal')).show();
-                })
-                .catch((e) => {
-                    console.error(e);
-                    alert('Error loading data wisata');
-                });
+            // set action update
+            document.getElementById('editForm').action = "<?= site_url('admin/wisata/update') ?>/" + id;
+
+            // Load gallery images
+            loadGalleryImages(id);
+
+            new bootstrap.Modal(document.getElementById('editModal')).show();
+        })
+        .catch((e) => {
+            console.error(e);
+            alert('Error loading data wisata');
+        });
+}
+
+// Load gallery images dengan status changes
+function loadGalleryImages(wisataId) {
+    fetch(`<?= base_url('admin/wisata/') ?>${wisataId}/gallery`)
+        .then(r => r.json())
+        .then(images => {
+            const container = document.getElementById('currentImages');
+            const countElement = document.getElementById('imageCount');
+            
+            if (!images || images.length === 0) {
+                container.innerHTML = '<div class="text-center text-muted py-3"><i class="fas fa-image fa-2x mb-2"></i><br>Belum ada gambar</div>';
+                countElement.textContent = '0/5';
+                return;
+            }
+
+            let html = '';
+            images.forEach(image => {
+                const isPrimary = image.is_primary == 1;
+                const isMarkedForDelete = galleryChanges.toDelete.includes(image.galeri_id);
+                const isNewPrimary = galleryChanges.toSetPrimary === image.galeri_id;
+                
+                html += `
+                    <div class="image-item ${isPrimary || isNewPrimary ? 'primary' : ''} ${isMarkedForDelete ? 'marked-for-delete' : ''}" 
+                         data-image-id="${image.galeri_id}">
+                        ${(isPrimary || isNewPrimary) ? '<span class="primary-badge"><i class="fas fa-star"></i> Primary</span>' : ''}
+                        ${isMarkedForDelete ? '<span class="delete-badge"><i class="fas fa-trash"></i> Akan Dihapus</span>' : ''}
+                        <img src="<?= base_url('uploads/wisata/') ?>${image.nama_file}" 
+                             class="image-preview" 
+                             alt="Gambar wisata">
+                        <div class="image-actions">
+                            ${!isPrimary && !isMarkedForDelete ? `
+                                <button class="btn btn-success btn-sm" onclick="markAsPrimary(${image.galeri_id})" title="Set Primary">
+                                    <i class="fas fa-star"></i>
+                                </button>
+                            ` : ''}
+                            ${!isMarkedForDelete ? `
+                                <button class="btn btn-danger btn-sm" onclick="markForDelete(${image.galeri_id})" title="Hapus">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            ` : `
+                                <button class="btn btn-warning btn-sm" onclick="unmarkForDelete(${image.galeri_id})" title="Batal Hapus">
+                                    <i class="fas fa-undo"></i>
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            updateImageCount();
+        })
+        .catch(error => {
+            console.error('Error loading gallery:', error);
+            document.getElementById('currentImages').innerHTML = '<div class="text-center text-danger py-3">Error loading images</div>';
+        });
+}
+
+// Update image count dengan memperhitungkan changes
+function updateImageCount() {
+    // Hanya hitung gambar yang TIDAK ditandai untuk dihapus
+    const currentItems = document.querySelectorAll('.image-item:not(.marked-for-delete):not(.new-image)').length;
+    const newImagesCount = galleryChanges.newImages.length;
+    const totalCount = currentItems + newImagesCount;
+    
+    document.getElementById('imageCount').textContent = `${totalCount}/5`;
+    
+    // Update warning jika melebihi batas
+    if (totalCount > 5) {
+        document.getElementById('imageCount').classList.add('bg-danger');
+    } else {
+        document.getElementById('imageCount').classList.remove('bg-danger');
+    }
+}
+
+// Mark image untuk dihapus
+function markForDelete(galeriId) {
+    if (!galleryChanges.toDelete.includes(galeriId)) {
+        galleryChanges.toDelete.push(galeriId);
+    }
+    
+    // Update UI
+    const imageItem = document.querySelector(`.image-item[data-image-id="${galeriId}"]`);
+    if (imageItem) {
+        imageItem.classList.add('marked-for-delete');
+        imageItem.querySelector('.delete-badge')?.remove();
+        imageItem.insertAdjacentHTML('afterbegin', '<span class="delete-badge"><i class="fas fa-trash"></i> Akan Dihapus</span>');
+        
+        // Update actions
+        const actions = imageItem.querySelector('.image-actions');
+        actions.innerHTML = `
+            <button class="btn btn-warning btn-sm" onclick="unmarkForDelete(${galeriId})" title="Batal Hapus">
+                <i class="fas fa-undo"></i>
+            </button>
+        `;
+    }
+    
+    updateImageCount();
+}
+
+// Batal mark untuk dihapus
+function unmarkForDelete(galeriId) {
+    galleryChanges.toDelete = galleryChanges.toDelete.filter(id => id !== galeriId);
+    
+    // Update UI
+    const imageItem = document.querySelector(`.image-item[data-image-id="${galeriId}"]`);
+    if (imageItem) {
+        imageItem.classList.remove('marked-for-delete');
+        imageItem.querySelector('.delete-badge')?.remove();
+        
+        const isPrimary = galleryChanges.toSetPrimary === galeriId || imageItem.classList.contains('primary');
+        const actions = imageItem.querySelector('.image-actions');
+        actions.innerHTML = `
+            ${!isPrimary ? `
+                <button class="btn btn-success btn-sm" onclick="markAsPrimary(${galeriId})" title="Set Primary">
+                    <i class="fas fa-star"></i>
+                </button>
+            ` : ''}
+            <button class="btn btn-danger btn-sm" onclick="markForDelete(${galeriId})" title="Hapus">
+                <i class="fas fa-trash"></i>
+            </button>
+        `;
+    }
+    
+    updateImageCount();
+}
+
+// Mark image sebagai primary
+function markAsPrimary(galeriId) {
+    galleryChanges.toSetPrimary = galeriId;
+    
+    // Update UI - remove primary dari semua, lalu set yang baru
+    document.querySelectorAll('.image-item').forEach(item => {
+        item.classList.remove('primary');
+        item.querySelector('.primary-badge')?.remove();
+    });
+    
+    const imageItem = document.querySelector(`.image-item[data-image-id="${galeriId}"]`);
+    if (imageItem && !imageItem.classList.contains('marked-for-delete')) {
+        imageItem.classList.add('primary');
+        imageItem.insertAdjacentHTML('afterbegin', '<span class="primary-badge"><i class="fas fa-star"></i> Primary Baru</span>');
+        
+        // Update actions
+        const actions = imageItem.querySelector('.image-actions');
+        actions.innerHTML = `
+            <button class="btn btn-warning btn-sm" onclick="unmarkAsPrimary(${galeriId})" title="Batal Primary">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="btn btn-danger btn-sm" onclick="markForDelete(${galeriId})" title="Hapus">
+                <i class="fas fa-trash"></i>
+            </button>
+        `;
+    }
+}
+
+// Batal mark sebagai primary
+function unmarkAsPrimary(galeriId) {
+    galleryChanges.toSetPrimary = null;
+    
+    // Update UI
+    const imageItem = document.querySelector(`.image-item[data-image-id="${galeriId}"]`);
+    if (imageItem) {
+        imageItem.classList.remove('primary');
+        imageItem.querySelector('.primary-badge')?.remove();
+        
+        const actions = imageItem.querySelector('.image-actions');
+        actions.innerHTML = `
+            <button class="btn btn-success btn-sm" onclick="markAsPrimary(${galeriId})" title="Set Primary">
+                <i class="fas fa-star"></i>
+            </button>
+            <button class="btn btn-danger btn-sm" onclick="markForDelete(${galeriId})" title="Hapus">
+                <i class="fas fa-trash"></i>
+            </button>
+        `;
+    }
+}
+
+// Upload new image - hanya tambah ke queue
+function uploadNewImage() {
+    const fileInput = document.getElementById('newImage');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        alert('Pilih file gambar terlebih dahulu');
+        return;
+    }
+
+    // PERBAIKAN: Hitung dengan benar hanya gambar yang tidak dihapus
+    const currentItems = document.querySelectorAll('.image-item:not(.marked-for-delete):not(.new-image)').length;
+    const totalCount = currentItems + galleryChanges.newImages.length;
+    
+    if (totalCount >= 5) {
+        alert('Maksimal 5 gambar per wisata');
+        return;
+    }
+
+    // Create preview and add to newImages queue
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const newImageId = 'new-' + Date.now();
+        galleryChanges.newImages.push({
+            id: newImageId,
+            file: file,
+            preview: e.target.result
+        });
+
+        // Add to UI
+        const container = document.getElementById('currentImages');
+        const newImageHTML = `
+            <div class="image-item new-image" data-image-id="${newImageId}">
+                <span class="new-badge"><i class="fas fa-plus"></i> Baru</span>
+                <img src="${e.target.result}" 
+                     class="image-preview" 
+                     alt="Gambar baru">
+                <div class="image-actions">
+                    <button class="btn btn-success btn-sm" onclick="markNewAsPrimary('${newImageId}')" title="Set Primary">
+                        <i class="fas fa-star"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="removeNewImage('${newImageId}')" title="Hapus">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        container.insertAdjacentHTML('beforeend', newImageHTML);
+        updateImageCount();
+        
+        // Reset file input
+        fileInput.value = '';
+    };
+    
+    reader.readAsDataURL(file);
+}
+
+// Mark new image as primary
+function markNewAsPrimary(newImageId) {
+    galleryChanges.toSetPrimary = newImageId;
+    
+    // Update UI
+    document.querySelectorAll('.image-item').forEach(item => {
+        item.classList.remove('primary');
+        item.querySelector('.primary-badge')?.remove();
+    });
+    
+    const imageItem = document.querySelector(`.image-item[data-image-id="${newImageId}"]`);
+    if (imageItem) {
+        imageItem.classList.add('primary');
+        imageItem.querySelector('.new-badge')?.remove();
+        imageItem.insertAdjacentHTML('afterbegin', '<span class="primary-badge"><i class="fas fa-star"></i> Primary Baru</span>');
+    }
+}
+
+// Remove new image from queue
+function removeNewImage(newImageId) {
+    galleryChanges.newImages = galleryChanges.newImages.filter(img => img.id !== newImageId);
+    if (galleryChanges.toSetPrimary === newImageId) {
+        galleryChanges.toSetPrimary = null;
+    }
+    
+    // Remove from UI
+    const imageItem = document.querySelector(`.image-item[data-image-id="${newImageId}"]`);
+    if (imageItem) {
+        imageItem.remove();
+    }
+    
+    updateImageCount();
+}
+
+// Process gallery changes ketika form disubmit
+function processGalleryChanges() {
+    return new Promise((resolve, reject) => {
+        const promises = [];
+        
+        // 1. Process deletions
+        galleryChanges.toDelete.forEach(galeriId => {
+            const formData = new FormData();
+            formData.append('galeri_id', galeriId);
+            formData.append('<?= csrf_token() ?>', '<?= csrf_hash() ?>');
+            
+            promises.push(
+                fetch(`<?= base_url('admin/wisata/') ?>${currentWisataId}/gallery/delete`, {
+                    method: 'POST',
+                    body: formData
+                }).then(r => r.json())
+            );
+        });
+        
+        // 2. Process new images
+        galleryChanges.newImages.forEach(newImage => {
+            const formData = new FormData();
+            formData.append('gambar', newImage.file);
+            formData.append('<?= csrf_token() ?>', '<?= csrf_hash() ?>');
+            
+            promises.push(
+                fetch(`<?= base_url('admin/wisata/') ?>${currentWisataId}/gallery/upload`, {
+                    method: 'POST',
+                    body: formData
+                }).then(r => r.json())
+            );
+        });
+        
+        // 3. Process primary image change (if any)
+        if (galleryChanges.toSetPrimary && !galleryChanges.toSetPrimary.toString().startsWith('new-')) {
+            const formData = new FormData();
+            formData.append('galeri_id', galleryChanges.toSetPrimary);
+            formData.append('<?= csrf_token() ?>', '<?= csrf_hash() ?>');
+            
+            promises.push(
+                fetch(`<?= base_url('admin/wisata/') ?>${currentWisataId}/gallery/set-primary`, {
+                    method: 'POST',
+                    body: formData
+                }).then(r => r.json())
+            );
         }
-        function deleteWisata(id, nama){ if (confirm(`Apakah Anda yakin ingin menghapus wisata "${nama}"?\n\nTindakan ini tidak dapat dibatalkan.`)) { window.location.href = `<?= base_url('admin/wisata/delete/') ?>${id}`; } }
+        
+        // Execute all promises
+        if (promises.length > 0) {
+            Promise.all(promises)
+                .then(results => {
+                    console.log('Gallery changes processed:', results);
+                    resolve(true);
+                })
+                .catch(error => {
+                    console.error('Error processing gallery changes:', error);
+                    reject(error);
+                });
+        } else {
+            resolve(true); // No changes to process
+        }
+    });
+}
+
+// Update form submit handler - TANPA LOADING SPINNER
+document.addEventListener('DOMContentLoaded', function() {
+    const editForm = document.getElementById('editForm');
+    if (editForm) {
+        editForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // TANPA LOADING STATE - langsung process
+            processGalleryChanges()
+                .then(() => {
+                    // Submit form secara normal (akan trigger redirect dan flash message)
+                    this.submit();
+                })
+                .catch(error => {
+                    console.error('Gallery processing error:', error);
+                    alert('Error memproses perubahan gambar: ' + error.message);
+                });
+        });
+    }
+});
+
+      function deleteWisata(id, nama){ if (confirm(`Apakah Anda yakin ingin menghapus wisata "${nama}"?\n\nTindakan ini tidak dapat dibatalkan.`)) { window.location.href = `<?= base_url('admin/wisata/delete/') ?>${id}`; } }
 
         // Auto hide alerts
         setTimeout(()=>{ document.querySelectorAll('.alert.alert-dismissible').forEach(a => (new bootstrap.Alert(a)).close()); }, 5000);
@@ -1257,13 +1587,6 @@
             if (lng && (lng < -180 || lng > 180)){ alert('Longitude harus antara -180 sampai 180'); return false; }
             return true;
         }
-        document.addEventListener('DOMContentLoaded', function(){
-            document.querySelectorAll('form').forEach(form => {
-                if (form.querySelector('input[name="latitude"]')){
-                    form.addEventListener('submit', function(e){ if (!validateCoordinates()) e.preventDefault(); });
-                }
-            });
-        });
 
         // ====== Enhanced Master Data Functions ======
 
@@ -1385,6 +1708,7 @@ document.getElementById('filterKategori').addEventListener('change', function() 
     });
 });
 
+//show section for user klik
 function showSection(sectionName) {
     document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
     document.getElementById(sectionName + '-section').classList.add('active');
@@ -1393,43 +1717,145 @@ function showSection(sectionName) {
     if (sectionName === 'import') setTimeout(initializeChart, 100); // Menambahkan pemeriksaan untuk section import
 }
 
-// Filter kecamatan berdasarkan kota yang dipilih
-document.getElementById('filterKotaKecamatan').addEventListener('change', function() {
-    const selectedKotaId = this.value;
+// Fungsi filter kecamatan (FINAL VERSION)
+function filterKecamatanByKota() {
+    const selectedKotaId = document.getElementById('filterKotaKecamatan').value;
     const kecamatanList = document.getElementById('kecamatanList');
-    const noKotaInfo = document.getElementById('noKotaSelected');
-    const allKecamatan = kecamatanList.querySelectorAll('.list-group-item');
+
     
     if (selectedKotaId === '') {
-        // Jika tidak ada kota dipilih, sembunyikan list
         kecamatanList.style.display = 'none';
-        noKotaInfo.style.display = 'block';
         return;
     }
     
-    // Tampilkan list dan sembunyikan info
     kecamatanList.style.display = 'block';
-    noKotaInfo.style.display = 'none';
     
-    // Filter kecamatan berdasarkan kota_id
+    const allItems = kecamatanList.querySelectorAll('.list-group-item');
     let visibleCount = 0;
-    allKecamatan.forEach(item => {
-        const kotaId = item.getAttribute('data-kota-id');
-        if (kotaId === selectedKotaId) {
-            item.style.display = '';
+    
+    allItems.forEach(item => {
+        if (item.classList.contains('empty-message')) {
+            item.remove();
+            return;
+        }
+        
+        const itemKotaId = item.getAttribute('data-kota-id');
+        
+        if (itemKotaId === selectedKotaId) {
+            item.style.display = ''; // ← UBAH JADI KOSONG (biar ikut class asli)
+            item.classList.remove('d-none'); // Pastikan tidak ada class d-none
             visibleCount++;
         } else {
             item.style.display = 'none';
+            item.classList.add('d-none'); // Tambah class d-none
         }
     });
     
-    // Jika tidak ada kecamatan untuk kota tersebut
     if (visibleCount === 0) {
-        kecamatanList.innerHTML = '<div class="list-group-item text-center text-muted">Belum ada kecamatan untuk kota ini</div>';
+        const emptyMsg = document.createElement('div');
+        emptyMsg.className = 'list-group-item text-center text-muted empty-message';
+        emptyMsg.textContent = 'Belum ada kecamatan untuk kota ini';
+        kecamatanList.appendChild(emptyMsg);
+    }
+}
+
+// Reset saat load
+document.addEventListener('DOMContentLoaded', function() {
+    const kecamatanList = document.getElementById('kecamatanList');
+    const kotaSelect = document.getElementById('filterKotaKecamatan');
+    
+    if (kotaSelect) {
+        kotaSelect.selectedIndex = 0;
+    }
+    
+    if (kecamatanList) {
+        kecamatanList.style.display = 'none';
+        // Reset semua item display
+        kecamatanList.querySelectorAll('.list-group-item').forEach(item => {
+            item.style.display = '';
+            item.classList.remove('d-none');
+        });
     }
 });
 
+// ========== TAMBAHKAN INI ==========
+    // Handle fragment URL untuk auto-switch section ketika terjadi redirect
+    const hash = window.location.hash;
+    if (hash) {
+        const sectionName = hash.replace('#', '').replace('-section', '');
+        console.log('Detected hash:', hash, 'Section:', sectionName);
+        
+        // Daftar section yang valid
+        const validSections = ['create', 'edit', 'delete', 'master', 'destinasi', 'import', 'users', 'statistics'];
+        
+        if (validSections.includes(sectionName)) {
+            // Hide semua section
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            
+            // Show section yang dituju
+            const targetSection = document.getElementById(sectionName + '-section');
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Update active state pada sidebar
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick')?.includes(`'${sectionName}'`)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Scroll smooth ke section
+            setTimeout(() => {
+                targetSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    }
 
+
+  // Konfirmasi sederhana saat klik Logout
+  document.addEventListener('DOMContentLoaded', function () {
+    const logoutLink = document.getElementById('logoutLink');
+    if (logoutLink) {
+      logoutLink.addEventListener('click', function (e) {
+        const ok = confirm('Apakah Anda yakin ingin logout?');
+        if (!ok) {
+          e.preventDefault();
+        }
+      });
+    }
+  });
+  // Validasi maksimal 5 gambar pada form Buat Postingan
+const createGambarInput = document.getElementById('createGambar');
+if (createGambarInput) {
+    createGambarInput.addEventListener('change', function(e) {
+        const files = e.target.files;
+        const preview = document.getElementById('createImagePreview');
+        
+        // Validasi jumlah file
+        if (files.length > 5) {
+            alert('Maksimal 5 gambar yang diunggah');
+            e.target.value = ''; // Reset input
+            preview.innerHTML = '';
+            return;
+        }
+        
+        // Tampilkan preview gambar
+        preview.innerHTML = '';
+        if (files.length > 0) {
+            preview.innerHTML = `<div class="alert alert-info"><i class="fas fa-images"></i> ${files.length} gambar dipilih</div>`;
+            
+            // Tampilkan nama file
+            let fileList = '<small class="text-muted">File yang dipilih:<br>';
+            for (let i = 0; i < files.length; i++) {
+                fileList += `${i + 1}. ${files[i].name}<br>`;
+            }
+            fileList += '</small>';
+            preview.innerHTML += fileList;
+        }
+    });
+}
 
     </script>
 </body>

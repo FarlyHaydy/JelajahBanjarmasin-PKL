@@ -45,7 +45,7 @@ class BookmarkModel extends Model
                    ->delete();
     }
 
-    // Toggle bookmark
+    // Toggle/icon bookmark
     public function toggleBookmark($userId, $wisataId)
     {
         if ($this->isBookmarked($userId, $wisataId)) {

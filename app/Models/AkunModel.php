@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use CodeIgniter\Model;
 
 class AkunModel extends Model
@@ -46,12 +45,13 @@ class AkunModel extends Model
     protected $skipValidation = false;
     protected $cleanValidationRules = true;
 
-    // Custom methods
+    // Mengambil data akun berdasarkan email
     public function getAkunByEmail($email)
     {
         return $this->where('Email', $email)->first();
     }
 
+    // Mengambil data akun berdasarkan username dengan join ke tabel user
     public function getAkunByUsername($username)
     {
         return $this->join('user', 'user.id = akun.user_id')
@@ -60,11 +60,13 @@ class AkunModel extends Model
                     ->first();
     }
 
+    // Membuat akun baru
     public function createAkun($data)
     {
         return $this->insert($data);
     }
 
+    // Update password berdasarkan user_id
     public function updatePassword($userId, $newPassword)
     {
         return $this->where('user_id', $userId)

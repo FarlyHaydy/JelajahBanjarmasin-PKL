@@ -19,6 +19,7 @@ $kotaKeys    = array_keys($kotaKecamatan ?? []);
   <title>Profil - Akun Pengguna</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="<?= base_url('css/profil.css') ?>">
 
   <style>
@@ -247,8 +248,90 @@ $kotaKeys    = array_keys($kotaKecamatan ?? []);
       100% { transform: rotate(360deg); }
     }
 
+    /* Select2 Styling untuk Profil - DIUBAH */
+    .select2-container--default .select2-selection--single {
+      height: 45px !important;
+      border: 1px solid #4a4a4a !important;
+      border-radius: 25px !important;
+      padding: 0.5rem 1.25rem !important;
+      display: flex !important;
+      align-items: center !important;
+      background-color: #3a3a3a !important;
+    }
+    
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+      line-height: normal !important;
+      padding-left: 0 !important;
+      color: #999 !important;
+      font-size: 0.95rem;
+    }
+    
+    .select2-container--default .select2-selection--single .select2-selection__placeholder {
+      color: #666 !important;
+    }
+    
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+      height: 43px !important;
+      right: 15px !important;
+    }
+    
+    .select2-container--default .select2-selection--single .select2-selection__arrow b {
+      border-color: #666 transparent transparent transparent;
+    }
+    
+    .select2-container {
+      width: 100% !important;
+    }
+
+    /* Hover dan focus state untuk Select2 - DIUBAH */
+    .select2-container--default.select2-container--focus .select2-selection--single,
+    .select2-container--default .select2-selection--single:focus {
+      border-color: #666 !important;
+      outline: 0 !important;
+      background-color: #3a3a3a !important;
+    }
+
+    /* Dropdown Select2 - DIUBAH */
+    .select2-dropdown {
+      border: 1px solid #4a4a4a !important;
+      border-radius: 15px !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+      background-color: #3a3a3a !important;
+      overflow: hidden;
+    }
+
+    .select2-results__option {
+      padding: 12px 20px !important;
+      color: #999 !important;
+      background-color: #3a3a3a !important;
+    }
+
+    .select2-results__option--highlighted {
+      background-color: #00d4aa !important;
+      color: white !important;
+    }
+
+    .select2-results__option[aria-selected=true] {
+      background-color: #4a4a4a !important;
+      color: white !important;
+    }
+
+    .select2-search--dropdown .select2-search__field {
+      background-color: #3a3a3a !important;
+      border: 1px solid #4a4a4a !important;
+      color: white !important;
+      border-radius: 8px !important;
+      padding: 8px 12px !important;
+    }
+
+    .select2-search--dropdown .select2-search__field:focus {
+      border-color: #00d4aa !important;
+      outline: none !important;
+    }
+
     .save-btn.loading{background:#6c757d!important;color:#fff!important;border-color:#6c757d!important}
     .save-btn.success{background:#28a745!important;color:#fff!important;border-color:#28a745!important}
+    
     /* Layout kecil */
     @media (max-width:768px){
       .bookmark-modal-content{width:95%;margin:20px}
@@ -258,6 +341,16 @@ $kotaKeys    = array_keys($kotaKecamatan ?? []);
       .bookmarks-grid{grid-template-columns:1fr;gap:15px}
       .bookmark-actions{flex-direction:column}
       .bookmark-actions .btn{flex:none}
+      
+      /* Select2 responsive */
+      .select2-container--default .select2-selection--single {
+        padding: 1rem 1.25rem !important;
+        height: 50px !important;
+      }
+      
+      .select2-container--default .select2-selection--single .select2-selection__rendered {
+        font-size: 1rem !important;
+      }
     }
   </style>
 </head>
@@ -367,51 +460,55 @@ $kotaKeys    = array_keys($kotaKecamatan ?? []);
             </div>
 
             <!-- Kota/Kab dan Kecamatan -->
-            <div class="row-fields">
-              <div class="form-group">
-                <label class="form-label">Kota / Kabupaten <span class="text-danger">*</span></label>
-                <select name="kota" id="kota" class="form-select" required>
-                  <?php
-                    if ($currentKota && !in_array($currentKota, $kotaKeys, true)) {
-                      echo '<option value="'.esc($currentKota).'">'.esc($currentKota).' (tersimpan)</option>';
-                      echo '<option disabled>──────────</option>';
-                    } else {
-                      echo '<option value="">Pilih Kota/Kabupaten</option>';
-                    }
+             <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Kota / Kabupaten <span class="text-danger">*</span></label>
+                  <select name="kota" id="kota" class="form-select" required>
+                    <?php
+                      if ($currentKota && !in_array($currentKota, $kotaKeys, true)) {
+                        echo '<option value="'.esc($currentKota).'">'.esc($currentKota).' (tersimpan)</option>';
+                        echo '<option disabled>──────────</option>';
+                      } else {
+                        echo '<option value="">Pilih Kota/Kabupaten</option>';
+                      }
 
-                    foreach ($kotaKeys as $k) {
-                        $sel = ($k === $currentKota) ? 'selected' : '';
-                        echo '<option value="'.esc($k).'" '.$sel.'>'.esc($k).'</option>';
-                    }
-                  ?>
-                </select>
-                <div class="invalid-feedback">Kota/Kabupaten wajib dipilih</div>
+                      foreach ($kotaKeys as $k) {
+                          $sel = ($k === $currentKota) ? 'selected' : '';
+                          echo '<option value="'.esc($k).'" '.$sel.'>'.esc($k).'</option>';
+                      }
+                    ?>
+                  </select>
+                  <div class="invalid-feedback">Kota/Kabupaten wajib dipilih</div>
+                </div>
               </div>
 
-              <div class="form-group">
-                <label class="form-label">Kecamatan <span class="text-danger">*</span></label>
-                <select name="kecamatan" id="kecamatan" class="form-select" required>
-                  <?php
-                    if ($currentKota && isset($kotaKecamatan[$currentKota]) && is_array($kotaKecamatan[$currentKota])) {
-                        $kecs = $kotaKecamatan[$currentKota];
-                        if ($currentKec && !in_array($currentKec, $kecs, true)) {
-                            echo '<option value="'.esc($currentKec).'" selected>'.esc($currentKec).' (tersimpan)</option>';
-                            echo '<option disabled>──────────</option>';
-                        }
-                        foreach ($kecs as $kc) {
-                            $sel = ($kc === $currentKec) ? 'selected' : '';
-                            echo '<option value="'.esc($kc).'" '.$sel.'>'.esc($kc).'</option>';
-                        }
-                    } else {
-                        if ($currentKec) {
-                            echo '<option value="'.esc($currentKec).'" selected>'.esc($currentKec).' (tersimpan)</option>';
-                        } else {
-                            echo '<option value="">Pilih Kecamatan</option>';
-                        }
-                    }
-                  ?>
-                </select>
-                <div class="invalid-feedback">Kecamatan wajib dipilih</div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Kecamatan <span class="text-danger">*</span></label>
+                  <select name="kecamatan" id="kecamatan" class="form-select" required>
+                    <?php
+                      if ($currentKota && isset($kotaKecamatan[$currentKota]) && is_array($kotaKecamatan[$currentKota])) {
+                          $kecs = $kotaKecamatan[$currentKota];
+                          if ($currentKec && !in_array($currentKec, $kecs, true)) {
+                              echo '<option value="'.esc($currentKec).'" selected>'.esc($currentKec).' (tersimpan)</option>';
+                              echo '<option disabled>──────────</option>';
+                          }
+                          foreach ($kecs as $kc) {
+                              $sel = ($kc === $currentKec) ? 'selected' : '';
+                              echo '<option value="'.esc($kc).'" '.$sel.'>'.esc($kc).'</option>';
+                          }
+                      } else {
+                          if ($currentKec) {
+                              echo '<option value="'.esc($currentKec).'" selected>'.esc($currentKec).' (tersimpan)</option>';
+                          } else {
+                              echo '<option value="">Pilih Kecamatan</option>';
+                          }
+                      }
+                    ?>
+                  </select>
+                  <div class="invalid-feedback">Kecamatan wajib dipilih</div>
+                </div>
               </div>
             </div>
 
@@ -463,8 +560,13 @@ $kotaKeys    = array_keys($kotaKecamatan ?? []);
     </div>
   </div>
 
+  <!-- jQuery (required for Select2) -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
   <!-- Bootstrap JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <!-- Select2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  
   <script>
     // ========= Preload data kota/kecamatan dari server (tanpa fetch) =========
     const KOTA_KECAMATAN = <?= json_encode($kotaKecamatan ?? [], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES) ?>;
@@ -474,28 +576,71 @@ $kotaKeys    = array_keys($kotaKecamatan ?? []);
     const kotaSelect = document.getElementById('kota');
     const kecSelect  = document.getElementById('kecamatan');
 
-    // Ganti daftar kecamatan saat kota berubah
-    kotaSelect.addEventListener('change', () => {
-      const kota = kotaSelect.value;
-      const kecList = Array.isArray(KOTA_KECAMATAN[kota]) ? KOTA_KECAMATAN[kota] : [];
+    // Fungsi untuk mengisi dropdown kecamatan
+    function fillKecamatanOptions(kota, selectedKec) {
+      // Destroy Select2 dulu sebelum mengubah options
+      $('#kecamatan').select2('destroy');
+      
       kecSelect.innerHTML = '';
-
-      if (!kota) {
-        kecSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
-        return;
-      }
-
       const opt0 = document.createElement('option');
       opt0.value = '';
       opt0.textContent = 'Pilih Kecamatan';
       kecSelect.appendChild(opt0);
 
-      kecList.forEach(kc => {
+      const list = Array.isArray(KOTA_KECAMATAN[kota]) ? KOTA_KECAMATAN[kota] : [];
+      list.forEach(kc => {
         const opt = document.createElement('option');
         opt.value = kc;
         opt.textContent = kc;
+        if (selectedKec && selectedKec === kc) opt.selected = true;
         kecSelect.appendChild(opt);
       });
+
+      // Inisialisasi Select2 kembali setelah mengisi kecamatan
+      $('#kecamatan').select2({
+        placeholder: "Pilih Kecamatan",
+        allowClear: true,
+      });
+    }
+
+    // Inisialisasi saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inisialisasi Select2 untuk dropdown Kota
+      $('#kota').select2({
+        placeholder: "Pilih Kota/Kabupaten",
+        allowClear: true,
+      });
+
+      // Inisialisasi Select2 untuk dropdown Kecamatan
+      $('#kecamatan').select2({
+        placeholder: "Pilih Kecamatan",
+        allowClear: true,
+      });
+
+      // Jika CURRENT_KOTA ada, isi kecamatan-nya
+      if (CURRENT_KOTA && KOTA_KECAMATAN[CURRENT_KOTA]) {
+        // Dropdown sudah terisi dari PHP, jadi hanya perlu reinit Select2
+        $('#kecamatan').select2({
+          placeholder: "Pilih Kecamatan",
+          allowClear: true,
+        });
+      }
+    });
+
+    // Event listener saat kota berubah
+    $('#kota').on('change', function() {
+      const kota = $(this).val();
+      if (kota) {
+        fillKecamatanOptions(kota, '');
+      } else {
+        // Jika kota dikosongkan, reset kecamatan
+        $('#kecamatan').select2('destroy');
+        kecSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+        $('#kecamatan').select2({
+          placeholder: "Pilih Kecamatan",
+          allowClear: true,
+        });
+      }
     });
 
     // ========= Section Navigation - FUNGSI BARU =========
@@ -555,74 +700,74 @@ $kotaKeys    = array_keys($kotaKecamatan ?? []);
     }
 
     function displayBookmarks(bookmarks) {
-  const content = document.getElementById('bookmarkContent');
-  
-  // Jika tidak ada bookmark
-  if (!bookmarks || bookmarks.length === 0) {
-    content.innerHTML = `
-      <table class="table bookmark-table">
-        <thead>
+      const content = document.getElementById('bookmarkContent');
+      
+      // Jika tidak ada bookmark
+      if (!bookmarks || bookmarks.length === 0) {
+        content.innerHTML = `
+          <table class="table bookmark-table">
+            <thead>
+              <tr>
+                <th style="width: 40%;">Destinasi Wisata</th>
+                <th style="width: 15%;">Kategori</th>
+                <th style="width: 25%;">Lokasi</th>
+                <th style="width: 20%;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="4" class="text-center py-5">
+                  <div class="empty-bookmarks">
+                    <i class="far fa-bookmark"></i>
+                    <h4>Belum Ada Bookmark</h4>
+                    <p>Mulai jelajahi destinasi dan tambahkan ke favorit Anda.</p>
+                    <a href="<?= base_url('/') ?>" class="btn btn-primary">Jelajahi Sekarang</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+        return;
+      }
+
+      let tableHTML = `
+        <table class="table bookmark-table">
+          <thead>
+            <tr>
+              <th style="width: 40%;">Destinasi Wisata</th>
+              <th style="width: 15%;">Kategori</th>
+              <th style="width: 25%;">Lokasi</th>
+              <th style="width: 20%;">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      bookmarks.forEach((bookmark) => {
+        // Potong alamat jika terlalu panjang
+        const alamat = bookmark.alamat || 'Alamat tidak tersedia';
+        const alamatShort = alamat.length > 80 ? alamat.substring(0, 80) + '...' : alamat;
+        
+        tableHTML += `
           <tr>
-            <th style="width: 40%;">Destinasi Wisata</th>
-            <th style="width: 15%;">Kategori</th>
-            <th style="width: 25%;">Lokasi</th>
-            <th style="width: 20%;">Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td colspan="4" class="text-center py-5">
-              <div class="empty-bookmarks">
-                <i class="far fa-bookmark"></i>
-                <h4>Belum Ada Bookmark</h4>
-                <p>Mulai jelajahi destinasi dan tambahkan ke favorit Anda.</p>
-                <a href="<?= base_url('/') ?>" class="btn btn-primary">Jelajahi Sekarang</a>
+            <td>
+              <div class="bookmark-card-mini">
+                <div class="bookmark-info-mini">
+                  <h6>${bookmark.nama_wisata || 'Nama tidak tersedia'}</h6>
+                  <p class="text-muted small mb-0">
+                    <i class="fas fa-map-marker-alt me-1"></i>
+                    ${alamatShort}
+                  </p>
+                </div>
               </div>
             </td>
-          </tr>
-        </tbody>
-      </table>
-    `;
-    return;
-  }
-
-  let tableHTML = `
-    <table class="table bookmark-table">
-      <thead>
-        <tr>
-          <th style="width: 40%;">Destinasi Wisata</th>
-          <th style="width: 15%;">Kategori</th>
-          <th style="width: 25%;">Lokasi</th>
-          <th style="width: 20%;">Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-  `;
-
-  bookmarks.forEach((bookmark) => {
-    // Potong alamat jika terlalu panjang
-    const alamat = bookmark.alamat || 'Alamat tidak tersedia';
-    const alamatShort = alamat.length > 80 ? alamat.substring(0, 80) + '...' : alamat;
-    
-    tableHTML += `
-      <tr>
-        <td>
-          <div class="bookmark-card-mini">
-            <div class="bookmark-info-mini">
-              <h6>${bookmark.nama_wisata || 'Nama tidak tersedia'}</h6>
-              <p class="text-muted small mb-0">
-                <i class="fas fa-map-marker-alt me-1"></i>
-                ${alamatShort}
-              </p>
-            </div>
-          </div>
-        </td>
-        <td>
-          <span class="bookmark-category-badge">${bookmark.nama_kategori || 'Kategori'}</span>
-        </td>
-        <td>
-          <div class="text-muted small">
-            <div><i class="fas fa-building me-1"></i>${bookmark.nama_kecamatan || 'Kecamatan tidak tersedia'}</div>
+            <td>
+              <span class="bookmark-category-badge">${bookmark.nama_kategori || 'Kategori'}</span>
+            </td>
+            <td>
+              <div class="text-muted small">
+                <div><i class="fas fa-fa-building me-1"></i>${bookmark.nama_kecamatan || 'Kecamatan tidak tersedia'}</div>
             <div><i class="fas fa-city me-1"></i>${bookmark.nama_kota || 'Kota tidak tersedia'}</div>
           </div>
         </td>

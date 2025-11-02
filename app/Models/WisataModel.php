@@ -1,6 +1,5 @@
 <?php
 
-// app/Models/WisataModel.php
 namespace App\Models;
 use CodeIgniter\Model;
 
@@ -14,9 +13,10 @@ class WisataModel extends Model
         'latitude', 'longitude', 'created_at', 'updated_at'
     ];
     
-    // Disable automatic timestamps karena kita handle manual
+    // Disable automatic timestamps karena handle manual
     protected $useTimestamps = false;
 
+    // Mengambil semua data wisata beserta relasi kategori, kecamatan, dan kota
     public function getAllWithRelations()
     {
         return $this->join('kategori', 'kategori.kategori_id = wisata.kategori_id')
@@ -26,6 +26,7 @@ class WisataModel extends Model
                     ->findAll();
     }
 
+    // Mengambil data wisata berdasarkan kategori tertentu
     public function getByKategori($kategori)
     {
         return $this->join('kategori', 'kategori.kategori_id = wisata.kategori_id')
@@ -36,6 +37,7 @@ class WisataModel extends Model
                     ->findAll();
     }
 
+    // Mengambil data wisata berdasarkan ID beserta relasinya
     public function getWithRelations($id)
     {
         return $this->join('kategori', 'kategori.kategori_id = wisata.kategori_id')
@@ -46,9 +48,7 @@ class WisataModel extends Model
                     ->first();
     }
 
-    /**
-     * Method untuk validasi koordinat
-     */
+    // Validasi koordinat latitude dan longitude
     public function validateCoordinates($latitude, $longitude)
     {
         if (empty($latitude) || empty($longitude)) {
@@ -68,9 +68,7 @@ class WisataModel extends Model
         return true;
     }
 
-    /**
-     * Method untuk validasi foreign keys
-     */
+    // Validasi apakah foreign key (kategori, kota, kecamatan) ada di database
     public function validateForeignKeys($kategori_id, $kota_id, $kecamatan_id)
     {
         $db = \Config\Database::connect();
@@ -105,9 +103,7 @@ class WisataModel extends Model
         return true;
     }
 
-    /**
-     * Method untuk mendapatkan wisata berdasarkan koordinat terdekat
-     */
+    // Mendapatkan wisata terdekat berdasarkan koordinat dalam radius tertentu (km)
     public function getNearbyWisata($latitude, $longitude, $radius = 10)
     {
         // Menggunakan formula Haversine untuk mencari wisata dalam radius tertentu (km)
@@ -123,9 +119,7 @@ class WisataModel extends Model
         return $this->db->query($sql, [$latitude, $longitude, $latitude, $radius])->getResultArray();
     }
     
-    /**
-     * Method untuk import data secara batch
-     */
+    // Import data wisata secara batch dari file XLSX
     public function importBatch($data)
     {
         // Validasi data sebelum insert

@@ -1,0 +1,502 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #000000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation */
+.navbar {
+    background: rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    padding: 1rem 0;
+}
+
+.navbar.scrolled {
+    background: rgba(0, 0, 0, 0.9) !important;
+}
+
+.navbar-brand {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white !important;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: 500;
+    margin: 0 1rem;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #00d4aa !important;
+    transform: translateY(-2px);
+}
+
+.main-container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.main-container h1 {
+    margin-top: 50px;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 4rem;
+    color: white;
+}
+
+.card-image {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Background images for each location - mengikuti style dashboard */
+.menara-pandang {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), linear-gradient(45deg, #1e3c72, #2a5298);
+}
+
+.musik-panting {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), linear-gradient(45deg, #ff7b00, #ffaa00);
+}
+
+.pasar-terapung {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), linear-gradient(45deg, #ff6b35, #f7931e);
+}
+
+.masjid-sultan {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), linear-gradient(45deg, #4facfe, #00f2fe);
+}
+
+.card-content {
+    padding: 40px;
+    position: relative;
+    /* height: 300px; */         /* HAPUS baris ini */
+    min-height: 300px;           /* cukup jaga tinggi minimum */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  /* mulai dari atas */
+    gap: 1rem;                    /* jarak antar elemen */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover effect yang mengikuti style dashboard */
+/* .row.mb-5:hover .card-content {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
+}
+
+.row.mb-5:hover .card-image {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
+} */
+
+.card-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.card-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #cccccc;
+    margin-bottom: 2rem;
+}
+
+/* Tombol 'Lihat selengkapnya' */
+.btn-more {
+  position: static;              
+  align-self: flex-end;          
+  margin-top: .5rem;             
+  padding: 10px 16px;
+  border: 2px solid #fff;
+  color: #fff;
+  background: transparent;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: .2px;
+  transition: all .25s ease;
+  line-height: 1;
+}
+
+.btn-more:hover,
+.btn-more:focus-visible {
+  background: #fff;
+  color: #0a0a0a;
+  box-shadow: 0 0 20px rgba(255,255,255,.3);
+  transform: scale(1.02);
+}
+
+.btn-more:active { transform: scale(.98); }
+
+/* Responsif */
+@media (max-width: 768px) {
+  .btn-more { bottom: 20px; right: 20px; padding: 8px 14px; }
+}
+@media (max-width: 576px) {
+  .btn-more { bottom: 15px; right: 15px; padding: 8px 12px; font-size: .875rem; }
+}
+
+
+.wide-card {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 20px;
+    height: 250px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Hover effect untuk wide card mengikuti dashboard */
+.wide-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
+}
+
+.wide-card-content {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.wide-card-title {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: white;
+    line-height: 1.1;
+}
+
+.wide-card-arrow {
+    width: 60px;
+    height: 60px;
+    border: 2px solid white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: transparent;
+}
+
+.wide-card-arrow:hover {
+    background-color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.wide-card-arrow i {
+    font-size: 1.4rem;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.wide-card-arrow:hover i {
+    color: #667eea;
+}
+
+.footer {
+    background: #111;
+    color: white;
+    padding: 3rem 0 1rem;
+    margin-top: auto;
+}
+
+.footer-logo {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.footer-tagline {
+    color: #888;
+    margin-bottom: 2rem;
+}
+
+.footer h5 {
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer ul li a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer ul li a:hover {
+    color: #00d4aa;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .card-content {
+        padding: 30px;
+        height: 250px;
+    }
+
+    .card-image {
+        height: 250px;
+        margin-bottom: 20px;
+    }
+
+    .card-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .card-content {
+        padding: 25px;
+        padding-bottom: 80px; 
+        height: auto;
+        min-height: 250px;
+    }
+
+    .card-image {
+        height: 200px;
+        margin-bottom: 15px;
+    }
+
+    .card-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem; 
+    }
+
+    .card-description {
+        font-size: 0.9rem;
+        margin-bottom: 1rem; 
+        line-height: 1.5;
+    }
+
+    .card-arrow {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .card-arrow i {
+        font-size: 1rem;
+    }
+
+    .wide-card {
+        height: 200px;
+    }
+
+    .wide-card-title {
+        font-size: 2.2rem;
+    }
+
+    .wide-card-arrow {
+        width: 50px;
+        height: 50px;
+    }
+
+    .wide-card-content {
+        bottom: 25px;
+        left: 25px;
+        right: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-container {
+        padding: 20px 15px;
+    }
+    
+    .main-container h1 {
+        margin-top: 130px; 
+    }
+
+    .card-content {
+        padding: 20px;
+        padding-bottom: 75px; 
+        min-height: 240px; 
+    }
+
+    .card-image {
+        height: 180px;
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .card-description {
+        font-size: 0.85rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.4;
+    }
+
+    .card-arrow {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .card-arrow i {
+        font-size: 0.9rem;
+    }
+
+    .wide-card {
+        height: 180px;
+    }
+
+    .wide-card-content {
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Profile dropdown styles */
+        .profile-dropdown {
+            position: relative;
+        }
+        
+        .profile-toggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .profile-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .profile-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            min-width: 180px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+        
+        .profile-dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .profile-dropdown-menu a {
+            display: block;
+            padding: 12px 16px;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .profile-dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .profile-dropdown-menu a:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .profile-dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .profile-dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .profile-dropdown-menu i {
+            margin-right: 8px;
+            width: 16px;
+        }
+        
+        .logout-btn {
+            color: #dc3545 !important;
+        }
+        
+        .logout-btn:hover {
+            background-color: #fff5f5 !important;
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown-arrow.rotated {
+            transform: rotate(180deg);
+        }

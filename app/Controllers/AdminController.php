@@ -166,69 +166,102 @@ class AdminController extends BaseController
 
     // Buat wisata baru
     public function createWisata()
-    {
-        $validation = \Config\Services::validation();
-        
-        $rules = [
-            'nama_wisata' => 'required|min_length[3]|max_length[255]',
-            'alamat' => 'required|min_length[10]',
-            'kategori_id' => 'required|is_natural_no_zero',
-            'kota_id' => 'required|is_natural_no_zero',
-            'kecamatan_id' => 'required|is_natural_no_zero',
-            'deskripsi' => 'required|min_length[20]',
-            'detail' => 'required|min_length[50]',
-            'gambar' => 'uploaded[gambar.0]|max_size[gambar.0,2048]|is_image[gambar.0]'
-        ];
+{
+    $validation = \Config\Services::validation();
+    
+    $rules = [
+        'nama_wisata' => 'required|min_length[3]|max_length[255]',
+        'alamat' => 'required|min_length[10]',
+        'kategori_id' => 'required|is_natural_no_zero',
+        'kota_id' => 'required|is_natural_no_zero',
+        'kecamatan_id' => 'required|is_natural_no_zero',
+        'deskripsi' => 'required|min_length[20]',
+        'detail' => 'required|min_length[50]',
+        'gambar' => 'uploaded[gambar.0]|max_size[gambar.0,10240]|is_image[gambar.0]'
+    ];
 
-        if (!$this->validate($rules)) {
-            return redirect()->back()->withInput()->with('error', 'Data tidak valid: ' . implode(', ', $validation->getErrors()));
-        }
+    if (!$this->validate($rules)) {
+        return redirect()->back()->withInput()->with('error', 'Data tidak valid: ' . implode(', ', $validation->getErrors()));
+    }
 
-        // Validasi koordinat jika diisi
-        $latitude = $this->request->getPost('latitude');
-        $longitude = $this->request->getPost('longitude');
-        
-        if (!empty($latitude) || !empty($longitude)) {
-            if (!$this->wisataModel->validateCoordinates($latitude, $longitude)) {
-                return redirect()->back()->withInput()->with('error', 'Koordinat tidak valid. Latitude: -90 sampai 90, Longitude: -180 sampai 180');
-            }
-        }
-
-        // FIXED: Simpan data wisata dengan manual timestamp
-        $wisataData = [
-            'nama_wisata' => $this->request->getPost('nama_wisata'),
-            'alamat' => $this->request->getPost('alamat'),
-            'kategori_id' => $this->request->getPost('kategori_id'),
-            'kota_id' => $this->request->getPost('kota_id'),
-            'kecamatan_id' => $this->request->getPost('kecamatan_id'),
-            'deskripsi' => $this->request->getPost('deskripsi'),
-            'detail' => $this->request->getPost('detail'),
-            'latitude' => !empty($latitude) ? $latitude : null,
-            'longitude' => !empty($longitude) ? $longitude : null,
-            'created_at' => date('Y-m-d H:i:s'),  // FIXED: Manual timestamp
-            'updated_at' => date('Y-m-d H:i:s')   // FIXED: Manual timestamp
-        ];
-
-        try {
-            $wisataId = $this->wisataModel->insert($wisataData);
-
-            if (!$wisataId) {
-                return redirect()->back()->withInput()->with('error', 'Gagal menyimpan data wisata');
-            }
-
-            // Upload gambar
-            $files = $this->request->getFiles();
-            if (isset($files['gambar'])) {
-                $this->uploadImages($wisataId, $files['gambar']);
-            }
-
-            return redirect()->to('/admin/dashboard')->with('success', 'Postingan wisata berhasil dibuat!');
-        } catch (\Exception $e) {
-            log_message('error', 'Create wisata error: ' . $e->getMessage());
-            return redirect()->back()->withInput()->with('error', 'Gagal menyimpan data: ' . $e->getMessage());
+    // Validasi koordinat jika diisi
+    $latitude = $this->request->getPost('latitude');
+    $longitude = $this->request->getPost('longitude');
+    
+    if (!empty($latitude) || !empty($longitude)) {
+        if (!$this->wisataModel->validateCoordinates($latitude, $longitude)) {
+            return redirect()->back()->withInput()->with('error', 'Koordinat tidak valid. Latitude: -90 sampai 90, Longitude: -180 sampai 180');
         }
     }
 
+    // FIXED: Simpan data wisata dengan manual timestamp
+    $wisataData = [
+        'nama_wisata' => $this->request->getPost('nama_wisata'),
+        'alamat' => $this->request->getPost('alamat'),
+        'kategori_id' => $this->request->getPost('kategori_id'),
+        'kota_id' => $this->request->getPost('kota_id'),
+        'kecamatan_id' => $this->request->getPost('kecamatan_id'),
+        'deskripsi' => $this->request->getPost('deskripsi'),
+        'detail' => $this->request->getPost('detail'),
+        'latitude' => !empty($latitude) ? $latitude : null,
+        'longitude' => !empty($longitude) ? $longitude : null,
+        'created_at' => date('Y-m-d H:i:s'),  
+        'updated_at' => date('Y-m-d H:i:s')   
+    ];
+
+    try {
+        $wisataId = $this->wisataModel->insert($wisataData);
+
+        if (!$wisataId) {
+            return redirect()->back()->withInput()->with('error', 'Gagal menyimpan data wisata');
+        }
+
+        // Upload gambar - GUNAKAN GALERICONTROLLER
+        $files = $this->request->getFiles();
+        if (isset($files['gambar'])) {
+            foreach ($files['gambar'] as $file) {
+                if ($file->isValid() && !$file->hasMoved()) {
+                    // Simulate upload to GaleriController
+                    $this->uploadToGaleri($wisataId, $file);
+                }
+            }
+        }
+
+        return redirect()->to('/admin/dashboard#create-section')->with('success', 'Postingan wisata berhasil dibuat!');
+    } catch (\Exception $e) {
+        log_message('error', 'Create wisata error: ' . $e->getMessage());
+        return redirect()->back()->withInput()->with('error', 'Gagal menyimpan data: ' . $e->getMessage());
+    }
+}
+
+// Helper method untuk upload ke galeri
+private function uploadToGaleri($wisataId, $file)
+{
+    $uploadPath = FCPATH . 'uploads/wisata/';
+    
+    if (!is_dir($uploadPath)) {
+        mkdir($uploadPath, 0755, true);
+    }
+
+    $newName = $file->getRandomName();
+    
+    if ($file->move($uploadPath, $newName)) {
+        // Cek jumlah gambar yang sudah ada
+        $existingCount = $this->galeriModel->where('wisata_id', $wisataId)->countAllResults();
+        $isPrimary = ($existingCount === 0) ? 1 : 0;
+        
+        // Simpan ke database
+        $galeriData = [
+            'wisata_id' => $wisataId,
+            'nama_file' => $newName,
+            'is_primary' => $isPrimary,
+        ];
+        
+        return $this->galeriModel->insert($galeriData);
+    }
+    
+    return false;
+}
 
     // Get data wisata untuk edit
     public function getWisata($id)
@@ -251,92 +284,65 @@ class AdminController extends BaseController
 }
 
     // Update wisata
-     public function updateWisata($id)
-{
-    $wisata = $this->wisataModel->find($id);
-    
-    if (!$wisata) {
-        return redirect()->back()->with('error', 'Wisata tidak ditemukan');
-    }
-
-    $validation = \Config\Services::validation();
-    
-    $rules = [
-        'nama_wisata' => 'required|min_length[3]|max_length[255]',
-        'alamat' => 'required|min_length[10]',
-        'kategori_id' => 'required|is_natural_no_zero',
-        'kota_id' => 'required|is_natural_no_zero',
-        'kecamatan_id' => 'required|is_natural_no_zero',
-        'deskripsi' => 'required|min_length[20]',
-        'detail' => 'required|min_length[50]',
-        'latitude' => 'permit_empty|decimal',
-        'longitude' => 'permit_empty|decimal'
-    ];
-
-    if (!$this->validate($rules)) {
-        return redirect()->back()->withInput()->with('error', 'Data tidak valid: ' . implode(', ', $validation->getErrors()));
-    }
-
-    // Validasi koordinat jika diisi
-    $latitude = $this->request->getPost('latitude');
-    $longitude = $this->request->getPost('longitude');
-    
-    if (!empty($latitude) || !empty($longitude)) {
-        if (!$this->wisataModel->validateCoordinates($latitude, $longitude)) {
-            return redirect()->back()->withInput()->with('error', 'Koordinat tidak valid. Latitude: -90 sampai 90, Longitude: -180 sampai 180');
-        }
-    }
-
-    // Update data wisata dengan manual timestamp
-    $wisataData = [
-        'nama_wisata' => $this->request->getPost('nama_wisata'),
-        'alamat' => $this->request->getPost('alamat'),
-        'kategori_id' => $this->request->getPost('kategori_id'),
-        'kota_id' => $this->request->getPost('kota_id'),
-        'kecamatan_id' => $this->request->getPost('kecamatan_id'),
-        'deskripsi' => $this->request->getPost('deskripsi'),
-        'detail' => $this->request->getPost('detail'),
-        'latitude' => !empty($latitude) ? $latitude : null,
-        'longitude' => !empty($longitude) ? $longitude : null,
-        'updated_at' => date('Y-m-d H:i:s')
-    ];
-
-    try {
-        $this->wisataModel->update($id, $wisataData);
-    } catch (\Exception $e) {
-        log_message('error', 'Update wisata error: ' . $e->getMessage());
-        return redirect()->back()->withInput()->with('error', 'Gagal mengupdate data: ' . $e->getMessage());
-    }
-
-    // FIXED: Cek apakah ada file gambar yang diupload
-    $files = $this->request->getFileMultiple('gambar');
-    
-    // Validasi: cek apakah user benar-benar upload file
-    $hasValidUpload = false;
-    foreach ($files as $file) {
-        if ($file->isValid() && !$file->hasMoved()) {
-            $hasValidUpload = true;
-            break;
-        }
-    }
-    
-    // Jika ada upload valid, proses gambar
-    if ($hasValidUpload) {
-        // Hapus gambar lama
-        $this->deleteWisataImages($id);
+    // Di method updateWisata - HAPUS bagian ini:
+    public function updateWisata($id)
+    {
+        $wisata = $this->wisataModel->find($id);
         
-        // Upload gambar baru
-        $uploaded = $this->uploadImages($id, $files);
+        if (!$wisata) {
+            return redirect()->back()->with('error', 'Wisata tidak ditemukan');
+        }
+
+        $validation = \Config\Services::validation();
         
-        if ($uploaded > 0) {
-            return redirect()->to('/admin/dashboard')->with('success', 'Postingan wisata dan gambar berhasil diperbarui!');
-        } else {
-            return redirect()->to('/admin/dashboard')->with('success', 'Postingan wisata berhasil diperbarui, namun ada masalah dengan upload gambar.');
+        $rules = [
+            'nama_wisata' => 'required|min_length[3]|max_length[255]',
+            'alamat' => 'required|min_length[10]',
+            'kategori_id' => 'required|is_natural_no_zero',
+            'kota_id' => 'required|is_natural_no_zero',
+            'kecamatan_id' => 'required|is_natural_no_zero',
+            'deskripsi' => 'required|min_length[20]',
+            'detail' => 'required|min_length[50]',
+            'latitude' => 'permit_empty|decimal',
+            'longitude' => 'permit_empty|decimal'
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('error', 'Data tidak valid: ' . implode(', ', $validation->getErrors()));
+        }
+
+        // Validasi koordinat jika diisi
+        $latitude = $this->request->getPost('latitude');
+        $longitude = $this->request->getPost('longitude');
+        
+        if (!empty($latitude) || !empty($longitude)) {
+            if (!$this->wisataModel->validateCoordinates($latitude, $longitude)) {
+                return redirect()->back()->withInput()->with('error', 'Koordinat tidak valid. Latitude: -90 sampai 90, Longitude: -180 sampai 180');
+            }
+        }
+
+        // Update data wisata dengan manual timestamp
+        $wisataData = [
+            'nama_wisata' => $this->request->getPost('nama_wisata'),
+            'alamat' => $this->request->getPost('alamat'),
+            'kategori_id' => $this->request->getPost('kategori_id'),
+            'kota_id' => $this->request->getPost('kota_id'),
+            'kecamatan_id' => $this->request->getPost('kecamatan_id'),
+            'deskripsi' => $this->request->getPost('deskripsi'),
+            'detail' => $this->request->getPost('detail'),
+            'latitude' => !empty($latitude) ? $latitude : null,
+            'longitude' => !empty($longitude) ? $longitude : null,
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+
+        try {
+            $this->wisataModel->update($id, $wisataData);
+            return redirect()->to('/admin/dashboard#edit-section')->with('success', 'Postingan wisata berhasil diperbarui!');
+        } catch (\Exception $e) {
+            log_message('error', 'Update wisata error: ' . $e->getMessage());
+            return redirect()->back()->withInput()->with('error', 'Gagal mengupdate data: ' . $e->getMessage());
         }
     }
-
-    return redirect()->to('/admin/dashboard')->with('success', 'Postingan wisata berhasil diperbarui!');
-}
 
     // Hapus wisata
      public function deleteWisata($id)
@@ -357,7 +363,7 @@ class AdminController extends BaseController
             // Hapus data wisata
             $this->wisataModel->delete($id);
 
-            return redirect()->to('/admin/dashboard')->with('success', 'Postingan wisata berhasil dihapus!');
+            return redirect()->to('/admin/dashboard#delete-section')->with('success', 'Postingan wisata berhasil dihapus!');
         } catch (\Exception $e) {
             log_message('error', 'Delete wisata error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Gagal menghapus wisata: ' . $e->getMessage());
@@ -376,11 +382,10 @@ class AdminController extends BaseController
 
         $data = [
             'nama_kategori' => $nama,
-            'created_at' => date('Y-m-d H:i:s')
         ];
 
         $this->kategoriModel->insert($data);
-        return redirect()->to('/admin/dashboard')->with('success', 'Kategori berhasil ditambahkan!');
+        return redirect()->to('/admin/dashboard#master-section')->with('success', 'Kategori berhasil ditambahkan!');
     }
 
     public function deleteKategori($id)
@@ -393,7 +398,7 @@ class AdminController extends BaseController
         }
 
         $this->kategoriModel->delete($id);
-        return redirect()->to('/admin/dashboard')->with('success', 'Kategori berhasil dihapus!');
+        return redirect()->to('/admin/dashboard#master-section')->with('success', 'Kategori berhasil dihapus!');
     }
 
     // ==================== KOTA MANAGEMENT ====================
@@ -408,11 +413,10 @@ class AdminController extends BaseController
 
         $data = [
             'nama_kota' => $nama,
-            'created_at' => date('Y-m-d H:i:s')
         ];
 
         $this->kotaModel->insert($data);
-        return redirect()->to('/admin/dashboard')->with('success', 'Kota berhasil ditambahkan!');
+        return redirect()->to('/admin/dashboard#master-section')->with('success', 'Kota berhasil ditambahkan!');
     }
 
     public function deleteKota($id)
@@ -426,7 +430,7 @@ class AdminController extends BaseController
         }
 
         $this->kotaModel->delete($id);
-        return redirect()->to('/admin/dashboard')->with('success', 'Kota berhasil dihapus!');
+        return redirect()->to('/admin/dashboard#master-section')->with('success', 'Kota berhasil dihapus!');
     }
 
     // ==================== KECAMATAN MANAGEMENT ====================
@@ -443,11 +447,10 @@ class AdminController extends BaseController
         $data = [
             'nama_kecamatan' => $nama,
             'kota_id' => $kotaId,
-            'created_at' => date('Y-m-d H:i:s')
         ];
 
         $this->kecamatanModel->insert($data);
-        return redirect()->to('/admin/dashboard')->with('success', 'Kecamatan berhasil ditambahkan!');
+        return redirect()->to('/admin/dashboard#master-section')->with('success', 'Kecamatan berhasil ditambahkan!');
     }
 
     public function deleteKecamatan($id)
@@ -460,7 +463,7 @@ class AdminController extends BaseController
         }
 
         $this->kecamatanModel->delete($id);
-        return redirect()->to('/admin/dashboard')->with('success', 'Kecamatan berhasil dihapus!');
+        return redirect()->to('/admin/dashboard#master-section')->with('success', 'Kecamatan berhasil dihapus!');
     }
 
     // Get kecamatan by kota (AJAX)
@@ -510,12 +513,11 @@ public function updateKategori($id)
 
     $data = [
         'nama_kategori' => $nama,
-        'updated_at' => date('Y-m-d H:i:s')
     ];
 
     try {
         $this->kategoriModel->update($id, $data);
-        return redirect()->to('/admin/dashboard')->with('success', 'Kategori berhasil diperbarui!');
+        return redirect()->to('/admin/dashboard#master-section')->with('success', 'Kategori berhasil diperbarui!');
     } catch (\Exception $e) {
         log_message('error', 'Update kategori error: ' . $e->getMessage());
         return redirect()->back()->with('error', 'Gagal mengupdate kategori: ' . $e->getMessage());
@@ -564,12 +566,11 @@ public function updateKota($id)
 
     $data = [
         'nama_kota' => $nama,
-        'updated_at' => date('Y-m-d H:i:s')
     ];
 
     try {
         $this->kotaModel->update($id, $data);
-        return redirect()->to('/admin/dashboard')->with('success', 'Kota berhasil diperbarui!');
+        return redirect()->to('/admin/dashboard#master-section')->with('success', 'Kota berhasil diperbarui!');
     } catch (\Exception $e) {
         log_message('error', 'Update kota error: ' . $e->getMessage());
         return redirect()->back()->with('error', 'Gagal mengupdate kota: ' . $e->getMessage());
@@ -623,12 +624,11 @@ public function updateKecamatan($id)
     $data = [
         'nama_kecamatan' => $nama,
         'kota_id' => $kotaId,
-        'updated_at' => date('Y-m-d H:i:s')
     ];
 
     try {
         $this->kecamatanModel->update($id, $data);
-        return redirect()->to('/admin/dashboard')->with('success', 'Kecamatan berhasil diperbarui!');
+        return redirect()->to('/admin/dashboard#master-section')->with('success', 'Kecamatan berhasil diperbarui!');
     } catch (\Exception $e) {
         log_message('error', 'Update kecamatan error: ' . $e->getMessage());
         return redirect()->back()->with('error', 'Gagal mengupdate kecamatan: ' . $e->getMessage());
@@ -644,14 +644,14 @@ public function importWisata()
 
     log_message('info', 'Import wisata dipanggil - Method: ' . $this->request->getMethod());
 
-    // Validasi file upload
+    // Validasi file upload untuk XLSX
     $validationRules = [
-        'file_txt' => [
-            'rules' => 'uploaded[file_txt]|ext_in[file_txt,txt]|max_size[file_txt,5120]',
+        'file_xlsx' => [
+            'rules' => 'uploaded[file_xlsx]|ext_in[file_xlsx,xlsx,xls]|max_size[file_xlsx,10240]',
             'errors' => [
-                'uploaded' => 'File TXT harus diupload.',
-                'ext_in' => 'File harus berformat TXT.',
-                'max_size' => 'Ukuran file maksimal 5MB.'
+                'uploaded' => 'File Excel harus diupload.',
+                'ext_in' => 'File harus berformat Excel (XLSX atau XLS).',
+                'max_size' => 'Ukuran file maksimal 10MB.'
             ]
         ]
     ]; 
@@ -662,62 +662,52 @@ public function importWisata()
         return redirect()->back()->with('error', $errorMessage);
     }
 
-    $file = $this->request->getFile('file_txt');
+    $file = $this->request->getFile('file_xlsx');
     
     // Validasi file
     if (!$file || !$file->isValid()) {
         return redirect()->back()->with('error', 'File tidak valid atau gagal diupload.');
     }
 
-    // Validasi ekstensi file
-    if ($file->getClientExtension() !== 'txt') {
-        return redirect()->back()->with('error', 'File harus berformat TXT.');
-    }
-
     try {
-        // Baca file TXT
-        $filePath = $file->getTempName();
-        $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        // Load library PhpSpreadsheet
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $spreadsheet = $reader->load($file->getTempName());
+        $worksheet = $spreadsheet->getActiveSheet();
         
-        if (empty($lines)) {
-            return redirect()->back()->with('error', 'File TXT kosong.');
+        // Konversi ke array
+        $rows = $worksheet->toArray();
+        
+        if (empty($rows)) {
+            return redirect()->back()->with('error', 'File Excel kosong.');
         }
 
-        log_message('info', 'Total baris dalam file: ' . count($lines));
+        log_message('info', 'Total baris dalam file: ' . count($rows));
 
         $dataWisata = [];
         $errors = [];
-        $rowNumber = 0;
         
-        // Deteksi delimiter dari baris pertama
-        $delimiter = $this->detectDelimiter($lines[0]);
-        log_message('info', 'Delimiter terdeteksi: ' . $delimiter);
-        
-        // Skip header jika ada (baris pertama yang mengandung kata 'nama' atau 'wisata')
-        $startIndex = 0;
-        if (stripos($lines[0], 'nama') !== false || stripos($lines[0], 'wisata') !== false) {
-            $startIndex = 1;
-            log_message('info', 'Header detected, skipping first line');
-        }
+        // Skip header (baris pertama)
+        $startIndex = 1;
         
         // Parse setiap baris
-        for ($i = $startIndex; $i < count($lines); $i++) {
-            $line = trim($lines[$i]);
+        for ($i = $startIndex; $i < count($rows); $i++) {
+            $row = $rows[$i];
             $rowNumber = $i + 1;
             
             // Skip baris kosong
-            if (empty($line)) {
+            if (empty(array_filter($row))) {
                 continue;
             }
             
-            // Parse baris berdasarkan delimiter
-            $row = array_map('trim', explode($delimiter, $line));
-            
-            // Validasi jumlah kolom
+            // Validasi jumlah kolom minimal
             if (count($row) < 9) {
                 $errors[] = "Baris ke-{$rowNumber}: Data tidak lengkap (harus ada 9 kolom, ditemukan " . count($row) . " kolom).";
                 continue;
             }
+            
+            // Trim semua nilai
+            $row = array_map('trim', $row);
             
             // Validasi data wajib (nama dan alamat)
             if (empty($row[0])) {
@@ -743,6 +733,17 @@ public function importWisata()
             
             if (!is_numeric($row[4])) {
                 $errors[] = "Baris ke-{$rowNumber}: Kecamatan ID harus berupa angka (ditemukan: {$row[4]}).";
+                continue;
+            }
+            
+            // Validasi deskripsi dan detail
+            if (empty($row[5])) {
+                $errors[] = "Baris ke-{$rowNumber}: Deskripsi tidak boleh kosong.";
+                continue;
+            }
+            
+            if (empty($row[6])) {
+                $errors[] = "Baris ke-{$rowNumber}: Detail tidak boleh kosong.";
                 continue;
             }
             
@@ -787,12 +788,12 @@ public function importWisata()
                 $errorMessage .= "<br><strong>... dan {$remaining} error lainnya.</strong>";
             }
             
-            return redirect()->back()->with('error', "Terdapat error pada file TXT:<br>{$errorMessage}");
+            return redirect()->back()->with('error', "Terdapat error pada file Excel:<br>{$errorMessage}");
         }
 
         // Cek apakah ada data untuk diimport
         if (empty($dataWisata)) {
-            return redirect()->back()->with('error', 'File TXT tidak memiliki data valid untuk diimport.');
+            return redirect()->back()->with('error', 'File Excel tidak memiliki data valid untuk diimport.');
         }
 
         log_message('info', 'Total data untuk import: ' . count($dataWisata));
@@ -811,6 +812,69 @@ public function importWisata()
         
         return redirect()->back()->with('error', 'Gagal mengimport data: ' . $e->getMessage());
     }
+}
+
+// Tambahkan method untuk download template Excel
+public function downloadTemplate()
+{
+    // Create new Spreadsheet
+    $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    
+    // Set header
+    $headers = [
+        'Nama Wisata', 
+        'Alamat', 
+        'Kategori_ID', 
+        'Kota_ID', 
+        'Kecamatan_ID', 
+        'Deskripsi', 
+        'Detail', 
+        'Latitude', 
+        'Longitude'
+    ];
+    
+    $sheet->fromArray($headers, null, 'A1');
+    
+    // Set example data
+    $exampleData = [
+        'Pantai Indah',
+        'Jl. Pantai No. 1, Kelurahan Pantai Indah',
+        '1',
+        '1', 
+        '1',
+        'Pantai dengan pemandangan sunset yang menakjubkan',
+        'Pantai ini memiliki pasir putih yang bersih dan air laut yang jernih. Cocok untuk berenang, berselancar, dan camping.',
+        '-3.316694',
+        '114.590111'
+    ];
+    
+    $sheet->fromArray($exampleData, null, 'A2');
+    
+    // Auto size columns
+    foreach(range('A','I') as $columnID) {
+        $sheet->getColumnDimension($columnID)->setAutoSize(true);
+    }
+    
+    // Set style for header
+    $headerStyle = [
+        'font' => ['bold' => true],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'color' => ['rgb' => 'E6E6FA']
+        ]
+    ];
+    $sheet->getStyle('A1:I1')->applyFromArray($headerStyle);
+    
+    // Create writer and output
+    $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+    
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="template_import_wisata.xlsx"');
+    header('Cache-Control: max-age=0');
+    
+    $writer->save('php://output');
+    exit;
 }
 
 /**
@@ -855,7 +919,6 @@ private function detectDelimiter($line)
                         'wisata_id' => $wisataId,
                         'nama_file' => $newName,
                         'is_primary' => ($uploaded === 0) ? 1 : 0, // Gambar pertama sebagai primary
-                        'created_at' => date('Y-m-d H:i:s')
                     ];
                     
                     $this->galeriModel->insert($galeriData);

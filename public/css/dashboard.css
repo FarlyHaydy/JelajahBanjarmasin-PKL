@@ -10,6 +10,7 @@
             color: #333;
         }
 
+        /* Navigation */
         .navbar {
             background: rgba(0, 0, 0, 0.1) !important;
             backdrop-filter: blur(10px);
@@ -40,10 +41,101 @@
             transform: translateY(-2px);
         }
 
+        /* Custom styles for profile dropdown */
+        .profile-dropdown {
+            position: relative;
+        }
+        
+        .profile-toggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .profile-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .profile-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            min-width: 180px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+        
+        .profile-dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .profile-dropdown-menu a {
+            display: block;
+            padding: 12px 16px;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .profile-dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .profile-dropdown-menu a:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .profile-dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .profile-dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .profile-dropdown-menu i {
+            margin-right: 8px;
+            width: 16px;
+        }
+        
+        .logout-btn {
+            color: #dc3545 !important;
+        }
+        
+        .logout-btn:hover {
+            background-color: #fff5f5 !important;
+        }
+
+        /* Animation for dropdown arrow */
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown-arrow.rotated {
+            transform: rotate(180deg);
+        }
+
         /* Hero Section */
         .hero-section {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url('/images/Tampilan_Awal.png');
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url('/images/background_awal.png');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -118,28 +210,28 @@
             align-items: stretch;
         }
 
+        .destination-card.patung-bekantan {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('/images/patung_bekantan.png');
+        }
+
         .destination-card.pasar-terapung {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('/images/Pasar_Terapung_Utama2.png');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('/images/pasar_terapung.png');
         }
 
-        .destination-card.musik-panting {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('/images/Musik_Painting_Utama.png');
-        }
-
-        .destination-card.masjid-sabilal {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('/images/Masjid_Sabilal_Utama.png');
+        .destination-card.soto-bang-amat {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('/images/Soto_bang_amat.png');
         }
 
         .destination-card.menara-pandang {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('/images/Menara_Pandang_Utama2.png');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('/images/menara_pandang.png');
         }
 
-        .destination-card.masjid-sultan {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('/images/Masjid_Sabilal_Utama.png');
+        .destination-card.masjid-sabilal {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('/images/masjid_sabilal.png');
         }
 
-        .destination-card.pulau-kembang {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('/images/Pulau_Kembang_Utama.png');
+        .destination-card.katedral-keluarga-kudus {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('/images/katedral_keluarga_kudus.png');
         }
 
         .destination-card:hover {
@@ -173,7 +265,6 @@
             opacity: 0.9;
             margin-bottom: 0;
         }
-
 
         /* Explore Banjarmasin */
         .explore-section {
@@ -211,15 +302,20 @@
             position: relative;
             display: flex;
             align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
             justify-content: center;
+        }
+        .slide:hover {
+            transform: scale(1.02) translateX(0);
         }
     
         .slide-1 {
-            background-image: url('/images/Menara_Pandang_Utama.png');
+            background-image: url('/images/katedral_keluarga_kudus2.png');
         }
 
         .slide-2 {
-            background-image: url('/images/Musik_Painting_Utama.png');
+            background-image: url('/images/background_awal.png');
         }
 
         .slide-3 {
@@ -288,31 +384,6 @@
             padding: 0 20px;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .explore-section h2 {
-                font-size: 2rem;
-            }
-            
-            .slide {
-                height: 300px;
-            }
-            
-            .slide-content h3 {
-                font-size: 1.5rem;
-            }
-            
-            .slide-content p {
-                font-size: 1rem;
-            }
-            
-            .nav-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-        }
-
         /* Jelajah Banjarmasin Section */
         .jelajah-section {
             padding: 5rem 0;
@@ -322,7 +393,7 @@
 
         .jelajah-image {
             height: 400px;
-            background-image: url('/images/Tourist_background.png');
+            background-image: url('/images/jelajah_section.png');
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -335,6 +406,7 @@
             font-weight: bold;
             margin-bottom: 1.5rem;
             color: white;
+            margin-left: 30px;
         }
 
         .jelajah-content p {
@@ -343,42 +415,7 @@
             color: #ccc;
             margin-bottom: 1.5rem;
             text-align: justify;
-        }
-
-        /* Responsive untuk Jelajah Section */
-        @media (max-width: 768px) {
-            .jelajah-section {
-                padding: 3rem 0;
-            }
-            
-            .jelajah-image {
-                height: 300px;
-                margin-bottom: 3rem;
-            }
-            
-            .jelajah-content h2 {
-                font-size: 2rem;
-                text-align: center;
-            }
-            
-            .jelajah-content p {
-                font-size: 1rem;
-                text-align: left;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .jelajah-image {
-                height: 250px;
-            }
-            
-            .jelajah-content h2 {
-                font-size: 1.8rem;
-            }
-            
-            .jelajah-content p {
-                font-size: 0.95rem;
-            }
+            margin-left: 30px;
         }
 
         /* Footer */
@@ -463,9 +500,37 @@
                 text-align: center;
             }
 
-            .floating-market-content h2,
             .explore-section h2 {
                 font-size: 2rem;
+            }
+            
+            .slide {
+                height: 300px;
+            }
+            
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .jelajah-section {
+                padding: 3rem 0;
+            }
+            
+            .jelajah-image {
+                height: 300px;
+                margin-bottom: 3rem;
+            }
+            
+            .jelajah-content h2 {
+                font-size: 2rem;
+                text-align: center;
+            }
+            
+            .jelajah-content p {
+                font-size: 1rem;
+                text-align: left;
             }
         }
 
@@ -480,5 +545,17 @@
 
             .destination-card .card-content {
                 padding: 1.5rem;
+            }
+
+            .jelajah-image {
+                height: 250px;
+            }
+            
+            .jelajah-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .jelajah-content p {
+                font-size: 0.95rem;
             }
         }

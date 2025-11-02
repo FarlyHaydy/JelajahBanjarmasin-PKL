@@ -7,133 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('css/rekreasi_kuliner_religi.css') ?>">
-    <style>
-        /* Profile dropdown styles */
-        .profile-dropdown {
-            position: relative;
-        }
-        
-        .profile-toggle {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .profile-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .profile-dropdown-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            min-width: 180px;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            margin-top: 5px;
-        }
-        
-        .profile-dropdown-menu.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .profile-dropdown-menu a {
-            display: block;
-            padding: 12px 16px;
-            color: #333;
-            text-decoration: none;
-            transition: background-color 0.2s ease;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .profile-dropdown-menu a:last-child {
-            border-bottom: none;
-        }
-        
-        .profile-dropdown-menu a:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .profile-dropdown-menu a:first-child {
-            border-radius: 8px 8px 0 0;
-        }
-        
-        .profile-dropdown-menu a:last-child {
-            border-radius: 0 0 8px 8px;
-        }
-        
-        .profile-dropdown-menu i {
-            margin-right: 8px;
-            width: 16px;
-        }
-        
-        .logout-btn {
-            color: #dc3545 !important;
-        }
-        
-        .logout-btn:hover {
-            background-color: #fff5f5 !important;
-        }
-
-        .dropdown-arrow {
-            transition: transform 0.3s ease;
-        }
-        
-        .dropdown-arrow.rotated {
-            transform: rotate(180deg);
-        }
-
-        /* Existing styles */
-        .no-data-message {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 60px 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .card-image {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            min-height: 400px;
-            border-radius: 15px;
-        }
-        
-        .navbar-nav .nav-link.active {
-            color: #00d4aa !important;
-            font-weight: bold;
-        }
-
-        .card-arrow {
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .card-arrow:hover {
-            transform: translateX(5px);
-        }
-
-        .navbar.scrolled {
-            background: rgba(0, 0, 0, 0.9) !important;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= base_url('css/rekreasi_kuliner_religi_newKategori.css') ?>">
 </head>
 <body>
     <!-- Navigation -->
@@ -191,9 +65,13 @@
                         </a>
                     <?php endif; ?>
                     
+                    <!-- logout buat user saja  -->
+                    <?php if (session()->get('role') === 'user'): ?>
                     <a href="#" onclick="confirmLogout()" class="logout-btn">
                         <i class="fas fa-sign-out-alt"></i>Logout
                     </a>
+                    <?php endif; ?>
+                    
                 </div>
             </li>
         <?php else: ?>
@@ -293,12 +171,6 @@
                         <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
                         <li><a href="#"><i class="fab fa-whatsapp"></i> Whatsapp</a></li>
                         <li><a href="#"><i class="fas fa-envelope"></i> Email</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-4">
-                    <h5>Support</h5>
-                    <ul>
-                        <li><a href="<?= base_url('/faq') ?>"><i class="fas fa-question-circle"></i> FAQs</a></li>
                     </ul>
                 </div>
             </div>

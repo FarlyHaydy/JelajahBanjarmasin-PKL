@@ -21,6 +21,47 @@ $OLD_KEC  = old('kecamatan');
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('css/register.css') ?>">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <style>
+        /* Styling untuk Select2 agar konsisten dengan form-control */
+        .select2-container--default .select2-selection--single {
+            height: 45px !important;
+            border: 1px solid #ced4da !important;
+            border-radius: 0.375rem !important;
+            padding: 0.5rem 0.75rem !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+        
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: normal !important;
+            padding-left: 0 !important;
+            color: #495057 !important;
+        }
+        
+        .select2-container--default .select2-selection--single .select2-selection__placeholder {
+            color: #6c757d !important;
+        }
+        
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 43px !important;
+            right: 10px !important;
+        }
+        
+        .select2-container {
+            width: 100% !important;
+        }
+
+        /* Hover dan focus state */
+        .select2-container--default.select2-container--focus .select2-selection--single,
+        .select2-container--default .select2-selection--single:focus {
+            border-color: #86b7fe !important;
+            outline: 0 !important;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -94,9 +135,9 @@ $OLD_KEC  = old('kecamatan');
                            value="<?= old('telepon') ?>" required>
                 </div>
 
-                <!-- Kota dan Kecamatan dalam 1 baris (preload dari server, TANPA fetch) -->
-                <div class="form-row">
-                    <div class="form-col">
+                <!-- Kota/Kabupaten dan Kecamatan dalam 1 baris -->
+                <div class="row g-3">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="kota" class="form-label">Kota / Kabupaten</label>
                             <select name="kota" id="kota" class="form-select" required>
@@ -109,7 +150,7 @@ $OLD_KEC  = old('kecamatan');
                             </select>
                         </div>
                     </div>
-                    <div class="form-col">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="kecamatan" class="form-label">Kecamatan</label>
                             <select name="kecamatan" id="kecamatan" class="form-select" required>
@@ -180,12 +221,6 @@ $OLD_KEC  = old('kecamatan');
                         <li><a href="#">Facebook</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-4">
-                    <h5>Support</h5>
-                    <ul>
-                        <li><a href="<?= base_url('/faq') ?>"><i class="fas fa-question-circle"></i> FAQs</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </footer>
@@ -234,6 +269,9 @@ $OLD_KEC  = old('kecamatan');
         const kecSelect  = document.getElementById('kecamatan');
 
         function fillKecamatanOptions(kota, selectedKec) {
+            // Destroy Select2 dulu sebelum mengubah options
+            $('#kecamatan').select2('destroy');
+            
             kecSelect.innerHTML = '';
             const opt0 = document.createElement('option');
             opt0.value = '';
@@ -248,36 +286,50 @@ $OLD_KEC  = old('kecamatan');
                 if (selectedKec && selectedKec === kc) opt.selected = true;
                 kecSelect.appendChild(opt);
             });
+
+            // Inisialisasi Select2 kembali setelah mengisi kecamatan
+            $('#kecamatan').select2({
+                placeholder: "Pilih Kecamatan",
+                allowClear: true,
+            });
         }
 
-        // Inisialisasi (jika OLD_KOTA ada, isi kecamatan-nya)
+        // Inisialisasi saat halaman dimuat
         document.addEventListener('DOMContentLoaded', () => {
+            // Inisialisasi Select2 untuk dropdown Kota
+            $('#kota').select2({
+                placeholder: "Pilih Kota/Kabupaten",
+                allowClear: true,
+            });
+
+            // Inisialisasi Select2 untuk dropdown Kecamatan
+            $('#kecamatan').select2({
+                placeholder: "Pilih Kecamatan",
+                allowClear: true,
+            });
+
+            // Jika OLD_KOTA ada, isi kecamatan-nya
             if (OLD_KOTA && KOTA_KECAMATAN[OLD_KOTA]) {
                 fillKecamatanOptions(OLD_KOTA, OLD_KEC || '');
             }
         });
 
         // Saat kota berubah → isi kecamatan sesuai pilihan
-        kotaSelect.addEventListener('change', () => {
-            const kota = kotaSelect.value;
-            fillKecamatanOptions(kota, '');
-        });
-
-        // Validasi form dasar
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm_password').value;
-            if (password.length < 6) {
-                e.preventDefault();
-                alert('Password minimal 6 karakter!');
-                return;
-            }
-            if (password !== confirmPassword) {
-                e.preventDefault();
-                alert('Password dan konfirmasi password tidak sama!');
-                return;
+        $('#kota').on('change', function() {
+            const kota = $(this).val();
+            if (kota) {
+                fillKecamatanOptions(kota, '');
+            } else {
+                // Jika kota dikosongkan, reset kecamatan
+                $('#kecamatan').select2('destroy');
+                kecSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                $('#kecamatan').select2({
+                    placeholder: "Pilih Kecamatan",
+                    allowClear: true,
+                });
             }
         });
     </script>
+
 </body>
 </html>
